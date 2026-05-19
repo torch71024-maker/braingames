@@ -186,7 +186,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
 .sc-skip{padding:9px 28px;border:1px solid rgba(255,221,0,0.5);background:transparent;color:#ffdd00;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:4px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .sc-skip:hover{background:rgba(255,221,0,0.08);}
 /* RECALL */
-#page-recall .gpage{cursor:default;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
+#page-simon .gpage{cursor:default;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
 #rc-topbar{width:100%;padding:14px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0;pointer-events:none;}
 #rc-sc-a{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.35);}
 #rc-sc-v{font-size:26px;font-weight:bold;line-height:1.1;margin-top:2px;}
@@ -233,6 +233,73 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
 #tk-intro-sub{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.38);max-width:340px;line-height:1.9;}
 .tk-skip{padding:9px 28px;border:1px solid rgba(0,187,255,0.5);background:transparent;color:#00bbff;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:4px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .tk-skip:hover{background:rgba(0,187,255,0.08);}
+/* COUNT */
+#page-popule .gpage{cursor:default;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
+#cn-topbar{width:100%;padding:14px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0;pointer-events:none;}
+#cn-sc-a{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.35);}
+#cn-sc-v{font-size:26px;font-weight:bold;line-height:1.1;margin-top:2px;}
+#cn-tri-a{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.35);text-align:center;}
+#cn-tri-v{font-size:13px;font-weight:bold;color:rgba(255,255,255,0.5);text-align:center;margin-top:2px;}
+#cn-lv-wrap{text-align:right;}
+#cn-lv-lbl{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.35);}
+#cn-lv-a{font-size:14px;letter-spacing:2px;max-width:160px;display:flex;flex-wrap:wrap;justify-content:flex-end;}
+#cn-question{font-size:16px;font-weight:bold;letter-spacing:5px;text-align:center;padding:10px 16px 6px;color:#ffaa00;min-height:40px;flex-shrink:0;}
+#cn-canvas-wrap{width:100%;flex:1;min-height:0;position:relative;}
+#cn-canvas{position:absolute;top:0;left:0;}
+#cn-fb{font-size:17px;font-weight:bold;letter-spacing:4px;opacity:0;color:#fff;text-align:center;height:24px;transition:opacity .35s;pointer-events:none;flex-shrink:0;padding:2px 0;}
+#cn-numpad{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:6px 16px 14px;width:100%;max-width:480px;flex-shrink:0;}
+#cn-input-wrap{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);flex-direction:column;align-items:center;gap:14px;z-index:50;background:rgba(5,5,16,0.97);padding:30px 40px;border:1px solid rgba(255,170,0,0.3);border-radius:10px;}
+#cn-input{width:100px;height:64px;font-size:36px;font-weight:bold;text-align:center;background:rgba(255,255,255,0.05);border:2px solid rgba(255,170,0,0.45);color:#fff;font-family:inherit;border-radius:6px;outline:none;-moz-appearance:textfield;}
+#cn-input::-webkit-inner-spin-button,#cn-input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+#cn-input:focus{border-color:#ffaa00;background:rgba(255,170,0,0.08);}
+#cn-input.cn-ok{border-color:#00ee77!important;color:#00ee77!important;background:rgba(0,238,119,0.1)!important;}
+#cn-input.cn-bad{border-color:#ff2244!important;color:#ff2244!important;background:rgba(255,34,68,0.1)!important;}
+#cn-submit{height:64px;padding:0 24px;font-size:13px;font-weight:bold;letter-spacing:3px;border:1px solid rgba(255,170,0,0.5);background:transparent;color:#ffaa00;font-family:inherit;cursor:pointer;border-radius:4px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+#cn-submit:active{background:rgba(255,170,0,0.18);}
+.cn-nbtn{height:48px;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.35);font-family:inherit;font-size:17px;font-weight:bold;border-radius:4px;cursor:default;transition:background .1s,border-color .1s,color .1s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.cn-nbtn.cn-active{color:#fff;border-color:rgba(255,170,0,0.45);cursor:pointer;background:rgba(255,170,0,0.06);}
+.cn-nbtn.cn-active:active{background:rgba(255,170,0,0.18);}
+.cn-nbtn.cn-ok{background:rgba(0,238,119,0.2)!important;border-color:#00ee77!important;color:#00ee77!important;}
+.cn-nbtn.cn-bad{background:rgba(255,34,68,0.2)!important;border-color:#ff2244!important;color:#ff2244!important;}
+#cn-intro{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(5,5,16,0.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:15px;z-index:25;padding:28px;text-align:center;}
+#cn-intro-lv{font-size:30px;font-weight:bold;letter-spacing:9px;color:#ffaa00;}
+#cn-intro-rule{font-size:18px;font-weight:bold;letter-spacing:5px;color:#fff;}
+#cn-intro-sub{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.38);max-width:340px;line-height:1.9;}
+.cn-skip{padding:9px 28px;border:1px solid rgba(255,170,0,0.5);background:transparent;color:#ffaa00;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:4px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.cn-skip:hover{background:rgba(255,170,0,0.08);}
+/* GRID */
+#page-grid .gpage{cursor:default;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
+#gd-topbar{width:100%;padding:10px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0;pointer-events:none;}
+#gd-sc-a{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.35);}
+#gd-sc-v{font-size:26px;font-weight:bold;line-height:1.1;margin-top:2px;}
+#gd-tri{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.35);text-align:center;}
+#gd-tri-v{font-size:13px;font-weight:bold;color:rgba(255,255,255,0.5);text-align:center;margin-top:2px;}
+#gd-lv-wrap{text-align:right;}
+#gd-lv-lbl{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.35);}
+#gd-lv-a{font-size:14px;letter-spacing:2px;max-width:160px;display:flex;flex-wrap:wrap;justify-content:flex-end;}
+#gd-timer{font-size:40px;font-weight:bold;letter-spacing:2px;color:#5566ff;text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums;padding:4px 0 2px;}
+#gd-status{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,0.28);text-align:center;flex-shrink:0;min-height:18px;padding:2px 0;}
+#gd-grid-wrap{flex:1;display:flex;align-items:center;justify-content:center;width:100%;min-height:0;padding:6px;}
+#gd-grid{display:grid;}
+.gd-cell{border:1px solid rgba(255,255,255,0.1);border-radius:2px;cursor:pointer;transition:background .1s,border-color .1s,box-shadow .1s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;box-sizing:border-box;}
+.gd-cell:hover{background:rgba(255,255,255,0.07);}
+.gd-path{background:rgba(85,102,255,0.22);border-color:rgba(85,102,255,0.45);}
+.gd-start{background:rgba(0,238,119,0.4)!important;border-color:#00ee77!important;box-shadow:0 0 6px rgba(0,238,119,0.4);}
+.gd-end{background:rgba(255,221,0,0.2)!important;border-color:rgba(255,221,0,0.5)!important;}
+.gd-correct{background:#00ee77!important;border-color:#00ee77!important;}
+.gd-fail{background:rgba(255,34,68,0.45)!important;border-color:#ff2244!important;transition:none!important;}
+.gd-win{animation:gd-pulse 0.42s ease-in-out 3;}
+@keyframes gd-pulse{0%,100%{background:rgba(0,238,119,0.4)!important;border-color:rgba(0,238,119,0.7)!important;}50%{background:#00ee77!important;border-color:#00ee77!important;box-shadow:0 0 8px #00ee77;}}
+#gd-stop-btn{display:none;padding:8px 28px;border:1px solid rgba(85,102,255,0.5);background:transparent;color:#5566ff;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:4px;cursor:pointer;flex-shrink:0;margin:4px 0;-webkit-tap-highlight-color:transparent;}
+#gd-stop-btn:hover{background:rgba(85,102,255,0.1);}
+#gd-fb{font-size:17px;font-weight:bold;letter-spacing:4px;opacity:0;color:#fff;text-align:center;flex-shrink:0;height:24px;transition:opacity .35s;pointer-events:none;}
+#gd-intro{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(5,5,16,0.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:25;padding:28px;text-align:center;}
+#gd-intro-lv{font-size:30px;font-weight:bold;letter-spacing:9px;color:#5566ff;}
+#gd-intro-grid{font-size:22px;font-weight:bold;letter-spacing:5px;color:#fff;}
+#gd-intro-time{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.35);}
+#gd-intro-sub{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.32);max-width:340px;line-height:1.9;}
+.gd-skip{padding:9px 28px;border:1px solid rgba(85,102,255,0.5);background:transparent;color:#5566ff;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:4px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.gd-skip:hover{background:rgba(85,102,255,0.08);}
 </style>
 </head>
 <body>
@@ -290,13 +357,13 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
       <div id="hub-reach-scan" style="font-size:8px;letter-spacing:3px;color:rgba(255,221,0,0.4);margin-top:2px"></div>
       <div class="hcard-bar" style="background:#ffdd00"></div>
     </div>
-    <div class="hcard built" onclick="showPage('recall')">
+    <div class="hcard built" onclick="showPage('simon')">
       <div class="hcard-st">PLAY →</div>
-      <div class="hcard-name" style="color:#00ee77">RECALL</div>
+      <div class="hcard-name" style="color:#00ee77">SIMON</div>
       <div class="hcard-skill">Working Memory · Sequential Processing</div>
       <div class="hcard-desc">Buttons light up in sequence. Reproduce it exactly. Sequences grow longer, colors multiply, pace quickens. Trains the mental workspace used in everything.</div>
-      <div id="hub-hs-recall" style="font-size:9px;letter-spacing:3px;color:rgba(0,238,119,0.6);margin-top:8px"></div>
-      <div id="hub-reach-recall" style="font-size:8px;letter-spacing:3px;color:rgba(0,238,119,0.4);margin-top:2px"></div>
+      <div id="hub-hs-simon" style="font-size:9px;letter-spacing:3px;color:rgba(0,238,119,0.6);margin-top:8px"></div>
+      <div id="hub-reach-simon" style="font-size:8px;letter-spacing:3px;color:rgba(0,238,119,0.4);margin-top:2px"></div>
       <div class="hcard-bar" style="background:#00ee77"></div>
     </div>
     <div class="hcard built" onclick="showPage('track')">
@@ -308,12 +375,30 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
       <div id="hub-reach-track" style="font-size:8px;letter-spacing:3px;color:rgba(0,187,255,0.4);margin-top:2px"></div>
       <div class="hcard-bar" style="background:#00bbff"></div>
     </div>
+    <div class="hcard built" onclick="showPage('grid')">
+      <div class="hcard-st">PLAY →</div>
+      <div class="hcard-name" style="color:#5566ff">GRID</div>
+      <div class="hcard-skill">Spatial Memory · Route Recall</div>
+      <div class="hcard-desc">A path snakes through a grid — bottom to top. Memorise it. When the timer runs out or you hit STOP, the path vanishes. Tap it back in order. One wrong step turns everything red.</div>
+      <div id="hub-hs-grid" style="font-size:9px;letter-spacing:3px;color:rgba(85,102,255,0.6);margin-top:8px"></div>
+      <div id="hub-reach-grid" style="font-size:8px;letter-spacing:3px;color:rgba(85,102,255,0.4);margin-top:2px"></div>
+      <div class="hcard-bar" style="background:#5566ff"></div>
+    </div>
+    <div class="hcard built" onclick="showPage('popule')">
+      <div class="hcard-st">PLAY →</div>
+      <div class="hcard-name" style="color:#ffaa00">POPULE</div>
+      <div class="hcard-skill">Subitizing · Selective Attention</div>
+      <div class="hcard-desc">Items flash briefly — how many were there? As levels rise: count only the orange ones, or only the orange circles. Fast filtering under time pressure.</div>
+      <div id="hub-hs-popule" style="font-size:9px;letter-spacing:3px;color:rgba(255,170,0,0.6);margin-top:8px"></div>
+      <div id="hub-reach-popule" style="font-size:8px;letter-spacing:3px;color:rgba(255,170,0,0.4);margin-top:2px"></div>
+      <div class="hcard-bar" style="background:#ffaa00"></div>
+    </div>
   </div>
   <div class="hub-sec">PLANNED</div>
   <div class="hub-grid">
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#cc44ff">GRID</div><div class="hcard-skill">Spatial Memory · Visuospatial Processing</div><div class="hcard-desc">Squares on a grid light up in a sequence. Tap them back in order. The grid grows, sequences lengthen.</div><div class="hcard-bar" style="background:#cc44ff"></div></div>
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#00bbff">COUNT</div><div class="hcard-skill">Subitizing · Numerical Estimation</div><div class="hcard-desc">A cluster of dots flashes briefly. Enter the count. No time to count one by one — feel the quantity.</div><div class="hcard-bar" style="background:#00bbff"></div></div>
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff8800">CALC</div><div class="hcard-skill">Mental Arithmetic · Processing Speed</div><div class="hcard-desc">Math problems appear and a timer counts down. No paper, no calculator. Equations get longer.</div><div class="hcard-bar" style="background:#ff8800"></div></div>
+    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff6688">VISION</div><div class="hcard-skill">Visual Acuity · Contrast Sensitivity</div><div class="hcard-desc">Optotype symbols shrink and fade. How far can you see? The only test here that measures your eyes, not just your brain. Find where your visual system actually breaks down.</div><div class="hcard-bar" style="background:#ff6688"></div></div>
+    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff9922">TEMPO</div><div class="hcard-skill">Rhythmic Timing · Temporal Precision</div><div class="hcard-desc">A beat plays. Tap with it — exactly. Your deviation from perfect timing is measured in milliseconds. Gets harder as the rhythm grows irregular and the tempo shifts without warning.</div><div class="hcard-bar" style="background:#ff9922"></div></div>
+    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#44ddcc">DUAL</div><div class="hcard-skill">Divided Attention · Cognitive Load</div><div class="hcard-desc">Two streams at once: positions flash visually and tones play auditorily. Remember both. The classic dual n-back — the only task with replicated evidence for raising fluid intelligence.</div><div class="hcard-bar" style="background:#44ddcc"></div></div>
   </div>
   <div class="hub-foot">ALL TOOLS RUN LOCALLY · NO DATA COLLECTED · NO INTERNET REQUIRED</div>
 </div>
@@ -466,14 +551,97 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
 </div>
 </div>
 
+<!-- ═══════════ COUNT ═══════════ -->
+<div id="page-popule" class="page">
+<div class="gpage">
+  <div id="cn-intro">
+    <div id="cn-intro-lv">LEVEL 1</div>
+    <div id="cn-intro-rule">COUNT ALL ITEMS</div>
+    <div id="cn-intro-sub">Items flash briefly. Tap how many you saw.</div>
+    <button class="cn-skip" onclick="POPULE.skipIntro()">READY →</button>
+  </div>
+  <div id="cn-topbar">
+    <div id="cn-sc-a">SCORE<div id="cn-sc-v">0</div></div>
+    <div><div id="cn-tri-a">TRIAL</div><div id="cn-tri-v">—</div></div>
+    <div id="cn-lv-wrap"><div id="cn-lv-lbl">LIVES</div><div id="cn-lv-a"></div></div>
+  </div>
+  <div id="cn-question"></div>
+  <div id="cn-canvas-wrap"><canvas id="cn-canvas"></canvas></div>
+  <div id="cn-fb"></div>
+  <div id="cn-input-wrap">
+    <input id="cn-input" type="number" min="0" max="99" placeholder="?" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+    <button id="cn-submit">OK</button>
+  </div>
+  <button class="back-btn" onclick="showPage('hub')">← COGNITIV</button>
+  <div class="gscr" id="cn-start">
+    <div class="gttl" style="color:#ffaa00">POPULE</div>
+    <div class="gsub">SUBITIZING · SELECTIVE ATTENTION<br>WATCH THE FLASH · COUNT WHAT MATTERS</div>
+    <button class="gbtn" style="border-color:rgba(255,170,0,.4);color:#ffaa00" onclick="POPULE.start()">START</button>
+    <div class="ghint">ITEMS FLASH BRIEFLY — TAP HOW MANY<br>LATER: COUNT ONLY A SPECIFIC COLOR OR SHAPE<br>3 LIVES · +1 PER LEVEL</div>
+  </div>
+  <div class="gscr" id="cn-over" style="display:none">
+    <div class="gttl" style="font-size:30px;letter-spacing:7px;color:#ffaa00;margin-bottom:6px">RESULTS</div>
+    <div class="res-rating" id="cn-rating"></div><div class="res-sub" id="cn-rating-sub"></div>
+    <div class="res-wrap">
+      <div class="res-card"><div class="res-lbl">SCORE</div><div class="res-val" id="cn-r-sc" style="color:#ffaa00"></div></div>
+      <div class="res-card"><div class="res-lbl">LEVEL REACHED</div><div class="res-val" id="cn-r-lv" style="color:#ffdd00"></div></div>
+      <div class="res-card"><div class="res-lbl">TRIALS</div><div class="res-val" id="cn-r-tr" style="color:#00bbff"></div></div>
+    </div>
+    <button class="gbtn" style="border-color:rgba(255,170,0,.4);color:#ffaa00" onclick="POPULE.start()">PLAY AGAIN</button>
+    <button class="gbtn" onclick="showPage('hub')" style="margin-top:9px;border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.3)">← COGNITIV</button>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ GRID ═══════════ -->
+<div id="page-grid" class="page">
+<div class="gpage">
+  <div id="gd-intro">
+    <div id="gd-intro-lv">LEVEL 1</div>
+    <div id="gd-intro-grid">3×7 GRID</div>
+    <div id="gd-intro-time">60 SECONDS TO MEMORISE</div>
+    <div id="gd-intro-sub">A path snakes from bottom to top. Watch it appear, memorise it, then hit STOP. Tap the path in order from where it started. Arrow keys work after the first correct tap.</div>
+    <button class="gd-skip" onclick="GRID.skipIntro()">READY →</button>
+  </div>
+  <div id="gd-topbar">
+    <div id="gd-sc-a">SCORE<div id="gd-sc-v">0</div></div>
+    <div><div id="gd-tri">TRIAL</div><div id="gd-tri-v">—</div></div>
+    <div id="gd-lv-wrap"><div id="gd-lv-lbl">LIVES</div><div id="gd-lv-a"></div></div>
+  </div>
+  <div id="gd-timer">60.00</div>
+  <div id="gd-status"></div>
+  <div id="gd-grid-wrap"><div id="gd-grid"></div></div>
+  <button id="gd-stop-btn">STOP → RECALL</button>
+  <div id="gd-fb"></div>
+  <button class="back-btn" onclick="showPage('hub')">← COGNITIV</button>
+  <div class="gscr" id="gd-start">
+    <div class="gttl" style="color:#5566ff">GRID</div>
+    <div class="gsub">SPATIAL MEMORY · ROUTE RECALL<br>MEMORISE THE PATH · TRACE IT BACK</div>
+    <button class="gbtn" style="border-color:rgba(85,102,255,.4);color:#5566ff" onclick="GRID.start()">START</button>
+    <div class="ghint">A PATH SNAKES FROM BOTTOM TO TOP<br>MEMORISE IT · HIT STOP WHEN READY<br>CLICK THE PATH IN ORDER — ARROW KEYS WORK AFTER FIRST TAP<br>WRONG STEP = WHOLE GRID TURNS RED</div>
+  </div>
+  <div class="gscr" id="gd-over" style="display:none">
+    <div class="gttl" style="font-size:30px;letter-spacing:7px;color:#5566ff;margin-bottom:6px">RESULTS</div>
+    <div class="res-rating" id="gd-rating"></div><div class="res-sub" id="gd-rating-sub"></div>
+    <div class="res-wrap">
+      <div class="res-card"><div class="res-lbl">SCORE</div><div class="res-val" id="gd-r-sc" style="color:#5566ff"></div></div>
+      <div class="res-card"><div class="res-lbl">LEVEL REACHED</div><div class="res-val" id="gd-r-lv" style="color:#ffdd00"></div></div>
+      <div class="res-card"><div class="res-lbl">TRIALS</div><div class="res-val" id="gd-r-tr" style="color:#00ee77"></div></div>
+    </div>
+    <button class="gbtn" style="border-color:rgba(85,102,255,.4);color:#5566ff" onclick="GRID.start()">PLAY AGAIN</button>
+    <button class="gbtn" onclick="showPage('hub')" style="margin-top:9px;border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.3)">← COGNITIV</button>
+  </div>
+</div>
+</div>
+
 <!-- ═══════════ RECALL ═══════════ -->
-<div id="page-recall" class="page">
+<div id="page-simon" class="page">
 <div class="gpage">
   <div id="rc-intro">
     <div id="rc-intro-lv">LEVEL 1</div>
     <div id="rc-intro-rule">WATCH THE SEQUENCE</div>
     <div id="rc-intro-sub">Buttons light up in order. Then tap them back in the same order.</div>
-    <button class="rc-skip" onclick="RECALL.skipIntro()">READY →</button>
+    <button class="rc-skip" onclick="SIMON.skipIntro()">READY →</button>
   </div>
   <div id="rc-topbar">
     <div id="rc-sc-a">SCORE<div id="rc-sc-v">0</div></div>
@@ -488,9 +656,9 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
   <div id="rc-buttons"></div>
   <button class="back-btn" onclick="showPage('hub')">← COGNITIV</button>
   <div class="gscr" id="rc-start">
-    <div class="gttl" style="color:#00ee77">RECALL</div>
+    <div class="gttl" style="color:#00ee77">SIMON</div>
     <div class="gsub">WORKING MEMORY · SEQUENTIAL PROCESSING<br>WATCH THE PATTERN · REPEAT IT BACK</div>
-    <button class="gbtn" style="border-color:rgba(0,238,119,.4);color:#00ee77" onclick="RECALL.start()">START</button>
+    <button class="gbtn" style="border-color:rgba(0,238,119,.4);color:#00ee77" onclick="SIMON.start()">START</button>
     <div class="ghint">BUTTONS LIGHT UP ONE BY ONE<br>TAP THEM BACK IN THE SAME ORDER<br>SEQUENCES GET LONGER · 3 LIVES · +1 PER LEVEL</div>
   </div>
   <div class="gscr" id="rc-over" style="display:none">
@@ -502,7 +670,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
       <div class="res-card"><div class="res-lbl">SEQUENCES DONE</div><div class="res-val" id="rc-r-tr" style="color:#00bbff"></div></div>
       <div class="res-card"><div class="res-lbl">LEVEL REACHED</div><div class="res-val" id="rc-r-lv" style="color:#cc44ff"></div></div>
     </div>
-    <button class="gbtn" style="border-color:rgba(0,238,119,.4);color:#00ee77" onclick="RECALL.start()">PLAY AGAIN</button>
+    <button class="gbtn" style="border-color:rgba(0,238,119,.4);color:#00ee77" onclick="SIMON.start()">PLAY AGAIN</button>
     <button class="gbtn" onclick="showPage('hub')" style="margin-top:9px;border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.3)">← COGNITIV</button>
   </div>
 </div>
@@ -635,7 +803,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
 <script>
 // ══════════════════════ ROUTER ══════════════════════
 function showPage(id){
-  FLUX.stop();ECHO.stop();STROOP.stop();REFLEX.stop();SCAN.stop();RECALL.stop();TRACK.stop();
+  FLUX.stop();ECHO.stop();STROOP.stop();REFLEX.stop();SCAN.stop();SIMON.stop();TRACK.stop();POPULE.stop();
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const pg=document.getElementById('page-'+id);
   if(pg)pg.classList.add('active');
@@ -650,14 +818,14 @@ const HS={
 };
 
 function updateHubScores(){
-  ['flux','echo','stroop','reflex','scan','recall','track'].forEach(g=>{
+  ['flux','echo','stroop','reflex','scan','simon','track','popule','grid'].forEach(g=>{
     const hs=HS.get(g),r=HS.getR(g);
     const he=document.getElementById('hub-hs-'+g);
     const re=document.getElementById('hub-reach-'+g);
     if(he)he.textContent=hs>0?'BEST: '+hs.toLocaleString():'';
     if(re&&r>0){
-      const isLv=['flux','echo','stroop'].includes(g);
-      const isSeq=g==='recall';
+      const isLv=['flux','echo','stroop','popule'].includes(g);
+      const isSeq=g==='simon';
       re.textContent=isSeq?`BEST SEQ: ${r}`:isLv?`LEVEL ${r}`:`TRIAL ${r}`;
     } else if(re) re.textContent='';
   });
@@ -702,366 +870,416 @@ const FLUX=(()=>{
 
 // ══════════════════════ ECHO ══════════════════════
 const ECHO=(()=>{
-  const LVLS=[{labels:['LOW','HIGH'],freqs:[200,800],dur:700},{labels:['LOW','HIGH'],freqs:[220,660],dur:600},{labels:['LOW','MID','HIGH'],freqs:[200,440,880],dur:600},{labels:['LOW','MID','HIGH'],freqs:[200,440,880],dur:500},{labels:['LOW','MID','HIGH'],freqs:[220,360,660],dur:480},{labels:['LOW','MID','HIGH'],freqs:[220,330,580],dur:450},{labels:['DEEP','LOW','HIGH','SHARP'],freqs:[160,280,460,740],dur:430},{labels:['DEEP','LOW','HIGH','SHARP'],freqs:[180,290,450,720],dur:400},{labels:['DEEP','LOW','HIGH','SHARP'],freqs:[200,300,430,640],dur:380},{labels:['DEEP','LOW','HIGH','SHARP'],freqs:[210,295,415,610],dur:350},{labels:['1','2','3','4','5'],freqs:[150,240,380,600,960],dur:450},{labels:['1','2','3','4','5','6'],freqs:[140,210,315,472,708,1062],dur:420},{labels:['1','2','3','4','5','6','7'],freqs:[130,195,290,440,660,990,1480],dur:400},{labels:['1','2','3','4','5','6','7','8'],freqs:[120,180,270,405,607,910,1365,2048],dur:380},{labels:['1','2','3','4','5','6','7','8','9'],freqs:[110,165,247,370,554,830,1244,1865,2795],dur:360}];
-  const RWIN=2000,KEYS=['1','2','3','4','5','6','7','8','9'],TOTAL=20,ADV=4;
-  let ac=null,score=0,lives=3,level=0,trial=0,corrInLv=0,totCorr=0,totAns=0,rtimes=[],tStart=0,tRaf=null,tEnd=0,curAns=0,accepting=false,autoTO=null,wBars=[],wRaf={id:null},iBars=[],iRaf={id:null},lastLv=-1;
-  function clearAutoTO(){if(autoTO){clearTimeout(autoTO);autoTO=null;}}
+  const LVLS=[
+    {labels:['LOW','HIGH'],                                      freqs:[200,800],                                       dur:800},
+    {labels:['LOW','MID','HIGH'],                                freqs:[200,440,800],                                   dur:700},
+    {labels:['1','2','3','4'],                                   freqs:[180,320,520,880],                               dur:620},
+    {labels:['1','2','3','4','5'],                               freqs:[150,240,384,614,982],                           dur:560},
+    {labels:['1','2','3','4','5','6'],                           freqs:[130,200,308,474,730,1124],                      dur:500},
+    {labels:['1','2','3','4','5','6','7'],                       freqs:[120,180,270,405,607,910,1365],                  dur:450},
+    {labels:['1','2','3','4','5','6','7','8'],                   freqs:[110,165,247,370,554,830,1244,1866],             dur:410},
+    {labels:['1','2','3','4','5','6','7','8','9'],               freqs:[100,150,225,338,506,759,1139,1708,2562],        dur:370},
+  ];
+  const RWIN=2000,KEYS=['1','2','3','4','5','6','7','8','9'],TOTAL=50,ADV=3;
+  let ac=null,score=0,lives=3,level=0,trial=0,corrInLv=0,lastLv=-1,accepting=false;
+  let rtimes=[],tStart=0,autoTO=null;
+  const clearAutoTO=()=>{if(autoTO){clearTimeout(autoTO);autoTO=null;}};
+
   function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
-  function playTone(freq,dur,vol){if(!ac)return;vol=vol||0.42;const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type='sine';o.frequency.value=freq;const t=ac.currentTime;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+0.025);g.gain.setValueAtTime(vol,t+dur/1000-0.04);g.gain.linearRampToValueAtTime(0,t+dur/1000);o.start(t);o.stop(t+dur/1000+0.02);}
-  function beep(f,v,d){if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=f;o.type='square';g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d);}
-  function mkBars(el,n,cls){el.innerHTML='';const b=[];for(let i=0;i<n;i++){const d=document.createElement('div');d.className=cls;d.style.height='4px';el.appendChild(d);b.push(d);}return b;}
-  function animOn(bars,ref){if(ref.id){cancelAnimationFrame(ref.id);ref.id=null;}function f(){const t=Date.now()/110;bars.forEach((b,i)=>{b.style.height=(6+Math.abs(Math.sin(t+i*0.45))*52)+'px';});ref.id=requestAnimationFrame(f);}f();}
-  function animOff(bars,ref){if(ref&&ref.id){cancelAnimationFrame(ref.id);ref.id=null;}if(bars)bars.forEach(b=>b.style.height='4px');}
-  function startTimer(){const bar=document.getElementById('ec-timer-bar');bar.style.transition='none';bar.style.width='100%';bar.style.background='#00bbff';tEnd=performance.now()+RWIN;if(tRaf)cancelAnimationFrame(tRaf);function f(ts){const pct=Math.max(0,(tEnd-ts)/RWIN);bar.style.width=(pct*100)+'%';bar.style.background=pct>.4?'#00bbff':pct>.18?'#ffdd00':'#ff2244';if(pct>0)tRaf=requestAnimationFrame(f);}tRaf=requestAnimationFrame(f);}
-  function stopTimer(){if(tRaf){cancelAnimationFrame(tRaf);tRaf=null;}const b=document.getElementById('ec-timer-bar');if(b)b.style.width='0';}
-  function rl(){const el=document.getElementById('ec-lv-a');el.innerHTML='';for(let i=0;i<3;i++){const sp=document.createElement('span');sp.textContent=i<lives?'◆':'◇';sp.style.cssText=`color:${i<lives?'#ff4466':'rgba(255,255,255,0.13)'};margin-left:4px;font-size:16px;`;el.appendChild(sp);}}
-  function mkBtns(lv){const area=document.getElementById('ec-btns');area.innerHTML='';lv.labels.forEach((label,i)=>{const b=document.createElement('button');b.className='ecbtn disabled';b.innerHTML=`<span class="ecbtn-key">[${KEYS[i]}]</span>${label}`;b.dataset.idx=i;b.addEventListener('click',()=>answer(i));area.appendChild(b);});}
-  function enBtns(){document.querySelectorAll('.ecbtn').forEach(b=>b.classList.remove('disabled'));}
-  function disBtns(){document.querySelectorAll('.ecbtn').forEach(b=>b.classList.add('disabled'));}
-  function litBtn(idx,on){const b=document.querySelectorAll('.ecbtn');if(b[idx])on?b[idx].classList.add('lit'):b[idx].classList.remove('lit');}
-  function intro(lv,done){const ov=document.getElementById('ec-intro');ov.style.display='flex';document.getElementById('ec-intro-lv').textContent=`LEVEL ${level+1}`;document.getElementById('ec-intro-lbl').textContent='';iBars=mkBars(document.getElementById('ec-intro-wave'),14,'ecibar');const iref={id:null},n=lv.labels.length,order=[];for(let i=n-1;i>=0;i--)order.push(i);mkBtns(lv);disBtns();let step=0;function go(){if(step>=order.length){animOff(iBars,iref);if(step>0)litBtn(order[step-1],false);document.getElementById('ec-intro-lbl').textContent='GO!';setTimeout(()=>{ov.style.display='none';done();},500);return;}const idx=order[step],freq=lv.freqs[idx],label=lv.labels[idx];if(step>0)litBtn(order[step-1],false);litBtn(idx,true);document.getElementById('ec-intro-lbl').textContent=label;animOn(iBars,iref);playTone(freq,lv.dur);setTimeout(()=>{animOff(iBars,iref);step++;setTimeout(go,150);},lv.dur+600);}setTimeout(go,600);}
-  function nextTrial(){if(trial>=TOTAL||lives<=0){over();return;}const lv=LVLS[Math.min(level,LVLS.length-1)];if(level!==lastLv){lastLv=level;intro(lv,()=>runTrial(lv));}else runTrial(lv);}
-  function runTrial(lv){trial++;document.getElementById('ec-tri-v').textContent=`${trial} / ${TOTAL}`;const n=lv.labels.length;curAns=Math.floor(Math.random()*n);mkBtns(lv);disBtns();document.getElementById('ec-fb').textContent='';stopTimer();animOff(wBars,wRaf);document.getElementById('ec-status').textContent='GET READY';setTimeout(()=>{document.getElementById('ec-status').textContent='LISTENING...';animOn(wBars,wRaf);playTone(lv.freqs[curAns],lv.dur);setTimeout(()=>{animOff(wBars,wRaf);document.getElementById('ec-status').textContent='IDENTIFY THE PITCH';enBtns();accepting=true;tStart=performance.now();startTimer();clearAutoTO();autoTO=setTimeout(()=>{if(accepting)answer(-1);},RWIN+50);},lv.dur+200);},500);}
-  function answer(idx){if(!accepting)return;accepting=false;clearAutoTO();disBtns();stopTimer();const rt=performance.now()-tStart,correct=idx===curAns,btns=document.querySelectorAll('.ecbtn');totAns++;btns[curAns].classList.add('correct');if(correct){totCorr++;rtimes.push(rt);corrInLv++;const pts=Math.max(50,Math.round(1000-rt*0.3))*(level+1);score+=pts;document.getElementById('ec-sc-v').textContent=score;document.getElementById('ec-fb').textContent=`+${pts}`;document.getElementById('ec-fb').style.color='#00ee77';beep(880,0.1,0.14);if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;setTimeout(()=>{document.getElementById('ec-fb').textContent=`LEVEL ${level+1}!`;document.getElementById('ec-fb').style.color='#ffdd00';},300);}}else{if(idx>=0)btns[idx].classList.add('wrong');lives=Math.max(0,lives-1);rl();document.getElementById('ec-fb').textContent=idx===-1?'TIME UP!':'WRONG';document.getElementById('ec-fb').style.color='#ff2244';beep(160,0.12,0.22);if(lives<=0){setTimeout(over,900);return;}}setTimeout(nextTrial,1000);}
-  function over(){accepting=false;clearAutoTO();stopTimer();HS.set('echo',score);HS.setR('echo',level+1);const acc=totAns>0?Math.round(totCorr/totAns*100):0,avgRt=rtimes.length>0?(rtimes.reduce((a,b)=>a+b,0)/rtimes.length/1000).toFixed(2)+'s':'—';document.getElementById('ec-r-sc').textContent=score;document.getElementById('ec-r-ac').textContent=acc+'%';document.getElementById('ec-r-rt').textContent=avgRt;document.getElementById('ec-r-lv').textContent=level+1;const r=document.getElementById('ec-rating'),rs=document.getElementById('ec-rating-sub');let col;if(acc>=90){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Your auditory discrimination is outstanding.';}else if(acc>=75){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average pitch recognition.';}else if(acc>=60){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid baseline. Regular practice will sharpen this.';}else if(acc>=45){r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Pitch discrimination needs work. Try headphones.';}else{r.textContent='NEEDS WORK';col='#ff2244';rs.textContent='Start with headphones in a quiet environment.';}r.style.color=col;document.getElementById('ec-over').style.display='flex';}
-  function start(){iA();score=0;lives=3;level=0;trial=0;lastLv=-1;corrInLv=0;totCorr=0;totAns=0;rtimes=[];accepting=false;autoTO=null;document.getElementById('ec-sc-v').textContent='0';document.getElementById('ec-tri-v').textContent=`— / ${TOTAL}`;document.getElementById('ec-fb').textContent='';document.getElementById('ec-status').textContent='—';document.getElementById('ec-start').style.display='none';document.getElementById('ec-over').style.display='none';document.getElementById('ec-intro').style.display='none';wBars=mkBars(document.getElementById('ec-wave'),18,'ecbar');rl();nextTrial();}
-  function stop(){accepting=false;clearAutoTO();stopTimer();document.getElementById('ec-start').style.display='flex';document.getElementById('ec-over').style.display='none';document.getElementById('ec-intro').style.display='none';}
-  document.addEventListener('keydown',e=>{if(!accepting)return;const idx=KEYS.indexOf(e.key.toUpperCase());if(idx>=0){const lv=LVLS[Math.min(level,LVLS.length-1)];if(idx<lv.labels.length)answer(idx);}});
-  return{start,stop};
+  function playTone(freq,dur){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(0.5,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur/1000);o.start();o.stop(ac.currentTime+dur/1000+0.05);}catch(e){}}
+
+  function rl(){const el=document.getElementById('ec-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+
+  function stopTimer(){const b=document.getElementById('ec-timer-bar');if(b){b.style.transition='none';b.style.width='0';}}
+  function startTimer(){
+    const b=document.getElementById('ec-timer-bar');if(!b)return;
+    b.style.transition='none';b.style.width='100%';
+    const end=performance.now()+RWIN;
+    let raf;
+    function f(ts){const p=Math.max(0,(end-ts)/RWIN);b.style.width=(p*100)+'%';b.style.background=p>.5?'#00bbff':p>.25?'#ffdd00':'#ff2244';if(p>0)raf=requestAnimationFrame(f);}
+    raf=requestAnimationFrame(f);
+  }
+
+  function buildBtns(lv){
+    const area=document.getElementById('ec-btns');area.innerHTML='';
+    lv.labels.forEach((lbl,i)=>{
+      const btn=document.createElement('button');
+      btn.className='echobtn disabled';
+      btn.innerHTML=`<span class="stbtn-key">[${KEYS[i]||i+1}]</span>${lbl}`;
+      btn.style.cssText='min-width:72px;max-width:145px;flex:1;padding:9px 5px;border:1px solid rgba(0,187,255,0.3);background:rgba(0,187,255,0.06);color:#00bbff;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:2px;cursor:pointer;border-radius:3px;';
+      btn.addEventListener('click',()=>respond(i));
+      area.appendChild(btn);
+    });
+  }
+
+  function animOn(idx){const btns=document.querySelectorAll('.echobtn');if(btns[idx]){btns[idx].style.background='rgba(0,187,255,0.35)';btns[idx].style.borderColor='#00bbff';}}
+  function animOff(idx){const btns=document.querySelectorAll('.echobtn');if(btns[idx]){btns[idx].style.background='rgba(0,187,255,0.06)';btns[idx].style.borderColor='rgba(0,187,255,0.3)';}}
+
+  function intro(lv,done){
+    const ov=document.getElementById('ec-intro');ov.style.display='flex';
+    document.getElementById('ec-intro-lv').textContent=`LEVEL ${level+1} — ${lv.labels.length} TONES`;
+    const order=[...Array(lv.labels.length).keys()].reverse();
+    let step=0;
+    buildBtns(lv);
+    function go(){
+      if(step>=order.length){
+        setTimeout(()=>{ov.style.display='none';done();},500);return;
+      }
+      const idx=order[step];
+      document.getElementById('ec-intro-lbl').textContent=lv.labels[idx];
+      animOn(idx);playTone(lv.freqs[idx],lv.dur);
+      setTimeout(()=>{animOff(idx);step++;setTimeout(go,150);},lv.dur+600);
+    }
+    setTimeout(go,600);
+  }
+  function skipIntro(){
+    const ov=document.getElementById('ec-intro');
+    if(ov&&ov._done){ov.style.display='none';ov._done();}
+  }
+
+  function respond(idx){
+    if(!accepting)return;
+    accepting=false;clearAutoTO();stopTimer();
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    const rt=performance.now()-tStart;
+    document.querySelectorAll('.echobtn').forEach(b=>b.classList.add('disabled'));
+    if(idx===currentTone){
+      corrInLv++;trial++;
+      const pts=Math.max(50,Math.round((RWIN-rt)/20))*(level+1);
+      score+=pts;
+      document.getElementById('ec-sc-v').textContent=score;
+      document.getElementById('ec-fb').textContent='+'+pts;
+      document.getElementById('ec-fb').style.color='#00ee77';
+      rtimes.push(rt);
+      if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();}
+      if(trial>=TOTAL){over();return;}
+    } else {
+      trial++;lives=Math.max(0,lives-1);rl();
+      document.getElementById('ec-fb').textContent='WRONG';
+      document.getElementById('ec-fb').style.color='#ff2244';
+      if(lives<=0||trial>=TOTAL){setTimeout(over,800);return;}
+    }
+    document.getElementById('ec-tri-v').textContent=trial+' / '+TOTAL;
+    if(level!==lastLv){lastLv=level;setTimeout(()=>intro(LVLS[level],()=>nextTrial()),600);}
+    else setTimeout(nextTrial,600);
+  }
+
+  function nextTrial(){
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    currentTone=Math.floor(Math.random()*lv.labels.length);
+    document.getElementById('ec-status').textContent='IDENTIFY THE PITCH';
+    document.getElementById('ec-fb').textContent='';
+    document.querySelectorAll('.echobtn').forEach(b=>b.classList.remove('disabled'));
+    playTone(lv.freqs[currentTone],lv.dur);
+    tStart=performance.now();accepting=true;
+    startTimer();
+    clearAutoTO();
+    autoTO=setTimeout(()=>{
+      if(!accepting)return;
+      accepting=false;stopTimer();
+      trial++;lives=Math.max(0,lives-1);rl();
+      document.getElementById('ec-fb').textContent='TOO SLOW';
+      document.getElementById('ec-fb').style.color='#ff8800';
+      document.querySelectorAll('.echobtn').forEach(b=>b.classList.add('disabled'));
+      document.getElementById('ec-tri-v').textContent=trial+' / '+TOTAL;
+      if(lives<=0||trial>=TOTAL){setTimeout(over,800);return;}
+      setTimeout(nextTrial,700);
+    },RWIN);
+  }
+
+  let currentTone=0;
+
+  function over(){
+    accepting=false;clearAutoTO();stopTimer();
+    HS.set('echo',score);HS.setR('echo',level+1);
+    const acc=trial>0?Math.round((rtimes.length/trial)*100):0;
+    const avg=rtimes.length>0?Math.round(rtimes.reduce((a,b)=>a+b,0)/rtimes.length):0;
+    document.getElementById('ec-r-sc').textContent=score;
+    document.getElementById('ec-r-ac').textContent=acc+'%';
+    document.getElementById('ec-r-rt').textContent=avg?avg+'ms':'—';
+    document.getElementById('ec-r-lv').textContent=level+1+' ('+LVLS[Math.min(level,LVLS.length-1)].labels.length+' tones)';
+    const r=document.getElementById('ec-rating'),rs=document.getElementById('ec-rating-sub');let col;
+    if(level>=7){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='9 tones is the frontier of auditory short-term memory.';}
+    else if(level>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='7+ tones is elite auditory discrimination.';}
+    else if(level>=3){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid pitch discrimination. 5+ tones is genuinely hard.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Use headphones. The differences become very small at level 4+.';}
+    r.style.color=col;
+    document.getElementById('ec-over').style.display='flex';
+  }
+
+  function start(){
+    iA();score=0;lives=3;level=0;trial=0;corrInLv=0;lastLv=-1;
+    accepting=false;rtimes=[];currentTone=0;
+    clearAutoTO();stopTimer();
+    document.getElementById('ec-sc-v').textContent='0';
+    document.getElementById('ec-tri-v').textContent='1 / '+TOTAL;
+    document.getElementById('ec-fb').textContent='';
+    document.getElementById('ec-status').textContent='—';
+    document.getElementById('ec-start').style.display='none';
+    document.getElementById('ec-over').style.display='none';
+    document.getElementById('ec-intro').style.display='none';
+    rl();
+    const lv=LVLS[0];lastLv=0;
+    intro(lv,()=>nextTrial());
+  }
+
+  function stop(){
+    accepting=false;clearAutoTO();stopTimer();
+    document.getElementById('ec-start').style.display='flex';
+    document.getElementById('ec-over').style.display='none';
+    document.getElementById('ec-intro').style.display='none';
+  }
+
+  document.addEventListener('keydown',e=>{
+    if(!accepting)return;
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    const ki=KEYS.indexOf(e.key);
+    if(ki>=0&&ki<lv.labels.length)respond(ki);
+  });
+
+  return{start,stop,skipIntro};
 })();
 
 // ══════════════════════ STROOP ══════════════════════
 const STROOP=(()=>{
   const C={RED:{hex:'#ff2244'},BLUE:{hex:'#00bbff'},GREEN:{hex:'#00ee77'},YELLOW:{hex:'#ffdd00'},PURPLE:{hex:'#cc44ff'},ORANGE:{hex:'#ff8800'},TEAL:{hex:'#00ccaa'}};
   const ALL7=['RED','BLUE','GREEN','YELLOW','PURPLE','ORANGE','TEAL'];
-
   const LVLS=[
-    {rule:'INK',     pool:['RED','BLUE','GREEN'],                   words:1, desc:'CLICK THE INK COLOR',  sub:'What color is the word printed in?'},
-    {rule:'WORD',    pool:['RED','BLUE','GREEN'],                   words:1, desc:'CLICK THE WORD',        sub:'What color does the word name?'},
-    {rule:'NEITHER', pool:['RED','BLUE','GREEN'],                   words:1, desc:'CLICK THE ODD COLOR',   sub:'The one color that is neither the word nor its ink.'},
-    {rule:'INK',     pool:['RED','BLUE','GREEN','YELLOW','PURPLE'], words:1, desc:'CLICK THE INK COLOR',  sub:'What color is the word printed in?'},
-    {rule:'WORD',    pool:['RED','BLUE','GREEN','YELLOW','PURPLE'], words:1, desc:'CLICK THE WORD',        sub:'What color does the word name?'},
-    {rule:'NEITHER', pool:['RED','BLUE','GREEN','YELLOW','PURPLE'], words:2, desc:'CLICK THE ODD COLOR',   sub:'The one color not used as text or ink by either word.'},
-    {rule:'INK',     pool:ALL7,                                     words:1, desc:'CLICK THE INK COLOR',  sub:'Seven colors. Which one is the word actually printed in?'},
-    {rule:'WORD',    pool:ALL7,                                     words:1, desc:'CLICK THE WORD',        sub:'Seven colors. Which color does the word name?'},
-    {rule:'NEITHER', pool:ALL7,                                     words:3, desc:'CLICK THE ODD COLOR',   sub:'Three words — seven colors. The one color not used as text or ink by any of the three words.'},
+    {rule:'INK',    pool:['RED','BLUE','GREEN'],                   words:1,desc:'CLICK THE INK COLOR', sub:'What color is the word printed in?'},
+    {rule:'WORD',   pool:['RED','BLUE','GREEN'],                   words:1,desc:'CLICK THE WORD',       sub:'What color does the word name?'},
+    {rule:'NEITHER',pool:['RED','BLUE','GREEN'],                   words:1,desc:'CLICK THE ODD COLOR',  sub:'The color that is neither the word nor its ink.'},
+    {rule:'INK',    pool:['RED','BLUE','GREEN','YELLOW','PURPLE'], words:1,desc:'CLICK THE INK COLOR', sub:'What color is the word printed in? Five choices.'},
+    {rule:'WORD',   pool:['RED','BLUE','GREEN','YELLOW','PURPLE'], words:1,desc:'CLICK THE WORD',       sub:'What color does the word name? Five choices.'},
+    {rule:'NEITHER',pool:['RED','BLUE','GREEN','YELLOW','PURPLE'], words:2,desc:'CLICK THE ODD COLOR',  sub:'Two words. The color not used as text or ink by either.'},
+    {rule:'INK',    pool:ALL7,                                     words:1,desc:'CLICK THE INK COLOR', sub:'Seven colors. Which one is the word actually printed in?'},
+    {rule:'WORD',   pool:ALL7,                                     words:1,desc:'CLICK THE WORD',       sub:'Seven colors. Which color does the word name?'},
+    {rule:'NEITHER',pool:ALL7,                                     words:3,desc:'CLICK THE ODD COLOR',  sub:'Three words. The one color used by none of them as text or ink.'},
   ];
-
-  const KEYS=['1','2','3','4','5','6','7'];
-  const ADV=5;
-
-  let ac=null,score=0,lives=3,level=0,trial=0,corrInLv=0,totCorr=0,totAns=0;
-  let rtimes=[],tStart=0,tRaf=null,accepting=false,lastLv=-1,autoTO=null;
-  let currentTrial=null,introCd=null;
-  function clearAutoTO(){if(autoTO){clearTimeout(autoTO);autoTO=null;}}
+  const KEYS=['1','2','3','4','5','6','7'],ADV=5,RWIN=3500;
+  let ac=null,score=0,lives=3,level=0,trial=0,corrInLv=0,lastLv=-1;
+  let totCorr=0,totTrials=0,rtimes=[],tStart=0,accepting=false;
+  let autoTO=null,timerRaf=null,cdInt=null;
 
   function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
-  function beep(f,v,d){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.frequency.value=f;o.type='square';g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d);}catch(e){}}
-  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+  function beep(f,t,v,d){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=t;o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d+0.01);}catch(e){}}
+  function rl(){const el=document.getElementById('st-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  function fb(txt,col){const el=document.getElementById('st-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,800);}
+  function clrAll(){if(autoTO){clearTimeout(autoTO);autoTO=null;}if(timerRaf){cancelAnimationFrame(timerRaf);timerRaf=null;}if(cdInt){clearInterval(cdInt);cdInt=null;}}
+  function startTimerBar(){
+    const bar=document.getElementById('st-timer-bar');bar.style.transition='none';bar.style.width='100%';
+    const end=performance.now()+RWIN;
+    function f(ts){const p=Math.max(0,(end-ts)/RWIN);bar.style.width=(p*100)+'%';bar.style.background=p>.5?'#ff8800':p>.25?'#ffdd00':'#ff2244';if(p>0)timerRaf=requestAnimationFrame(f);}
+    timerRaf=requestAnimationFrame(f);
+  }
+  function stopTimerBar(){if(timerRaf){cancelAnimationFrame(timerRaf);timerRaf=null;}const b=document.getElementById('st-timer-bar');if(b){b.style.transition='none';b.style.width='0';}}
 
-  // Single-word trial
-  function gen1(lv){
+  function mkStim(lv){
     const pool=lv.pool;
-    let wC,iC;
-    do{wC=pool[Math.floor(Math.random()*pool.length)];iC=pool[Math.floor(Math.random()*pool.length)];}while(wC===iC);
-    let ansC;
-    if(lv.rule==='INK') ansC=iC;
-    else if(lv.rule==='WORD') ansC=wC;
-    else ansC=pool.find(c=>c!==wC&&c!==iC); // NEITHER: with 3 colors, always exactly 1 remaining
-    return{words:[{wC,iC}],ansC,choices:shuffle([...pool]),rule:lv.rule};
-  }
-
-  // Two-word trial: shuffle 5-color pool, first 4 = 2×(word+ink), 5th = answer
-  function gen2(lv){
-    const s=shuffle([...lv.pool]);
-    return{words:[{wC:s[0],iC:s[1]},{wC:s[2],iC:s[3]}],ansC:s[4],choices:shuffle([...lv.pool]),rule:'NEITHER'};
-  }
-
-  // Three-word trial: shuffle 7-color pool, first 6 = 3×(word+ink), 7th = answer
-  function gen3(lv){
-    const s=shuffle([...lv.pool]); // exactly 7 colors
-    return{words:[{wC:s[0],iC:s[1]},{wC:s[2],iC:s[3]},{wC:s[4],iC:s[5]}],ansC:s[6],choices:shuffle([...lv.pool]),rule:'NEITHER'};
-  }
-
-  function gen(lv){return lv.words===3?gen3(lv):lv.words===2?gen2(lv):gen1(lv);}
-
-  function showIntro(lv,done){
-    const ov=document.getElementById('st-intro');
-    ov.style.display='flex';
-    document.getElementById('st-intro-lv').textContent=`LEVEL ${level+1}`;
-    // Rule chip
-    const row=document.getElementById('st-intro-rules-row');
-    row.innerHTML='';
-    const ch=document.createElement('div');ch.className='st-rule-chip active-rule';ch.textContent=lv.desc;row.appendChild(ch);
-    document.getElementById('st-intro-ex-rule').textContent=lv.desc;
-    document.getElementById('st-intro-ex-sub').textContent=lv.sub;
-    // Example
-    const ex=gen(lv);
-    const w1El=document.getElementById('st-intro-ex-word');
-    const w2El=document.getElementById('st-intro-ex-word2');
-    w1El.textContent=ex.words[0].wC; w1El.style.color=C[ex.words[0].iC].hex;
-    const explEl=document.getElementById('st-intro-ex-explain');
-    const w3El=document.getElementById('st-intro-ex-word3');
-    if(lv.words===3){
-      w2El.style.display='block'; w2El.textContent=ex.words[1].wC; w2El.style.color=C[ex.words[1].iC].hex;
-      w3El.style.display='block'; w3El.textContent=ex.words[2].wC; w3El.style.color=C[ex.words[2].iC].hex;
-      w1El.style.fontSize='32px'; w2El.style.fontSize='32px'; w3El.style.fontSize='32px';
-      const w=ex.words;
-      explEl.innerHTML=
-        `<span style="color:${C[w[0].wC].hex}">${w[0].wC}</span>/<span style="color:${C[w[0].iC].hex}">${w[0].iC}</span> · `+
-        `<span style="color:${C[w[1].wC].hex}">${w[1].wC}</span>/<span style="color:${C[w[1].iC].hex}">${w[1].iC}</span> · `+
-        `<span style="color:${C[w[2].wC].hex}">${w[2].wC}</span>/<span style="color:${C[w[2].iC].hex}">${w[2].iC}</span>`+
-        ` — odd: <span style="color:${C[ex.ansC].hex};font-weight:bold">${ex.ansC}</span>`;
-    } else if(lv.words===2){
-      if(w3El)w3El.style.display='none';
-      w2El.style.display='block';
-      w2El.textContent=ex.words[1].wC; w2El.style.color=C[ex.words[1].iC].hex;
-      w1El.style.fontSize='44px'; w2El.style.fontSize='44px';
-      const w=ex.words;
-      explEl.innerHTML=
-        `Word 1: <span style="color:${C[w[0].wC].hex};font-weight:bold">${w[0].wC}</span> printed in <span style="color:${C[w[0].iC].hex};font-weight:bold">${w[0].iC}</span><br>`+
-        `Word 2: <span style="color:${C[w[1].wC].hex};font-weight:bold">${w[1].wC}</span> printed in <span style="color:${C[w[1].iC].hex};font-weight:bold">${w[1].iC}</span><br>`+
-        `Used: ${w[0].wC}, ${w[0].iC}, ${w[1].wC}, ${w[1].iC} — leaving only: <span style="color:${C[ex.ansC].hex};font-weight:bold">${ex.ansC}</span>`;
-    } else {
-      if(w2El)w2El.style.display='none'; if(w3El)w3El.style.display='none'; w1El.style.fontSize='56px';
-      if(lv.rule==='NEITHER'){
-        explEl.innerHTML=`Word: <span style="color:${C[ex.words[0].wC].hex};font-weight:bold">${ex.words[0].wC}</span> &nbsp;·&nbsp; Ink: <span style="color:${C[ex.words[0].iC].hex};font-weight:bold">${ex.words[0].iC}</span> &nbsp;·&nbsp; Odd: <span style="color:${C[ex.ansC].hex};font-weight:bold">${ex.ansC}</span>`;
-      } else if(lv.rule==='INK'){
-        explEl.innerHTML=`Word says: <span style="color:${C[ex.words[0].wC].hex};font-weight:bold">${ex.words[0].wC}</span> &nbsp;·&nbsp; Printed in: <span style="color:${C[ex.words[0].iC].hex};font-weight:bold">${ex.words[0].iC}</span>`;
-      } else {
-        explEl.innerHTML=`Word says: <span style="color:${C[ex.words[0].wC].hex};font-weight:bold">${ex.words[0].wC}</span> &nbsp;·&nbsp; Printed in: <span style="color:${C[ex.words[0].iC].hex};font-weight:bold">${ex.words[0].iC}</span>`;
-      }
+    const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
+    const pairs=[];
+    const allSeven=shuf([...ALL7]).slice(0,pool.length===7?7:pool.length);
+    const sp=shuf([...pool]);
+    for(let w=0;w<lv.words;w++){
+      let txt,ink;
+      do{txt=pool[Math.floor(Math.random()*pool.length)];ink=pool[Math.floor(Math.random()*pool.length)];}while(txt===ink);
+      pairs.push({txt,ink});
     }
-    const ansEl=document.getElementById('st-intro-ex-answer');
-    ansEl.textContent=`→ Click: ${ex.ansC}`; ansEl.style.color=C[ex.ansC].hex;
-    document.getElementById('st-intro-cd').textContent='';
-    ov._done=done;
+    const usedTxts=new Set(pairs.map(p=>p.txt));
+    const usedInks=new Set(pairs.map(p=>p.ink));
+    const usedAll=new Set([...usedTxts,...usedInks]);
+    let answer;
+    if(lv.rule==='INK') answer=pairs[0].ink;
+    else if(lv.rule==='WORD') answer=pairs[0].txt;
+    else{const avail=pool.filter(c=>!usedAll.has(c));answer=avail[Math.floor(Math.random()*avail.length)]||pool[0];}
+    return{pairs,answer};
   }
 
-  function startTimer(){
-    const bar=document.getElementById('st-timer-bar'),dur=2000;
-    bar.style.transition='none';bar.style.width='100%';bar.style.background='#ff8800';
-    const end=performance.now()+dur;
-    if(tRaf)cancelAnimationFrame(tRaf);
-    function f(ts){const pct=Math.max(0,(end-ts)/dur);bar.style.width=(pct*100)+'%';bar.style.background=pct>.4?'#ff8800':pct>.18?'#ffdd00':'#ff2244';if(pct>0)tRaf=requestAnimationFrame(f);}
-    tRaf=requestAnimationFrame(f);
-  }
-  function stopTimer(){if(tRaf){cancelAnimationFrame(tRaf);tRaf=null;}const b=document.getElementById('st-timer-bar');if(b)b.style.width='0';}
-
-  function rl(){
-    const el=document.getElementById('st-lv-a');el.innerHTML='';
-    for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}
-  }
-
-  function mkBtns(choices){
+  function buildBtns(lv){
     const area=document.getElementById('st-btns');area.innerHTML='';
-    choices.forEach((col,i)=>{
+    const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
+    const pool=shuf([...lv.pool]);
+    pool.forEach((name,i)=>{
       const btn=document.createElement('button');
-      btn.className='stbtn disabled';
-      btn.style.borderColor=C[col].hex; btn.style.color=C[col].hex;
-      btn.innerHTML=`<span class="stbtn-key">[${KEYS[i]}]</span>${col}`;
-      btn.addEventListener('click',()=>answer(i));
+      btn.className='stroopbtn';
+      btn.textContent=name;
+      btn.style.cssText=`color:${C[name].hex};border-color:${C[name].hex}33;`;
+      if(KEYS[i])btn.innerHTML=`<span class="stbtn-key">[${KEYS[i]}]</span>${name}`;
+      btn.addEventListener('click',()=>respond(name));
       area.appendChild(btn);
     });
+    return pool;
   }
-  function enBtns(){document.querySelectorAll('.stbtn').forEach(b=>b.classList.remove('disabled'));}
-  function disBtns(){document.querySelectorAll('.stbtn').forEach(b=>b.classList.add('disabled'));}
+
+  let curAnswer='',curPool=[];
+  function respond(name){
+    if(!accepting)return;
+    accepting=false;clrAll();stopTimerBar();
+    const rt=performance.now()-tStart;totTrials++;
+    document.querySelectorAll('.stroopbtn').forEach(b=>b.classList.add('disabled'));
+    if(name===curAnswer){
+      totCorr++;corrInLv++;rtimes.push(rt);
+      const pts=Math.max(50,Math.round((RWIN-rt)/15))*(level+1);
+      score+=pts;document.getElementById('st-sc-v').textContent=score;
+      fb('+'+pts,'#00ee77');beep(880,'square',0.09,0.11);trial++;
+      document.getElementById('st-tri-v').textContent=trial;
+      if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();setTimeout(()=>fb('LEVEL '+(level+1)+'! +1 LIFE','#ffdd00'),300);}
+    } else {
+      lives=Math.max(0,lives-1);rl();fb('WRONG!','#ff2244');beep(130,'sawtooth',0.13,0.2);
+      if(lives<=0){setTimeout(over,900);return;}
+    }
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    if(level!==lastLv){lastLv=level;setTimeout(()=>showIntro(lv,()=>nextTrial()),500);}
+    else setTimeout(nextTrial,500);
+  }
+
+  function showIntro(lv,done){
+    const ov=document.getElementById('st-intro');ov.style.display='flex';
+    document.getElementById('st-intro-lv').textContent='LEVEL '+(level+1);
+    document.getElementById('st-intro-ex-rule').textContent=lv.desc;
+    document.getElementById('st-intro-ex-sub').textContent=lv.sub;
+    // Show words count
+    document.getElementById('st-intro-ex-word2').style.display=lv.words>=2?'block':'none';
+    document.getElementById('st-intro-ex-word3').style.display=lv.words>=3?'block':'none';
+    let cd=4;
+    document.getElementById('st-intro-cd').textContent=cd+'...';
+    cdInt=setInterval(()=>{cd--;document.getElementById('st-intro-cd').textContent=cd>0?cd+'...':'GO!';if(cd<=0){clearInterval(cdInt);cdInt=null;ov.style.display='none';done();}},1000);
+    ov._done=done;
+  }
+  function skipIntro(){clrAll();const ov=document.getElementById('st-intro');if(ov){ov.style.display='none';if(ov._done){const fn=ov._done;ov._done=null;fn();}}}
 
   function nextTrial(){
     if(lives<=0){over();return;}
     const lv=LVLS[Math.min(level,LVLS.length-1)];
-    if(level!==lastLv){lastLv=level;showIntro(lv,()=>runTrial(lv));}
-    else runTrial(lv);
-  }
-
-  function runTrial(lv){
-    trial++;
-    document.getElementById('st-tri-v').textContent=trial;
-    currentTrial=gen(lv);
-    const t=currentTrial;
-    const w1=document.getElementById('st-word-el'),w2=document.getElementById('st-word-el2');
-    const w3=document.getElementById('st-word-el3');
-    w1.textContent=t.words[0].wC; w1.style.color=C[t.words[0].iC].hex;
-    if(lv.words===3){
-      w2.style.display='block'; w2.textContent=t.words[1].wC; w2.style.color=C[t.words[1].iC].hex;
-      w3.style.display='block'; w3.textContent=t.words[2].wC; w3.style.color=C[t.words[2].iC].hex;
-      w1.style.fontSize='46px'; w2.style.fontSize='46px'; w3.style.fontSize='46px';
-    } else if(lv.words===2){
-      w2.style.display='block'; w2.textContent=t.words[1].wC; w2.style.color=C[t.words[1].iC].hex;
-      w3.style.display='none'; w1.style.fontSize='60px'; w2.style.fontSize='60px';
-    } else {
-      w2.style.display='none'; w3.style.display='none'; w1.style.fontSize='80px';
-    }
+    const{pairs,answer}=mkStim(lv);
+    curAnswer=answer;
+    curPool=buildBtns(lv);
+    // Set rule display
     document.getElementById('st-rule-display').textContent=lv.desc;
+    // Set word display
+    const els=['st-word-el','st-word-el2','st-word-el3'];
+    els.forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(i<pairs.length){el.textContent=pairs[i].txt;el.style.color=C[pairs[i].ink].hex;el.style.display='block';}
+      else{el.style.display='none';}
+    });
     document.getElementById('st-fb').textContent='';
-    mkBtns(t.choices); disBtns(); stopTimer();
-    w1.style.opacity='0'; if(lv.words===2)w2.style.opacity='0';
-    setTimeout(()=>{
-      w1.style.opacity='1'; if(lv.words===2)w2.style.opacity='1';
-      enBtns(); accepting=true; tStart=performance.now(); startTimer();
-      clearAutoTO(); autoTO=setTimeout(()=>{if(accepting)answer(-1);},2050);
-    },300);
-  }
-
-  function answer(idx){
-    if(!accepting)return;
-    accepting=false; clearAutoTO(); disBtns(); stopTimer();
-    const t=currentTrial,rt=performance.now()-tStart;
-    const ansIdx=t.choices.indexOf(t.ansC),correct=idx===ansIdx;
-    const btns=document.querySelectorAll('.stbtn');
-    totAns++;
-    if(ansIdx>=0)btns[ansIdx].classList.add('correct');
-    if(correct){
-      totCorr++;rtimes.push(rt);corrInLv++;
-      const pts=Math.max(50,Math.round(1200-rt*0.4))*(level+1);
-      score+=pts;
-      document.getElementById('st-sc-v').textContent=score;
-      document.getElementById('st-fb').textContent=`+${pts}`;
-      document.getElementById('st-fb').style.color='#00ee77';
-      beep(880,0.1,0.12);
-      if(corrInLv>=ADV&&level<LVLS.length-1){
-        level++;corrInLv=0;
-        lives=Math.min(lives+1,12); // +1 life per level, cap 12
-        rl();
-        setTimeout(()=>{document.getElementById('st-fb').textContent=`LEVEL ${level+1}! +1 LIFE`;document.getElementById('st-fb').style.color='#ffdd00';},300);
-      }
-    } else {
-      if(idx>=0)btns[idx].classList.add('wrong');
-      lives=Math.max(0,lives-1); rl();
-      document.getElementById('st-fb').textContent=idx===-1?'TIME UP!':'WRONG';
-      document.getElementById('st-fb').style.color='#ff2244';
-      beep(140,0.12,0.22);
+    document.querySelectorAll('.stroopbtn').forEach(b=>b.classList.remove('disabled'));
+    accepting=true;tStart=performance.now();
+    startTimerBar();
+    autoTO=setTimeout(()=>{
+      if(!accepting)return;
+      accepting=false;stopTimerBar();
+      lives=Math.max(0,lives-1);rl();fb('TOO SLOW!','#ff8800');beep(150,'sawtooth',0.12,0.18);
       if(lives<=0){setTimeout(over,900);return;}
-    }
-    setTimeout(nextTrial,1000);
-  }
-
-  function skipIntro(){
-    const ov=document.getElementById('st-intro');
-    if(ov._done){ov.style.display='none';ov._done();}
+      setTimeout(nextTrial,700);
+    },RWIN);
   }
 
   function over(){
-    accepting=false;clearAutoTO();stopTimer();HS.set('stroop',score);HS.setR('stroop',level+1);
-    const acc=totAns>0?Math.round(totCorr/totAns*100):0;
-    const avgRt=rtimes.length>0?(rtimes.reduce((a,b)=>a+b,0)/rtimes.length/1000).toFixed(2)+'s':'—';
+    accepting=false;clrAll();stopTimerBar();
+    HS.set('stroop',score);HS.setR('stroop',level+1);
+    const acc=totTrials>0?Math.round(totCorr/totTrials*100):0;
+    const avg=rtimes.length>0?Math.round(rtimes.reduce((a,b)=>a+b,0)/rtimes.length):0;
     document.getElementById('st-r-sc').textContent=score;
     document.getElementById('st-r-ac').textContent=acc+'%';
-    document.getElementById('st-r-rt').textContent=avgRt;
+    document.getElementById('st-r-rt').textContent=avg?avg+'ms':'—';
     document.getElementById('st-r-lv').textContent=level+1;
     const r=document.getElementById('st-rating'),rs=document.getElementById('st-rating-sub');let col;
-    if(acc>=90){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Elite inhibitory control. Your brain overrides itself on command.';}
-    else if(acc>=75){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average Stroop performance. Rule-switching is solid.';}
-    else if(acc>=60){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid baseline. The two-word odd-color level trips most people.';}
-    else if(acc>=45){r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Inhibitory control takes time. Keep going.';}
-    else{r.textContent='NEEDS WORK';col='#ff2244';rs.textContent='Read the rule carefully before each word appears.';}
-    r.style.color=col;
-    document.getElementById('st-intro').style.display='none';
-    document.getElementById('st-over').style.display='flex';
+    if(level>=8){r.textContent='ELITE';col='#00ee77';rs.textContent='9-level NEITHER with 7 colors. Exceptional inhibitory control.';}
+    else if(level>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average cognitive flexibility under conflict.';}
+    else if(level>=3){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid interference control.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Focus on what the task is asking, not what jumps out.';}
+    r.style.color=col;document.getElementById('st-over').style.display='flex';
   }
 
   function start(){
-    iA();score=0;lives=3;level=0;trial=0;lastLv=-1;corrInLv=0;totCorr=0;totAns=0;rtimes=[];accepting=false;autoTO=null;
+    iA();score=0;lives=3;level=0;trial=0;corrInLv=0;lastLv=-1;
+    totCorr=0;totTrials=0;rtimes=[];accepting=false;clrAll();stopTimerBar();
     document.getElementById('st-sc-v').textContent='0';
     document.getElementById('st-tri-v').textContent='—';
     document.getElementById('st-fb').textContent='';
     document.getElementById('st-rule-display').textContent='';
-    document.getElementById('st-word-el').textContent='';
-    document.getElementById('st-word-el2').textContent='';
-    document.getElementById('st-word-el2').style.display='none';
+    document.getElementById('st-btns').innerHTML='';
     document.getElementById('st-start').style.display='none';
     document.getElementById('st-over').style.display='none';
     document.getElementById('st-intro').style.display='none';
-    rl();nextTrial();
+    rl();
+    const lv=LVLS[0];lastLv=0;showIntro(lv,()=>nextTrial());
   }
 
   function stop(){
-    accepting=false;clearAutoTO();stopTimer();
-    document.getElementById('st-intro').style.display='none';
+    accepting=false;clrAll();stopTimerBar();
     document.getElementById('st-start').style.display='flex';
     document.getElementById('st-over').style.display='none';
+    document.getElementById('st-intro').style.display='none';
   }
 
   document.addEventListener('keydown',e=>{
     if(!accepting)return;
-    const idx=KEYS.indexOf(e.key.toUpperCase());
-    if(idx>=0&&currentTrial&&idx<currentTrial.choices.length)answer(idx);
+    const ki=KEYS.indexOf(e.key);
+    if(ki>=0&&ki<curPool.length)respond(curPool[ki]);
   });
 
   return{start,stop,skipIntro};
 })();
+
 // ══════════════════════ SCAN ══════════════════════
 const SCAN=(()=>{
   const LVLS=[
-    {rows:3,cols:3,time:6000,type:'identity', desc:'ONE IS DIFFERENT',      sub:'Spot the odd character and tap it.'},
-    {rows:4,cols:4,time:5000,type:'similar',  desc:'LOOK CAREFULLY',        sub:'Very similar — one doesn\'t quite match.'},
-    {rows:4,cols:4,time:4500,type:'case',     desc:'FIND THE ODD CASE',     sub:'One letter has different capitalisation.'},
-    {rows:5,cols:5,time:4000,type:'mirror',   desc:'ONE FACES WRONG WAY',   sub:'All pointing the same direction — except one.'},
-    {rows:5,cols:5,time:3500,type:'color',    desc:'FIND THE ODD COLOR',    sub:'Same symbol — one is a different color.'},
-    {rows:6,cols:6,time:3500,type:'fill',     desc:'FILLED OR EMPTY',       sub:'One shape differs — filled vs outlined.'},
-    {rows:6,cols:6,time:3000,type:'conj',     desc:'CONJUNCTION SEARCH',    sub:'Find the item with BOTH the rare color AND the rare shape.'},
-    {rows:7,cols:7,time:3000,type:'micro',    desc:'SCAN THE WHOLE GRID',   sub:'Tiny difference. 49 items. Work every corner.'},
-    {rows:7,cols:7,time:2500,type:'numdig',   desc:'FIND THE ODD DIGIT',    sub:'All cells show the same number — one digit differs by just one.'},
-    {rows:8,cols:8,time:2200,type:'micro',    desc:'MAXIMUM DENSITY',       sub:'64 items. The smallest difference. The shortest time.'},
+    {rows:3,cols:3,time:6000,type:'identity',desc:'ONE IS DIFFERENT',    sub:'Spot the odd character and tap it.'},
+    {rows:4,cols:4,time:5000,type:'similar', desc:'LOOK CAREFULLY',      sub:'Very similar — one does not quite match.'},
+    {rows:4,cols:4,time:4500,type:'case',    desc:'FIND THE ODD CASE',   sub:'One letter has different capitalisation.'},
+    {rows:5,cols:5,time:4000,type:'mirror',  desc:'ONE FACES WRONG WAY', sub:'All pointing the same direction — except one.'},
+    {rows:5,cols:5,time:3500,type:'color',   desc:'FIND THE ODD COLOR',  sub:'Same symbol — one is a different color.'},
+    {rows:6,cols:6,time:3500,type:'fill',    desc:'FILLED OR EMPTY',     sub:'One shape differs — filled vs outlined.'},
+    {rows:7,cols:7,time:2800,type:'micro',   desc:'SCAN THE WHOLE GRID', sub:'Tiny difference. 49 items. Work every corner.'},
+    {rows:8,cols:8,time:2200,type:'micro',   desc:'64 ITEMS',            sub:'Maximum density. Scan systematically.'},
   ];
   const ADV=4;
-  const IP=[['O','Q'],['P','R'],['E','F'],['M','N'],['C','G'],['H','K'],['A','4'],['B','8'],['S','5'],['T','Y'],['U','V']];
-  const SP=[['l','I'],['0','O'],['d','b'],['n','m'],['c','e'],['p','q'],['u','v'],['Z','2'],['g','q'],['a','o'],['h','n']];
+  const IP=[['O','Q'],['P','R'],['E','F'],['M','N'],['C','G'],['H','K'],['A','4'],['B','8'],['S','5']];
+  const SP=[['l','I'],['0','O'],['d','b'],['n','m'],['c','e'],['p','q'],['u','v'],['Z','2']];
   const CC='AEIOUHMCTLBD'.split('');
-  const MP=[['▶','◀'],['▲','▼'],['►','◄'],['↑','↓'],['←','→'],['△','▽'],['▷','◁']];
-  const FP=[['◯','●'],['□','■'],['△','▲'],['◇','◆'],['☆','★']];
-  const XP=[['m','n'],['a','o'],['c','e'],['i','j'],['u','v'],['b','d'],['p','q'],['h','n'],['l','i']];
-  const DP=[['3','8'],['6','9'],['5','6'],['0','8'],['1','7'],['4','9'],['2','7'],['5','8'],['3','9'],['6','8']];
+  const MP=[['▶','◀'],['▲','▼'],['▷','◁'],['↑','↓'],['←','→']];
+  const FP=[['○','●'],['□','■'],['△','▲'],['◇','◆'],['☆','★']];
+  const XP=[['m','n'],['a','o'],['c','e'],['i','j'],['u','v'],['b','d'],['p','q']];
   const CPOOLS=['#ff2244','#00bbff','#00ee77','#cc44ff','#ff8800'];
-  const CCHARS=['▲','●','■','♦'];
-
+  const pick=a=>a[Math.floor(Math.random()*a.length)];
+  const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
   let ac=null,score=0,lives=3,level=0,trial=0,corrInLv=0;
   let totCorr=0,totTrials=0,rtimes=[],tStart=0,accepting=false,lastLv=-1;
   let targetIdx=-1,autoTO=null,timerRaf=null;
 
-  const pick=a=>a[Math.floor(Math.random()*a.length)];
-  const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
-  function clrA(){if(autoTO){clearTimeout(autoTO);autoTO=null;}}
-  function clrT(){if(timerRaf){cancelAnimationFrame(timerRaf);timerRaf=null;}const b=document.getElementById('sc-timer-bar');if(b)b.style.width='0';}
   function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
   function beep(f,tp,v,d){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=tp;o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d);}catch(e){}}
+  function rl(){const el=document.getElementById('sc-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  function fb(txt,col){const el=document.getElementById('sc-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,700);}
+  function clrA(){if(autoTO){clearTimeout(autoTO);autoTO=null;}}
+  function clrT(){if(timerRaf){cancelAnimationFrame(timerRaf);timerRaf=null;}const b=document.getElementById('sc-timer-bar');if(b)b.style.width='0';}
 
   function genItems(lv){
-    const n=lv.rows*lv.cols;
-    if(lv.type==='conj'){
-      const c2=shuf(CPOOLS).slice(0,2),ch2=shuf(CCHARS).slice(0,2);
-      const dA={char:ch2[0],color:c2[0]},dB={char:ch2[1],color:c2[1]};
-      const tgt={char:ch2[1],color:c2[0]};
-      const tIdx=Math.floor(Math.random()*n),half=Math.floor((n-1)/2);
-      const dists=shuf([...Array(half).fill(dA),...Array(n-1-half).fill(dB)]);
-      let di=0;
-      return{items:Array.from({length:n},(_,i)=>i===tIdx?{...tgt}:{...dists[di++]}),targetIdx:tIdx};
-    }
-    let std,tgt;
+    const n=lv.rows*lv.cols;let std,tgt;
     switch(lv.type){
       case 'identity':{const p=pick(IP),f=Math.random()<.5;std={char:f?p[1]:p[0],color:'#fff'};tgt={char:f?p[0]:p[1],color:'#fff'};break;}
       case 'similar': {const p=pick(SP),f=Math.random()<.5;std={char:f?p[1]:p[0],color:'#fff'};tgt={char:f?p[0]:p[1],color:'#fff'};break;}
-      case 'case':    {const c=pick(CC),u=Math.random()<.5;std={char:u?c:c.toLowerCase(),color:'#fff'};tgt={char:u?c.toLowerCase():c,color:'#fff'};break;}
+      case 'case':    {const ch=pick(CC),u=Math.random()<.5;std={char:u?ch:ch.toLowerCase(),color:'#fff'};tgt={char:u?ch.toLowerCase():ch,color:'#fff'};break;}
       case 'mirror':  {const p=pick(MP),f=Math.random()<.5;std={char:f?p[1]:p[0],color:'#fff'};tgt={char:f?p[0]:p[1],color:'#fff'};break;}
-      case 'color':   {const c2=shuf(CPOOLS).slice(0,2),ch=pick(['★','●','■','▲','♦']);std={char:ch,color:c2[0]};tgt={char:ch,color:c2[1]};break;}
+      case 'color':   {const c2=shuf(CPOOLS).slice(0,2),ch=pick(['★','●','■','▲','◆']);std={char:ch,color:c2[0]};tgt={char:ch,color:c2[1]};break;}
       case 'fill':    {const p=pick(FP),f=Math.random()<.5;std={char:f?p[1]:p[0],color:'#fff'};tgt={char:f?p[0]:p[1],color:'#fff'};break;}
-      case 'micro':   {const p=pick(XP),f=Math.random()<.5;std={char:f?p[1]:p[0],color:'rgba(255,255,255,0.88)'};tgt={char:f?p[0]:p[1],color:'rgba(255,255,255,0.88)'};break;}
-      case 'numdig':  {const p=pick(DP),f=Math.random()<.5;std={char:f?p[1]:p[0],color:'rgba(255,255,255,0.9)'};tgt={char:f?p[0]:p[1],color:'rgba(255,255,255,0.9)'};break;}
+      case 'micro':   {const p=pick(XP),f=Math.random()<.5;std={char:f?p[1]:p[0],color:'rgba(255,255,255,0.85)'};tgt={char:f?p[0]:p[1],color:'rgba(255,255,255,0.85)'};break;}
     }
     const tIdx=Math.floor(Math.random()*n);
     return{items:Array.from({length:n},(_,i)=>({...(i===tIdx?tgt:std)})),targetIdx:tIdx};
   }
 
   function renderGrid(lv,items,tIdx){
-    const grid=document.getElementById('sc-grid');
-    grid.innerHTML='';
+    const grid=document.getElementById('sc-grid');grid.innerHTML='';
     grid.style.gridTemplateColumns=`repeat(${lv.cols},1fr)`;
     const wrap=document.getElementById('sc-grid-wrap');
     const gap=4,avW=wrap.offsetWidth-12,avH=wrap.offsetHeight-12;
     const cW=Math.floor((avW-(lv.cols-1)*gap)/lv.cols);
     const cH=Math.floor((avH-(lv.rows-1)*gap)/lv.rows);
-    const cs=Math.max(32,Math.min(cW,cH,88));
-    const fs=Math.max(12,Math.round(cs*0.46));
+    const cs=Math.max(28,Math.min(cW,cH,80));
+    const fs=Math.max(11,Math.round(cs*0.44));
     grid.style.gap=gap+'px';
     items.forEach((item,idx)=>{
       const cell=document.createElement('div');
@@ -1076,16 +1294,16 @@ const SCAN=(()=>{
   function handleClick(clickedIdx,tIdx,lv){
     if(!accepting)return;
     accepting=false;clrA();clrT();
-    const rt=performance.now()-tStart;
+    const rt=performance.now()-tStart;totTrials++;
     const cells=document.querySelectorAll('.sc-cell');
-    totTrials++;
     if(clickedIdx===tIdx){
-      totCorr++;rtimes.push(rt);corrInLv++;
+      totCorr++;rtimes.push(rt);corrInLv++;trial++;
       cells[clickedIdx].classList.add('sc-ok');
-      const pts=Math.max(20,Math.round((lv.time-rt)/100))*(level+1);
+      const pts=Math.max(20,Math.round((lv.time-rt)/80))*(level+1);
       score+=pts;document.getElementById('sc-sc-v').textContent=score;
-      fb(`+${pts}`,'#00ee77');beep(880,'square',0.1,0.12);
-      if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();setTimeout(()=>fb(`LEVEL ${level+1}! +1 LIFE`,'#ffdd00'),400);}
+      document.getElementById('sc-tri-v').textContent=trial;
+      fb('+'+pts,'#00ee77');beep(880,'square',0.1,0.12);
+      if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();}
     } else {
       if(cells[clickedIdx])cells[clickedIdx].classList.add('sc-bad');
       if(cells[tIdx])cells[tIdx].classList.add('sc-reveal');
@@ -1096,24 +1314,20 @@ const SCAN=(()=>{
   }
 
   function startTimer(lv){
-    const bar=document.getElementById('sc-timer-bar');
-    bar.style.transition='none';bar.style.width='100%';
+    const bar=document.getElementById('sc-timer-bar');bar.style.transition='none';bar.style.width='100%';
     const end=performance.now()+lv.time;clrT();
     function f(ts){const p=Math.max(0,(end-ts)/lv.time);bar.style.width=(p*100)+'%';bar.style.background=p>.5?'#ffdd00':p>.25?'#ff8800':'#ff2244';if(p>0)timerRaf=requestAnimationFrame(f);}
     timerRaf=requestAnimationFrame(f);
   }
 
-  function fb(txt,col){const el=document.getElementById('sc-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,700);}
-  function rl(){const el=document.getElementById('sc-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
-
   function showIntro(lv,done){
     const ov=document.getElementById('sc-intro');ov.style.display='flex';
-    document.getElementById('sc-intro-lv').textContent=`LEVEL ${level+1}`;
+    document.getElementById('sc-intro-lv').textContent='LEVEL '+(level+1);
     document.getElementById('sc-intro-rule').textContent=lv.desc;
     document.getElementById('sc-intro-sub').textContent=lv.sub;
     ov._done=done;
   }
-  function skipIntro(){const ov=document.getElementById('sc-intro');if(ov._done){ov.style.display='none';ov._done();}}
+  function skipIntro(){const ov=document.getElementById('sc-intro');if(ov&&ov._done){ov.style.display='none';ov._done();}}
 
   function nextTrial(){
     if(lives<=0){over();return;}
@@ -1123,7 +1337,6 @@ const SCAN=(()=>{
   }
 
   function runTrial(lv){
-    trial++;document.getElementById('sc-tri-v').textContent=trial;
     document.getElementById('sc-fb').textContent='';
     const{items,targetIdx:tIdx}=genItems(lv);
     targetIdx=tIdx;
@@ -1150,17 +1363,16 @@ const SCAN=(()=>{
     document.getElementById('sc-r-rt').textContent=avgRt?avgRt+'ms':'—';
     document.getElementById('sc-r-lv').textContent=level+1;
     const r=document.getElementById('sc-rating'),rs=document.getElementById('sc-rating-sub');let col;
-    if(acc>=90){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Elite visual search. Full-field coverage.';}
+    if(acc>=90){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Elite visual search. Full-field systematic coverage.';}
     else if(acc>=75){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average search speed and accuracy.';}
-    else if(acc>=60){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid baseline. Conjunction search is the hardest part.';}
-    else if(acc>=45){r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Scan the whole grid, not just the centre.';}
-    else{r.textContent='NEEDS WORK';col='#ff2244';rs.textContent='Work systematically. Cover row by row.';}
+    else if(acc>=60){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid baseline. Micro-discrimination is genuinely hard.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Scan the whole grid systematically — cover every row.';}
     r.style.color=col;document.getElementById('sc-over').style.display='flex';
   }
 
   function start(){
-    iA();score=0;lives=3;level=0;trial=0;lastLv=-1;corrInLv=0;
-    totCorr=0;totTrials=0;rtimes=[];accepting=false;targetIdx=-1;autoTO=null;
+    iA();score=0;lives=3;level=0;trial=0;corrInLv=0;lastLv=-1;
+    totCorr=0;totTrials=0;rtimes=[];accepting=false;targetIdx=-1;
     document.getElementById('sc-sc-v').textContent='0';
     document.getElementById('sc-tri-v').textContent='—';
     document.getElementById('sc-fb').textContent='';
@@ -1171,7 +1383,6 @@ const SCAN=(()=>{
     document.getElementById('sc-intro').style.display='none';
     rl();nextTrial();
   }
-
   function stop(){
     accepting=false;clrA();clrT();
     document.getElementById('sc-start').style.display='flex';
@@ -1179,7 +1390,138 @@ const SCAN=(()=>{
     document.getElementById('sc-intro').style.display='none';
     document.getElementById('sc-grid').innerHTML='';
   }
+  return{start,stop,skipIntro};
+})();
 
+// ══════════════════════ SIMON ══════════════════════
+const SIMON=(()=>{
+  const CHX={red:'#ff2244',blue:'#00bbff',green:'#00ee77',yellow:'#ffdd00',purple:'#cc44ff',orange:'#ff8800',teal:'#00ccaa',pink:'#ff66aa'};
+  const TONES={red:261,blue:329,green:392,yellow:523,purple:196,orange:440,teal:587,pink:659};
+  const LVLS=[
+    {len:3,pool:['red','blue','green','yellow'],            flashMs:700,gapMs:360},
+    {len:4,pool:['red','blue','green','yellow'],            flashMs:650,gapMs:320},
+    {len:5,pool:['red','blue','green','yellow','purple'],   flashMs:600,gapMs:280},
+    {len:5,pool:['red','blue','green','yellow','purple'],   flashMs:520,gapMs:240},
+    {len:6,pool:['red','blue','green','yellow','purple','orange'],  flashMs:470,gapMs:210},
+    {len:6,pool:['red','blue','green','yellow','purple','orange'],  flashMs:400,gapMs:180},
+    {len:7,pool:['red','blue','green','yellow','purple','orange','teal'], flashMs:360,gapMs:160},
+    {len:7,pool:['red','blue','green','yellow','purple','orange','teal','pink'], flashMs:300,gapMs:140},
+  ];
+  const ADV=3;
+  let ac=null,score=0,lives=3,level=0,corrStreak=0,totSeq=0,maxSeq=0,lastLv=-1;
+  let sequence=[],playerInput=[],phase='idle',flashTO=null;
+
+  function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+  function tone(freq,vol,dur){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(vol,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur);o.start();o.stop(ac.currentTime+dur+0.02);}catch(e){}}
+  function btnTone(col){const lv=LVLS[Math.min(level,LVLS.length-1)];tone(TONES[col]||440,0.35,lv.flashMs/1000*0.85);}
+  function beepDone(){[440,554,659].forEach((f,i)=>setTimeout(()=>tone(f,0.12,0.14),i*65));}
+  function beepWrong(){tone(130,0.14,0.22);}
+
+  function rl(){const el=document.getElementById('rc-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  function fb(txt,col){const el=document.getElementById('rc-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,800);}
+
+  function flashBtn(col,dur,done){
+    const btn=document.querySelector(`.rcbtn[data-col="${col}"]`);
+    if(!btn){if(done)done();return;}
+    btn.classList.add('rcbtn-lit');btnTone(col);
+    flashTO=setTimeout(()=>{btn.classList.remove('rcbtn-lit');if(done)done();},dur);
+  }
+
+  function buildButtons(lv){
+    const area=document.getElementById('rc-buttons');area.innerHTML='';
+    lv.pool.forEach(col=>{
+      const btn=document.createElement('button');
+      btn.className='rcbtn';btn.dataset.col=col;
+      btn.style.background=CHX[col];
+      btn.addEventListener('click',()=>handleInput(col));
+      area.appendChild(btn);
+    });
+  }
+
+  function playSeq(seq,lv,done){
+    let i=0;
+    function next(){
+      if(i>=seq.length){done();return;}
+      const col=seq[i++];
+      flashTO=setTimeout(()=>flashBtn(col,lv.flashMs,()=>setTimeout(next,lv.gapMs)),lv.gapMs);
+    }
+    next();
+  }
+
+  function handleInput(col){
+    if(phase!=='input')return;
+    btnTone(col);
+    const expected=sequence[playerInput.length];
+    playerInput.push(col);
+    if(col!==expected){
+      beepWrong();lives=Math.max(0,lives-1);rl();fb('WRONG!','#ff2244');
+      phase='idle';maxSeq=Math.max(maxSeq,sequence.length-1);
+      if(lives<=0){setTimeout(over,900);return;}
+      setTimeout(nextRound,900);return;
+    }
+    if(playerInput.length===sequence.length){
+      corrStreak++;totSeq++;maxSeq=Math.max(maxSeq,sequence.length);
+      const pts=sequence.length*120*(level+1);score+=pts;
+      document.getElementById('rc-sc-v').textContent=score;
+      beepDone();fb('+'+pts,'#00ee77');phase='idle';
+      if(corrStreak>=ADV&&level<LVLS.length-1){level++;corrStreak=0;lives=Math.min(lives+1,12);rl();setTimeout(()=>fb('LEVEL '+(level+1)+'! +1 LIFE','#ffdd00'),400);}
+      setTimeout(nextRound,700);
+    }
+  }
+
+  function showIntro(lv,done){
+    const ov=document.getElementById('rc-intro');ov.style.display='flex';
+    document.getElementById('rc-intro-lv').textContent='LEVEL '+(level+1)+' — SEQUENCE OF '+lv.len;
+    ov._done=done;
+  }
+  function skipIntro(){const ov=document.getElementById('rc-intro');if(ov&&ov._done){ov.style.display='none';ov._done();}}
+
+  function nextRound(){
+    if(lives<=0){over();return;}
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    if(level!==lastLv){lastLv=level;buildButtons(lv);showIntro(lv,()=>startRound(lv));}
+    else startRound(lv);
+  }
+
+  function startRound(lv){
+    sequence=Array.from({length:lv.len},()=>lv.pool[Math.floor(Math.random()*lv.pool.length)]);
+    playerInput=[];phase='watch';
+    fb('WATCH','#00ee77');
+    playSeq(sequence,lv,()=>{phase='input';fb('YOUR TURN','#ffdd00');});
+  }
+
+  function over(){
+    phase='idle';
+    HS.set('simon',score);HS.setR('simon',maxSeq);
+    document.getElementById('rc-r-sc').textContent=score;
+    document.getElementById('rc-r-seq').textContent=maxSeq;
+    document.getElementById('rc-r-tr').textContent=totSeq;
+    document.getElementById('rc-r-lv').textContent=level+1;
+    const r=document.getElementById('rc-rating'),rs=document.getElementById('rc-rating-sub');let col;
+    if(maxSeq>=7){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Sequence of 7+. Excellent auditory working memory span.';}
+    else if(maxSeq>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average sequence memory. Well above most people at 6.';}
+    else if(maxSeq>=4){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid working memory span for sequences.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Focus on chunking: group colors into pairs as you watch.';}
+    r.style.color=col;document.getElementById('rc-over').style.display='flex';
+  }
+
+  function start(){
+    iA();score=0;lives=3;level=0;corrStreak=0;totSeq=0;maxSeq=0;lastLv=-1;
+    sequence=[];playerInput=[];phase='idle';
+    if(flashTO){clearTimeout(flashTO);flashTO=null;}
+    document.getElementById('rc-sc-v').textContent='0';
+    document.getElementById('rc-fb').textContent='';
+    document.getElementById('rc-start').style.display='none';
+    document.getElementById('rc-over').style.display='none';
+    document.getElementById('rc-intro').style.display='none';
+    rl();nextRound();
+  }
+  function stop(){
+    phase='idle';if(flashTO){clearTimeout(flashTO);flashTO=null;}
+    document.getElementById('rc-start').style.display='flex';
+    document.getElementById('rc-over').style.display='none';
+    document.getElementById('rc-intro').style.display='none';
+  }
   return{start,stop,skipIntro};
 })();
 
@@ -1187,593 +1529,260 @@ const SCAN=(()=>{
 const REFLEX=(()=>{
   const CHX={red:'#ff2244',blue:'#00bbff',green:'#00ee77',yellow:'#ffdd00',purple:'#cc44ff',orange:'#ff8800'};
   const LVLS=[
-    {type:'color',  pool:['red','blue','green','yellow'],                                    tRate:0.33,isi:[700,1100]},
-    {type:'color',  pool:['red','blue','green','yellow','purple'],                            tRate:0.3, isi:[550,900]},
-    {type:'shape',  pool:['circle','square','triangle','diamond'],                            tRate:0.3, isi:[600,1000]},
-    {type:'cshape', colors:['green','red','blue','yellow'],shapes:['circle','square','triangle'],tRate:0.25,isi:[550,900]},
-    {type:'nback',  pool:['red','blue','green','yellow','purple'],                            tRate:0.25,isi:[600,1000]},
-    {type:'number', tRate:0.5, isi:[500,850]},
-    {type:'numgt',  tRate:0.44,isi:[480,800]},
-    {type:'letter', pool:'ABCDEFGHIJKLMNOPRSTUVWXYZ'.split(''),                             tRate:0.35,isi:[450,750]},
-    {type:'lcase',                                                                            tRate:0.3, isi:[550,900]},
-    {type:'arith',                                                                            tRate:0.45,isi:[650,1050]},
-    {type:'colornum',colors:['red','blue','green','yellow','purple','orange'],               tRate:0.4, isi:[650,1050]},
-    {type:'arrow',                                                                            tRate:0.33,isi:[700,1100]},
+    {type:'color', pool:['red','blue','green','yellow'],            tRate:0.33,isi:[700,1100]},
+    {type:'color', pool:['red','blue','green','yellow','purple'],   tRate:0.30,isi:[550,900]},
+    {type:'shape', pool:['circle','square','triangle','diamond'],   tRate:0.30,isi:[600,1000]},
+    {type:'nback', pool:['red','blue','green','yellow','purple'],   tRate:0.25,isi:[600,1000]},
+    {type:'number',tRate:0.50,isi:[500,850]},
+    {type:'numgt', tRate:0.44,isi:[480,800]},
+    {type:'arrow', tRate:0.40,isi:[460,780]},
+    {type:'letter',pool:'ABCDEFGHIJKLMNOPRSTUVWXYZ'.split(''),     tRate:0.35,isi:[450,750]},
   ];
-  const WIN=500,ADV=4;
+  const WIN=500,ADV=6;
   let cv,ctx,W,H,ac=null;
   let score=0,lives=3,level=0,trial=0,corrInLv=0;
   let goTotal=0,goHits=0,noGoTotal=0,falseAlarms=0;
   let rtimes=[],tStart=0,accepting=false,lastLv=-1;
-  let prevStim=null,curStim=null,autoTO=null,itiTO=null,timerRaf=null,lastResp=0;
-  let levelTarget=null,prevLvlTarget=null;
-
-  function pickTarget(lv){
-    prevLvlTarget=levelTarget;
-    switch(lv.type){
-      case 'color':{let c;do{c=lv.pool[Math.floor(Math.random()*lv.pool.length)];}while(lv.pool.length>1&&c===prevLvlTarget);return c;}
-      case 'shape':return lv.pool[Math.floor(Math.random()*lv.pool.length)];
-      case 'cshape':{const c=lv.colors[Math.floor(Math.random()*lv.colors.length)];const s=lv.shapes[Math.floor(Math.random()*lv.shapes.length)];return{color:c,shape:s};}
-      case 'nback':return null;
-      case 'number':return Math.random()<0.5?'odd':'even';
-      case 'numgt':return[4,5,6][Math.floor(Math.random()*3)];
-      case 'letter':return Math.random()<0.5?'vowels':'consonants';
-      case 'lcase': return Math.random()<0.5?'lowercase':'uppercase';
-      case 'arith': return Math.random()<0.5?'odd':'even';
-      case 'colornum':{const c=lv.colors[Math.floor(Math.random()*lv.colors.length)];const nr=Math.random()<0.5?'odd':'even';return{color:c,numRule:nr};}
-      case 'arrow': return null; // rule is fixed: color must match side
-    }
-  }
-  function ruleText(lv){
-    switch(lv.type){
-      case 'color':return`TAP WHEN ${(levelTarget||'').toUpperCase()}`;
-      case 'shape':return`TAP WHEN ${(levelTarget||'').toUpperCase()}`;
-      case 'cshape':return levelTarget?`TAP ${levelTarget.color.toUpperCase()} ${levelTarget.shape.toUpperCase()} ONLY`:'TAP THE TARGET';
-      case 'nback':return'TAP WHEN SAME AS LAST';
-      case 'number':return`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`;
-      case 'numgt':return`TAP NUMBERS > ${levelTarget===null?'?':levelTarget}`;
-      case 'letter':return`TAP ${(levelTarget||'').toUpperCase()}`;
-      case 'lcase':return`TAP IF LAST LETTER WAS ${(levelTarget||'').toUpperCase()}`;
-      case 'arith':return`TAP IF ANSWER IS ${(levelTarget||'').toUpperCase()}`;
-      case 'colornum':return levelTarget?`TAP IF ${levelTarget.color.toUpperCase()} OR ${levelTarget.numRule.toUpperCase()} NUMBER`:'';
-      case 'arrow':return'TAP IF ARROW COLOR MATCHES ITS DIRECTION';
-    }
-  }
-  function ruleSub(lv){
-    switch(lv.type){
-      case 'color':return`Tap when you see ${levelTarget}. All other colors — don't tap.`;
-      case 'shape':return`Tap for ${levelTarget}s only. All other shapes — don't tap.`;
-      case 'cshape':return levelTarget?`Must be ${levelTarget.color} AND a ${levelTarget.shape}. Either alone is wrong.`:'';
-      case 'nback':return'Tap when this color matches the previous one. Track it.';
-      case 'number':return levelTarget==='odd'?'1 3 5 7 9 → tap.  2 4 6 8 → don\'t.':'2 4 6 8 → tap.  1 3 5 7 9 → don\'t.';
-      case 'numgt':return`${(levelTarget||0)+1} through 9 → tap.  ${levelTarget} or lower → don't.`;
-      case 'letter':return levelTarget==='vowels'?'A E I O U → tap.  All other letters → don\'t.':'Consonants → tap.  A E I O U → don\'t.';
-      case 'lcase':return`Watch every letter. Tap when the PREVIOUS letter was ${levelTarget}.  First letter: never tap.`;
-      case 'arith':return`Solve the sum in your head. Tap if the answer is ${levelTarget}.`;
-      case 'colornum':return levelTarget?`Tap if the circle is ${levelTarget.color} OR the number is ${levelTarget.numRule}.  Either condition is enough.`:'';
-      case 'arrow':return'Blue = up · Red = left · Green = down · Yellow = right\nTap only when the arrow color matches the side it points toward.';
-    }
-  }
-
-  function clrA(){if(autoTO){clearTimeout(autoTO);autoTO=null;}}
-  function clrI(){if(itiTO){clearTimeout(itiTO);itiTO=null;}}
-  function clrT(){if(timerRaf){cancelAnimationFrame(timerRaf);timerRaf=null;}const b=document.getElementById('rf-timer-bar');if(b)b.style.width='0';}
+  let prevStim=null,autoTO=null,itiTO=null,timerRaf=null,lastResp=0;
+  let levelTarget=null;
 
   function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
-  function beep(f,tp,v,d){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=tp;o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d);}catch(e){}}
+  function beep(f,t,v,d){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=t;o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d+0.01);}catch(e){}}
+  function clrAll(){if(autoTO)clearTimeout(autoTO);if(itiTO)clearTimeout(itiTO);if(timerRaf)cancelAnimationFrame(timerRaf);autoTO=itiTO=timerRaf=null;}
+  function rl(){const el=document.getElementById('rf-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  function fb(txt,col){const el=document.getElementById('rf-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,700);}
 
-  function initCV(){cv=document.getElementById('rf-canvas');const w=document.getElementById('rf-wrap');W=cv.width=w.offsetWidth;H=cv.height=w.offsetHeight;ctx=cv.getContext('2d');}
+  function initCanvas(){
+    cv=document.getElementById('rf-canvas');
+    const p=document.getElementById('rf-wrap');
+    W=cv.width=p.offsetWidth;H=cv.height=p.offsetHeight;
+    ctx=cv.getContext('2d');
+    cv.onclick=handleTap;cv.ontouchend=e=>{e.preventDefault();handleTap();}
+  }
+  function clear(){if(ctx){ctx.clearRect(0,0,W,H);}}
 
-  function mkStim(lv){
+  function drawStim(lv,stim){
+    clear();if(!ctx)return;
+    const cx=W/2,cy=H/2,r=Math.min(W,H)*0.18;
+    ctx.shadowBlur=22;
+    if(lv.type==='color'){
+      ctx.fillStyle=ctx.shadowColor=CHX[stim];
+      ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
+    } else if(lv.type==='shape'){
+      ctx.fillStyle=ctx.shadowColor='#00ee77';
+      ctx.beginPath();
+      if(stim==='circle'){ctx.arc(cx,cy,r,0,Math.PI*2);}
+      else if(stim==='square'){ctx.rect(cx-r,cy-r,r*2,r*2);}
+      else if(stim==='triangle'){ctx.moveTo(cx,cy-r);ctx.lineTo(cx+r*0.87,cy+r*0.5);ctx.lineTo(cx-r*0.87,cy+r*0.5);ctx.closePath();}
+      else{ctx.moveTo(cx,cy-r);ctx.lineTo(cx+r*0.7,cy);ctx.lineTo(cx,cy+r);ctx.lineTo(cx-r*0.7,cy);ctx.closePath();}
+      ctx.fill();
+    } else if(lv.type==='nback'){
+      ctx.fillStyle=ctx.shadowColor=CHX[stim]||'#fff';
+      ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
+    } else if(lv.type==='number'||lv.type==='numgt'){
+      ctx.fillStyle='#fff';ctx.shadowColor='rgba(255,255,255,0.4)';
+      ctx.font=`bold ${Math.round(r*1.5)}px monospace`;ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(stim,cx,cy);
+    } else if(lv.type==='arrow'){
+      const arrows={up:'↑',down:'↓',left:'←',right:'→'};
+      const cols={up:'#00bbff',down:'#ff2244',left:'#ff2244',right:'#00ee77'};
+      ctx.fillStyle=ctx.shadowColor=cols[stim]||'#fff';
+      ctx.font=`bold ${Math.round(r*1.8)}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(arrows[stim]||stim,cx,cy);
+    } else if(lv.type==='letter'){
+      ctx.fillStyle=ctx.shadowColor='#00ee77';
+      ctx.font=`bold ${Math.round(r*1.6)}px monospace`;ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(stim,cx,cy);
+    }
+    ctx.shadowBlur=0;
+  }
+
+  function genStim(lv){
     switch(lv.type){
-      case 'color':{if(Math.random()<lv.tRate)return{type:'color',color:levelTarget};const p=lv.pool.filter(c=>c!==levelTarget);return{type:'color',color:p[Math.floor(Math.random()*p.length)]};}
-      case 'nback':{if(prevStim&&Math.random()<lv.tRate)return{type:'color',color:prevStim.color};const p=lv.pool.filter(c=>!prevStim||c!==prevStim.color);return{type:'color',color:p[Math.floor(Math.random()*p.length)]};}
-      case 'shape':{if(Math.random()<lv.tRate)return{type:'shape',shape:levelTarget};const p=lv.pool.filter(s=>s!==levelTarget);return{type:'shape',shape:p[Math.floor(Math.random()*p.length)]};}
-      case 'cshape':{if(Math.random()<lv.tRate)return{type:'cshape',color:levelTarget.color,shape:levelTarget.shape};let c,s;do{c=lv.colors[Math.floor(Math.random()*lv.colors.length)];s=lv.shapes[Math.floor(Math.random()*lv.shapes.length)];}while(c===levelTarget.color&&s===levelTarget.shape);return{type:'cshape',color:c,shape:s};}
-      case 'number':case 'numgt':return{type:'number',n:1+Math.floor(Math.random()*9)};
-      case 'letter':return{type:'letter',l:lv.pool[Math.floor(Math.random()*lv.pool.length)]};
-      case 'lcase':{
-        // Show letter in target case with tRate prob (controls next trial's target chance)
-        const U='ABCDEFGHIJKLMNPQRSTUVWXYZ'.split('');
-        const L='abcdefghijklmnpqrstuvwxyz'.split('');
-        const showLower=(levelTarget==='lowercase')?Math.random()<lv.tRate:Math.random()>lv.tRate;
-        const pool=showLower?L:U;
-        return{type:'lcase',letter:pool[Math.floor(Math.random()*pool.length)],isLower:showLower};
-      }
-      case 'arith':{
-        const op=Math.random()<0.5?'+':'-';
-        let a,b,ans;
-        if(op==='+'){a=1+Math.floor(Math.random()*8);b=1+Math.floor(Math.random()*8);ans=a+b;}
-        else{a=2+Math.floor(Math.random()*8);b=1+Math.floor(Math.random()*(a-1));ans=a-b;}
-        return{type:'arith',a,op,b,ans};
-      }
-      case 'colornum':{
-        const col=lv.colors[Math.floor(Math.random()*lv.colors.length)];
-        const n=1+Math.floor(Math.random()*9);
-        return{type:'colornum',color:col,n};
-      }
-      case 'arrow':{
-        const DIRS=['up','right','down','left'];
-        const SIDE={up:'blue',right:'yellow',down:'green',left:'red'};
-        const ACOLS=['blue','red','green','yellow'];
-        const dir=DIRS[Math.floor(Math.random()*4)];
-        const isT=Math.random()<lv.tRate;
-        const color=isT?SIDE[dir]:ACOLS.filter(c=>c!==SIDE[dir])[Math.floor(Math.random()*3)];
-        return{type:'arrow',dir,color};
-      }
+      case 'color':  return lv.pool[Math.floor(Math.random()*lv.pool.length)];
+      case 'shape':  return lv.pool[Math.floor(Math.random()*lv.pool.length)];
+      case 'nback':  return lv.pool[Math.floor(Math.random()*lv.pool.length)];
+      case 'number': return Math.floor(Math.random()*9)+1;
+      case 'numgt':  return Math.floor(Math.random()*9)+1;
+      case 'arrow':  return ['up','down','left','right'][Math.floor(Math.random()*4)];
+      case 'letter': return lv.pool[Math.floor(Math.random()*lv.pool.length)];
     }
   }
-  function isTgt(lv,s){
+
+  function isGo(lv,stim){
+    if(lv.type==='color')  return stim===levelTarget;
+    if(lv.type==='shape')  return stim===levelTarget;
+    if(lv.type==='nback')  return stim===prevStim&&prevStim!==null;
+    if(lv.type==='number') return stim%2===(levelTarget==='odd'?1:0);
+    if(lv.type==='numgt')  return stim>levelTarget;
+    if(lv.type==='arrow')  return stim==='up';
+    if(lv.type==='letter') return (levelTarget==='vowels'?'AEIOU'.includes(stim):'AEIOU'.includes(stim)===false);
+    return false;
+  }
+
+  function setRule(lv){
+    const rules={
+      color:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,
+      shape:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,
+      nback:'TAP WHEN SAME AS LAST',
+      number:`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`,
+      numgt:`TAP WHEN > ${levelTarget}`,
+      arrow:'TAP WHEN ↑ (BLUE) · IGNORE OTHERS',
+      letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`,
+    };
+    const el=document.getElementById('rf-rule-banner');if(el)el.textContent=rules[lv.type]||'';
+  }
+
+  function pickTarget(lv){
     switch(lv.type){
-      case 'color':return s.color===levelTarget;
-      case 'nback':return!!(prevStim&&s.color===prevStim.color);
-      case 'shape':return s.shape===levelTarget;
-      case 'cshape':return!!(levelTarget&&s.color===levelTarget.color&&s.shape===levelTarget.shape);
-      case 'number':return levelTarget==='odd'?s.n%2===1:s.n%2===0;
-      case 'numgt':return s.n>levelTarget;
-      case 'letter':return levelTarget==='vowels'?'AEIOU'.includes(s.l):!'AEIOU'.includes(s.l);
-      case 'lcase':return!!(prevStim&&prevStim.type==='lcase'&&(levelTarget==='lowercase'?prevStim.isLower:!prevStim.isLower));
-      case 'arith':return levelTarget==='odd'?s.ans%2===1:s.ans%2===0;
-      case 'colornum':return!!(levelTarget&&(s.color===levelTarget.color||(levelTarget.numRule==='odd'?s.n%2===1:s.n%2===0)));
-      case 'arrow':{const SIDE={up:'blue',right:'yellow',down:'green',left:'red'};return s.color===SIDE[s.dir];}
-      default:return false;
+      case 'color': return lv.pool[Math.floor(Math.random()*lv.pool.length)];
+      case 'shape': return lv.pool[Math.floor(Math.random()*lv.pool.length)];
+      case 'number': return Math.random()<0.5?'odd':'even';
+      case 'numgt': return [4,5,6][Math.floor(Math.random()*3)];
+      case 'letter': return Math.random()<0.5?'vowels':'consonants';
+      default: return null;
     }
   }
 
-  // Canvas drawing
-  const SIDE_COLORS={up:'blue',right:'yellow',down:'green',left:'red'};
-
-  function drawArrowSides(){
-    const bw=Math.min(W,H)*0.13;
-    // Top - blue
-    let g=ctx.createLinearGradient(0,0,0,bw);g.addColorStop(0,'rgba(0,187,255,0.65)');g.addColorStop(1,'rgba(0,187,255,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,bw);
-    // Bottom - green
-    g=ctx.createLinearGradient(0,H,0,H-bw);g.addColorStop(0,'rgba(0,238,119,0.65)');g.addColorStop(1,'rgba(0,238,119,0)');ctx.fillStyle=g;ctx.fillRect(0,H-bw,W,bw);
-    // Left - red
-    g=ctx.createLinearGradient(0,0,bw,0);g.addColorStop(0,'rgba(255,34,68,0.65)');g.addColorStop(1,'rgba(255,34,68,0)');ctx.fillStyle=g;ctx.fillRect(0,0,bw,H);
-    // Right - yellow
-    g=ctx.createLinearGradient(W,0,W-bw,0);g.addColorStop(0,'rgba(255,221,0,0.65)');g.addColorStop(1,'rgba(255,221,0,0)');ctx.fillStyle=g;ctx.fillRect(W-bw,0,bw,H);
-    // Edge labels
-    const fs=Math.round(Math.min(W,H)*0.038);
-    ctx.font=`bold ${fs}px 'Courier New',monospace`;ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillStyle='rgba(255,255,255,0.55)';
-    ctx.fillText('BLUE',W/2,bw*0.42);
-    ctx.fillText('GREEN',W/2,H-bw*0.42);
-    ctx.save();ctx.translate(bw*0.42,H/2);ctx.rotate(-Math.PI/2);ctx.fillText('RED',0,0);ctx.restore();
-    ctx.save();ctx.translate(W-bw*0.42,H/2);ctx.rotate(Math.PI/2);ctx.fillText('YELLOW',0,0);ctx.restore();
-  }
-
-  function drawArrow(cx,cy,sz,dir,color){
-    ctx.fillStyle=CHX[color];ctx.shadowColor=CHX[color];ctx.shadowBlur=35;
-    ctx.save();ctx.translate(cx,cy);
-    const rots={up:-Math.PI/2,right:0,down:Math.PI/2,left:Math.PI};
-    ctx.rotate(rots[dir]);
-    const r=sz,sh=r*0.28,hh=r*0.58;
-    ctx.beginPath();
-    ctx.moveTo(-r,-sh);ctx.lineTo(0,-sh);ctx.lineTo(0,-hh);
-    ctx.lineTo(r,0);
-    ctx.lineTo(0,hh);ctx.lineTo(0,sh);ctx.lineTo(-r,sh);
-    ctx.closePath();ctx.fill();
-    ctx.restore();ctx.shadowBlur=0;
-  }
-
-  function drawFix(){
-    ctx.clearRect(0,0,W,H);
-    if(LVLS[Math.min(level,LVLS.length-1)].type==='arrow')drawArrowSides();
-    ctx.strokeStyle='rgba(255,255,255,0.18)';ctx.lineWidth=2;
-    ctx.beginPath();ctx.moveTo(W/2-10,H/2);ctx.lineTo(W/2+10,H/2);ctx.moveTo(W/2,H/2-10);ctx.lineTo(W/2,H/2+10);ctx.stroke();
-  }
-
-  function drawStim(s){
-    ctx.clearRect(0,0,W,H);
-    const cx=W/2,cy=H/2-10,sz=Math.min(W,H)*0.28;
-    ctx.shadowBlur=40;
-    switch(s.type){
-      case 'color':
-        ctx.fillStyle=CHX[s.color];ctx.shadowColor=CHX[s.color];
-        ctx.beginPath();ctx.arc(cx,cy,sz,0,Math.PI*2);ctx.fill();break;
-      case 'shape':
-        ctx.fillStyle='#fff';ctx.shadowColor='#fff';
-        ctx.beginPath();shpPath(cx,cy,sz,s.shape);ctx.fill();break;
-      case 'cshape':
-        ctx.fillStyle=CHX[s.color];ctx.shadowColor=CHX[s.color];
-        ctx.beginPath();shpPath(cx,cy,sz,s.shape);ctx.fill();break;
-      case 'number':case 'letter':{
-        const val=s.type==='number'?s.n.toString():s.l;
-        ctx.fillStyle='#fff';ctx.shadowColor='#fff';
-        ctx.font=`bold ${Math.round(sz*1.9)}px 'Courier New',monospace`;
-        ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(val,cx,cy);break;
-      }
-      case 'lcase':{
-        ctx.fillStyle='#fff';ctx.shadowColor='#fff';
-        ctx.font=`bold ${Math.round(sz*1.9)}px 'Courier New',monospace`;
-        ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(s.letter,cx,cy);break;
-      }
-      case 'arith':{
-        ctx.fillStyle='#fff';ctx.shadowColor='#fff';ctx.shadowBlur=20;
-        ctx.font=`bold ${Math.round(sz*1.1)}px 'Courier New',monospace`;
-        ctx.textAlign='center';ctx.textBaseline='middle';
-        ctx.fillText(`${s.a} ${s.op} ${s.b}`,cx,cy);break;
-      }
-      case 'colornum':{
-        // Colored circle
-        ctx.fillStyle=CHX[s.color];ctx.shadowColor=CHX[s.color];ctx.shadowBlur=35;
-        ctx.beginPath();ctx.arc(cx,cy,sz,0,Math.PI*2);ctx.fill();
-        // Number inside
-        ctx.shadowBlur=0;ctx.fillStyle='rgba(0,0,0,0.85)';
-        ctx.font=`bold ${Math.round(sz*1.1)}px 'Courier New',monospace`;
-        ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(s.n.toString(),cx,cy);break;
-      }
-      case 'arrow':{
-        drawArrowSides();
-        ctx.shadowBlur=0;
-        drawArrow(cx,cy,sz,s.dir,s.color);break;
-      }
-    }
-    if(s.type!=='arrow'&&s.type!=='colornum')ctx.shadowBlur=0;
-  }
-
-  function shpPath(cx,cy,r,sh){
-    switch(sh){
-      case 'circle':ctx.arc(cx,cy,r,0,Math.PI*2);break;
-      case 'square':ctx.rect(cx-r,cy-r,r*2,r*2);break;
-      case 'triangle':ctx.moveTo(cx,cy-r);ctx.lineTo(cx+r*0.866,cy+r*0.5);ctx.lineTo(cx-r*0.866,cy+r*0.5);ctx.closePath();break;
-      case 'diamond':ctx.moveTo(cx,cy-r);ctx.lineTo(cx+r*0.65,cy);ctx.lineTo(cx,cy+r);ctx.lineTo(cx-r*0.65,cy);ctx.closePath();break;
-    }
-  }
-
-  function startTimerBar(){
-    const bar=document.getElementById('rf-timer-bar');
-    bar.style.transition='none';bar.style.width='100%';
-    const end=performance.now()+WIN;clrT();
-    function f(ts){const p=Math.max(0,(end-ts)/WIN);bar.style.width=(p*100)+'%';bar.style.background=p>.6?'#00ee77':p>.3?'#ffdd00':'#ff2244';if(p>0)timerRaf=requestAnimationFrame(f);}
+  function startTimerBar(dur){
+    const bar=document.getElementById('rf-timer-bar');bar.style.transition='none';bar.style.width='100%';
+    const end=performance.now()+dur;
+    function f(ts){const p=Math.max(0,(end-ts)/dur);bar.style.width=(p*100)+'%';bar.style.background=p>.5?'#ff2244':'#ff8800';if(p>0)timerRaf=requestAnimationFrame(f);}
     timerRaf=requestAnimationFrame(f);
   }
+  function stopTimerBar(){if(timerRaf){cancelAnimationFrame(timerRaf);timerRaf=null;}const b=document.getElementById('rf-timer-bar');if(b){b.style.transition='none';b.style.width='0';}}
 
-  function fb(txt,col){const el=document.getElementById('rf-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,600);}
-  function rl(){const el=document.getElementById('rf-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  let curStim=null,curIsGo=false;
 
-  function showIntro(lv,done){
-    const ov=document.getElementById('rf-intro');ov.style.display='flex';
-    document.getElementById('rf-intro-lv').textContent=`LEVEL ${level+1}`;
-    document.getElementById('rf-intro-rule').textContent=ruleText(lv);
-    document.getElementById('rf-intro-sub').textContent=ruleSub(lv);
-    ov._done=done;
+  function handleTap(){
+    const now=performance.now();
+    if(now-lastResp<200)return;lastResp=now;
+    if(!accepting){
+      // False alarm on no-go or blank
+      if(phase==='iti'||!curIsGo){
+        noGoTotal++;falseAlarms++;lives=Math.max(0,lives-1);rl();fb('WAIT!','#ff8800');beep(200,'sawtooth',0.1,0.15);
+        if(lives<=0){setTimeout(over,900);}
+      }
+      return;
+    }
+    if(!curIsGo){
+      // False alarm on no-go stimulus
+      noGoTotal++;falseAlarms++;
+      lives=Math.max(0,lives-1);rl();fb('NO-GO!','#ff8800');beep(200,'sawtooth',0.1,0.15);
+      accepting=false;stopTimerBar();clear();
+      if(lives<=0){setTimeout(over,900);return;}
+      itiTO=setTimeout(nextTrial,800);return;
+    }
+    // Go hit
+    const rt=performance.now()-tStart;
+    accepting=false;stopTimerBar();clear();
+    goHits++;rtimes.push(rt);corrInLv++;trial++;
+    const pts=Math.max(10,Math.round((WIN-rt)/3))*(level+1);
+    score+=pts;document.getElementById('rf-sc-v').textContent=score;
+    document.getElementById('rf-tri-v').textContent=trial;
+    fb('+'+pts,'#00ee77');beep(660,'square',0.12,0.1);
+    if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();}
+    itiTO=setTimeout(nextTrial,500);
   }
-  function skipIntro(){const ov=document.getElementById('rf-intro');if(ov._done){ov.style.display='none';drawFix();ov._done();}}
 
+  let phase='iti';
   function nextTrial(){
     if(lives<=0){over();return;}
+    phase='iti';
     const lv=LVLS[Math.min(level,LVLS.length-1)];
     if(level!==lastLv){
-      lastLv=level;prevStim=null;
-      levelTarget=pickTarget(lv);
-      document.getElementById('rf-rule-banner').textContent=ruleText(lv);
-      showIntro(lv,()=>sched(lv));
-    } else {
-      sched(lv);
+      lastLv=level;levelTarget=pickTarget(lv);
+      showIntro(lv,()=>runTrial(lv));return;
     }
+    const isi=lv.isi[0]+Math.random()*(lv.isi[1]-lv.isi[0]);
+    itiTO=setTimeout(()=>runTrial(lv),isi);
   }
 
-  function sched(lv){
-    clrA();clrI();accepting=false;drawFix();
-    itiTO=setTimeout(()=>show(lv),lv.isi[0]+Math.random()*(lv.isi[1]-lv.isi[0]));
-  }
-
-  function show(lv){
-    trial++;document.getElementById('rf-tri-v').textContent=trial;
-    prevStim=curStim;
-    curStim=mkStim(lv);
-    curStim.tgt=isTgt(lv,curStim);
-    if(curStim.tgt)goTotal++;else noGoTotal++;
-    drawStim(curStim);startTimerBar();
+  function runTrial(lv){
+    phase='stim';
+    const stim=genStim(lv);
+    curStim=stim;curIsGo=isGo(lv,stim);prevStim=stim;
+    if(curIsGo)goTotal++;else noGoTotal++;
+    drawStim(lv,stim);
     accepting=true;tStart=performance.now();
-    clrA();autoTO=setTimeout(()=>{
+    startTimerBar(WIN);
+    autoTO=setTimeout(()=>{
       if(!accepting)return;
-      accepting=false;clrT();
-      if(curStim.tgt){
-        lives=Math.max(0,lives-1);rl();
-        fb('MISS!','#ff8800');beep(150,'sawtooth',0.13,0.18);
-        if(lives<=0){setTimeout(()=>{drawFix();over();},500);return;}
+      accepting=false;stopTimerBar();clear();
+      if(curIsGo){
+        lives=Math.max(0,lives-1);rl();fb('MISS!','#ff2244');beep(150,'sawtooth',0.12,0.18);
+        if(lives<=0){setTimeout(over,900);return;}
       }
-      // correct reject — no penalty, no feedback (intentional: don't reward non-response)
-      drawFix();clrI();itiTO=setTimeout(()=>nextTrial(),350);
+      phase='iti';nextTrial();
     },WIN);
   }
 
-  function respond(){
-    const now=performance.now();if(now-lastResp<80)return;lastResp=now;
-    if(!accepting)return;
-    accepting=false;clrA();clrT();
-    const rt=now-tStart;
-    if(curStim.tgt){
-      goHits++;rtimes.push(rt);corrInLv++;
-      const pts=Math.max(10,Math.round(500-rt))*(level+1);
-      score+=pts;document.getElementById('rf-sc-v').textContent=score;
-      fb(`+${pts}`,'#00ee77');beep(880,'square',0.1,0.1);
-      if(corrInLv>=(level>=6?ADV*2:ADV)&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();setTimeout(()=>fb(`LEVEL ${level+1}! +1 LIFE`,'#ffdd00'),300);}
-    } else {
-      falseAlarms++;lives=Math.max(0,lives-1);rl();
-      fb('WRONG!','#ff2244');beep(130,'sawtooth',0.14,0.2);
-      if(lives<=0){setTimeout(()=>{drawFix();over();},500);return;}
-    }
-    drawFix();clrI();itiTO=setTimeout(()=>nextTrial(),450);
+  function showIntro(lv,done){
+    const ov=document.getElementById('rf-intro');ov.style.display='flex';
+    document.getElementById('rf-intro-lv').textContent='LEVEL '+(level+1);
+    const ruleMap={color:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,shape:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,nback:'TAP WHEN SAME AS LAST',number:`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`,numgt:`TAP NUMBERS > ${levelTarget}`,arrow:'TAP WHEN ↑ BLUE · IGNORE OTHERS',letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`};
+    document.getElementById('rf-intro-rule').textContent=ruleMap[lv.type]||'REACT';
+    document.getElementById('rf-intro-sub').textContent='React within 0.5 seconds. Do not tap on distractors.';
+    setRule(lv);ov._done=done;
   }
+  function skipIntro(){const ov=document.getElementById('rf-intro');if(ov&&ov._done){ov.style.display='none';ov._done();}}
 
   function over(){
-    accepting=false;clrA();clrI();clrT();if(ctx)drawFix();HS.set('reflex',score);HS.setR('reflex',trial);
-    const goAcc=goTotal>0?Math.round(goHits/goTotal*100):0;
-    const faRate=noGoTotal>0?Math.round(falseAlarms/noGoTotal*100):0;
-    const avgRt=rtimes.length>0?Math.round(rtimes.reduce((a,b)=>a+b,0)/rtimes.length):0;
+    accepting=false;clrAll();stopTimerBar();clear();
+    HS.set('reflex',score);HS.setR('reflex',trial);
+    const hitRate=goTotal>0?Math.round(goHits/goTotal*100):0;
+    const avg=rtimes.length>0?Math.round(rtimes.reduce((a,b)=>a+b,0)/rtimes.length):0;
     document.getElementById('rf-r-sc').textContent=score;
-    document.getElementById('rf-r-go').textContent=goAcc+'%';
-    document.getElementById('rf-r-fa').textContent=noGoTotal>0?faRate+'%':'—';
-    document.getElementById('rf-r-rt').textContent=avgRt?avgRt+'ms':'—';
-    const overall=Math.round((goAcc*2+(100-faRate))/3);
+    document.getElementById('rf-r-go').textContent=hitRate+'%';
+    document.getElementById('rf-r-rt').textContent=avg?avg+'ms':'—';
+    document.getElementById('rf-r-fa').textContent=falseAlarms;
     const r=document.getElementById('rf-rating'),rs=document.getElementById('rf-rating-sub');let col;
-    if(overall>=90){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Elite signal detection and inhibitory control.';}
-    else if(overall>=75){r.textContent='STRONG';col='#00ee77';rs.textContent='Fast, accurate, hard to fool.';}
-    else if(overall>=60){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid reflexes. Cognitive levels take practice.';}
-    else if(overall>=45){r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Prioritise accuracy — speed follows.';}
-    else{r.textContent='NEEDS WORK';col='#ff2244';rs.textContent='Slow down. Wait for the right signal.';}
+    if(hitRate>=90&&falseAlarms<=3){r.textContent='ELITE';col='#00ee77';rs.textContent='Exceptional go/no-go control. Fast and accurate.';}
+    else if(hitRate>=80){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average reaction control. Low false-alarm rate.';}
+    else if(hitRate>=65){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid baseline. Inhibition gets harder at higher levels.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Focus on waiting for the right stimulus before tapping.';}
     r.style.color=col;document.getElementById('rf-over').style.display='flex';
   }
 
   function start(){
-    iA();initCV();
-    score=0;lives=3;level=0;trial=0;lastLv=-1;corrInLv=0;
-    goTotal=0;goHits=0;noGoTotal=0;falseAlarms=0;rtimes=[];
-    accepting=false;prevStim=null;curStim=null;autoTO=null;itiTO=null;lastResp=0;levelTarget=null;prevLvlTarget=null;
+    iA();score=0;lives=3;level=0;trial=0;corrInLv=0;lastLv=-1;
+    goTotal=0;goHits=0;noGoTotal=0;falseAlarms=0;
+    rtimes=[];accepting=false;prevStim=null;curStim=null;curIsGo=false;lastResp=0;
+    clrAll();stopTimerBar();initCanvas();
     document.getElementById('rf-sc-v').textContent='0';
     document.getElementById('rf-tri-v').textContent='—';
     document.getElementById('rf-fb').textContent='';
-    document.getElementById('rf-rule-banner').textContent='';
     document.getElementById('rf-start').style.display='none';
     document.getElementById('rf-over').style.display='none';
     document.getElementById('rf-intro').style.display='none';
-    cv.onclick=respond;
-    cv.ontouchstart=e=>{e.preventDefault();respond();};
-    rl();drawFix();nextTrial();
+    rl();nextTrial();
   }
-
   function stop(){
-    accepting=false;clrA();clrI();clrT();
+    accepting=false;phase='iti';clrAll();stopTimerBar();if(ctx)clear();
     document.getElementById('rf-start').style.display='flex';
     document.getElementById('rf-over').style.display='none';
     document.getElementById('rf-intro').style.display='none';
   }
 
-  document.addEventListener('keydown',e=>{if(e.code==='Space'&&accepting){e.preventDefault();respond();}});
-  return{start,stop,skipIntro};
-})();
-// ══════════════════════ RECALL ══════════════════════
-const RECALL=(()=>{
-  const CHX={RED:'#ff2244',BLUE:'#00bbff',GREEN:'#00ee77',YELLOW:'#ffdd00',PURPLE:'#cc44ff',ORANGE:'#ff8800',TEAL:'#00ccaa',WHITE:'#e0e0e0'};
-  const TONES={RED:220,BLUE:277,GREEN:330,YELLOW:415,PURPLE:494,ORANGE:587,TEAL:698,WHITE:880};
-  const LVLS=[
-    {len:3,pool:['RED','BLUE','GREEN','YELLOW'],                              flashMs:700,gapMs:360},
-    {len:4,pool:['RED','BLUE','GREEN','YELLOW'],                              flashMs:620,gapMs:290},
-    {len:4,pool:['RED','BLUE','GREEN','YELLOW','PURPLE'],                     flashMs:580,gapMs:260},
-    {len:5,pool:['RED','BLUE','GREEN','YELLOW','PURPLE'],                     flashMs:540,gapMs:230},
-    {len:5,pool:['RED','BLUE','GREEN','YELLOW','PURPLE','ORANGE'],            flashMs:500,gapMs:210},
-    {len:6,pool:['RED','BLUE','GREEN','YELLOW','PURPLE','ORANGE'],            flashMs:460,gapMs:190},
-    {len:6,pool:['RED','BLUE','GREEN','YELLOW','PURPLE','ORANGE','TEAL','WHITE'],flashMs:420,gapMs:170},
-    {len:7,pool:['RED','BLUE','GREEN','YELLOW','PURPLE','ORANGE','TEAL','WHITE'],flashMs:370,gapMs:150},
-  ];
-  const ADV=3;
-  let ac=null,score=0,lives=3,level=0,corrStreak=0,totSeq=0,maxSeq=0,lastLv=-1;
-  let sequence=[],playerInput=[],phase='idle',flashTO=null;
-
-  function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
-  function tone(freq,type,vol,dur){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=type||'sine';o.frequency.value=freq;g.gain.setValueAtTime(vol,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur);o.start();o.stop(ac.currentTime+dur+0.01);}catch(e){}}
-  function btnTone(col){const lv=LVLS[Math.min(level,LVLS.length-1)];tone(TONES[col]||440,'sine',0.32,lv.flashMs/1000*0.85);}
-  function beepDone(){[440,554,659].forEach((f,i)=>setTimeout(()=>tone(f,'sine',0.12,0.14),i*65));}
-  function beepWrong(){tone(130,'sawtooth',0.14,0.22);}
-
-  function rl(){const el=document.getElementById('rc-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
-  function fb(txt,col){const el=document.getElementById('rc-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,800);}
-  function getBtns(){return document.querySelectorAll('.rc-btn');}
-
-  function buildButtons(lv){
-    const area=document.getElementById('rc-buttons');area.innerHTML='';
-    lv.pool.forEach((col,idx)=>{
-      const btn=document.createElement('button');
-      btn.className='rc-btn rc-disabled';
-      btn.style.background=CHX[col];
-      btn.style.boxShadow=`0 3px 0 rgba(0,0,0,0.35)`;
-      btn.addEventListener('click',()=>handleClick(idx,col));
-      area.appendChild(btn);
-    });
-  }
-
-  function dimAll(){getBtns().forEach(b=>{b.style.opacity='0.2';b.style.transform='scale(1)';b.style.boxShadow='0 3px 0 rgba(0,0,0,0.35)';b.className='rc-btn rc-disabled';});}
-  function enableAll(){getBtns().forEach(b=>{b.style.opacity='0.65';b.className='rc-btn rc-enabled';});}
-
-  function flashBtn(idx,col){
-    const b=getBtns()[idx];if(!b)return;
-    b.style.opacity='1';b.style.transform='scale(1.1)';
-    b.style.boxShadow=`0 5px 0 rgba(0,0,0,0.35), 0 0 28px ${CHX[col]}`;
-    btnTone(col);
-  }
-  function unflashBtn(idx){
-    const b=getBtns()[idx];if(!b)return;
-    b.style.opacity='0.2';b.style.transform='scale(1)';
-    b.style.boxShadow='0 3px 0 rgba(0,0,0,0.35)';
-  }
-  function tapBtn(idx,col){
-    const b=getBtns()[idx];if(!b)return;
-    b.style.opacity='1';b.style.transform='scale(1.08)';
-    b.style.boxShadow=`0 5px 0 rgba(0,0,0,0.35), 0 0 20px ${CHX[col]}`;
-    btnTone(col);
-    setTimeout(()=>{if(b){b.style.opacity='0.65';b.style.transform='scale(1)';b.style.boxShadow='0 3px 0 rgba(0,0,0,0.35)';}},160);
-  }
-
-  function buildDots(len){
-    const a=document.getElementById('rc-dots');a.innerHTML='';
-    for(let i=0;i<len;i++){const d=document.createElement('div');d.className='rc-dot';a.appendChild(d);}
-  }
-  function setDot(i,state){
-    const dots=document.querySelectorAll('.rc-dot');
-    if(!dots[i])return;
-    dots[i].classList.remove('rc-done','rc-active');
-    if(state==='done')dots[i].classList.add('rc-done');
-    else if(state==='active')dots[i].classList.add('rc-active');
-  }
-  function updateDots(doneCount){
-    const dots=document.querySelectorAll('.rc-dot');
-    dots.forEach((d,i)=>{d.classList.remove('rc-done','rc-active');if(i<doneCount)d.classList.add('rc-done');else if(i===doneCount)d.classList.add('rc-active');});
-  }
-
-  function genSeq(lv){
-    const s=[];
-    for(let i=0;i<lv.len;i++)s.push(Math.floor(Math.random()*lv.pool.length));
-    return s;
-  }
-
-  function playSeq(lv,done){
-    phase='watch';
-    document.getElementById('rc-status').textContent='WATCH';
-    dimAll();buildDots(lv.len);updateDots(-1);
-    let idx=0;
-    function next(){
-      if(idx>=sequence.length){
-        setTimeout(()=>{dimAll();done();},350);return;
-      }
-      const ci=sequence[idx],col=lv.pool[ci];
-      updateDots(idx);
-      flashBtn(ci,col);
-      flashTO=setTimeout(()=>{
-        unflashBtn(ci);idx++;
-        flashTO=setTimeout(next,lv.gapMs);
-      },lv.flashMs);
-    }
-    setTimeout(next,500);
-  }
-
-  function showIntro(lv,done){
-    const ov=document.getElementById('rc-intro');ov.style.display='flex';
-    document.getElementById('rc-intro-lv').textContent=`LEVEL ${level+1}`;
-    document.getElementById('rc-intro-rule').textContent=`SEQUENCE: ${lv.len} STEPS`;
-    document.getElementById('rc-intro-sub').textContent=
-      `${lv.pool.length} colors · ${lv.len} steps to remember.\nWatch each button light up, then tap them back in the same order.`;
-    ov._done=done;
-  }
-  function skipIntro(){const ov=document.getElementById('rc-intro');if(ov._done){ov.style.display='none';ov._done();}}
-
-  function nextTrial(){
-    if(lives<=0){over();return;}
-    const lv=LVLS[Math.min(level,LVLS.length-1)];
-    buildButtons(lv);
-    if(level!==lastLv){
-      lastLv=level;
-      document.getElementById('rc-lv-v').textContent=level+1;
-      showIntro(lv,()=>startTrial(lv));
-    } else {
-      startTrial(lv);
-    }
-  }
-
-  function startTrial(lv){
-    playerInput=[];sequence=genSeq(lv);
-    playSeq(lv,()=>{
-      phase='input';
-      document.getElementById('rc-status').textContent='REPEAT';
-      enableAll();updateDots(0);
-    });
-  }
-
-  function handleClick(idx,col){
-    if(phase!=='input')return;
-    const lv=LVLS[Math.min(level,LVLS.length-1)];
-    const expected=sequence[playerInput.length];
-    tapBtn(idx,col);
-    if(idx===expected){
-      playerInput.push(idx);
-      updateDots(playerInput.length);
-      if(playerInput.length===sequence.length){
-        phase='feedback';
-        totSeq++;if(sequence.length>maxSeq)maxSeq=sequence.length;corrStreak++;
-        const pts=sequence.length*100*(level+1);
-        score+=pts;document.getElementById('rc-sc-v').textContent=score;
-        fb(`+${pts}`,'#00ee77');beepDone();
-        getBtns().forEach(b=>b.className='rc-btn rc-disabled');
-        if(corrStreak>=ADV&&level<LVLS.length-1){
-          level++;corrStreak=0;lives=Math.min(lives+1,12);rl();
-          setTimeout(()=>fb(`LEVEL ${level+1}! +1 LIFE`,'#ffdd00'),400);
-        }
-        setTimeout(nextTrial,1300);
-      }
-    } else {
-      phase='feedback';
-      if(flashTO){clearTimeout(flashTO);flashTO=null;}
-      lives=Math.max(0,lives-1);rl();
-      corrStreak=0;
-      fb('WRONG!','#ff2244');beepWrong();
-      // Reveal wrong (red glow) and correct (green glow)
-      const btns=getBtns();
-      if(btns[idx])btns[idx].style.boxShadow=`0 3px 0 rgba(0,0,0,0.35), 0 0 22px #ff2244`;
-      if(btns[expected])btns[expected].style.boxShadow=`0 3px 0 rgba(0,0,0,0.35), 0 0 22px #00ee77`;
-      getBtns().forEach(b=>b.className='rc-btn rc-disabled');
-      if(lives<=0){setTimeout(over,1000);return;}
-      setTimeout(nextTrial,1300);
-    }
-  }
-
-  function over(){
-    phase='idle';if(flashTO){clearTimeout(flashTO);flashTO=null;}
-    HS.set('recall',score);HS.setR('recall',maxSeq);
-    document.getElementById('rc-r-sc').textContent=score;
-    document.getElementById('rc-r-seq').textContent=maxSeq||'—';
-    document.getElementById('rc-r-tr').textContent=totSeq;
-    document.getElementById('rc-r-lv').textContent=level+1;
-    const r=document.getElementById('rc-rating'),rs=document.getElementById('rc-rating-sub');let col;
-    if(maxSeq>=7){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='7-item sequences puts you in elite working memory territory.';}
-    else if(maxSeq>=6){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average working memory span.';}
-    else if(maxSeq>=5){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid baseline. The 8-colour levels are the real test.';}
-    else if(maxSeq>=4){r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Try chunking items into groups of 2–3 to hold them longer.';}
-    else{r.textContent='KEEP TRAINING';col='#ff2244';rs.textContent='Working memory is highly trainable. Come back daily.';}
-    r.style.color=col;
-    document.getElementById('rc-over').style.display='flex';
-  }
-
-  function start(){
-    iA();score=0;lives=3;level=0;corrStreak=0;totSeq=0;maxSeq=0;lastLv=-1;
-    phase='idle';sequence=[];playerInput=[];flashTO=null;
-    document.getElementById('rc-sc-v').textContent='0';
-    document.getElementById('rc-lv-v').textContent='—';
-    document.getElementById('rc-fb').textContent='';
-    document.getElementById('rc-status').textContent='—';
-    document.getElementById('rc-dots').innerHTML='';
-    document.getElementById('rc-buttons').innerHTML='';
-    document.getElementById('rc-start').style.display='none';
-    document.getElementById('rc-over').style.display='none';
-    document.getElementById('rc-intro').style.display='none';
-    rl();nextTrial();
-  }
-
-  function stop(){
-    phase='idle';if(flashTO){clearTimeout(flashTO);flashTO=null;}
-    document.getElementById('rc-start').style.display='flex';
-    document.getElementById('rc-over').style.display='none';
-    document.getElementById('rc-intro').style.display='none';
-  }
-
+  document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();handleTap();}});
   return{start,stop,skipIntro};
 })();
 
 // ══════════════════════ TRACK ══════════════════════
 const TRACK=(()=>{
   const LVLS=[
-    {total:4,targets:1,radius:26,speed:1.4,trackSec:3,  desc:'TRACK 1 TARGET',  sub:'Watch the green dot. It goes white and moves. Tap it when the swarm freezes.'},
-    {total:5,targets:1,radius:24,speed:1.7,trackSec:4,  desc:'TRACK 1 TARGET',  sub:'One more dot in the mix. Stay locked on. 4 seconds.'},
-    {total:6,targets:1,radius:22,speed:2.0,trackSec:4,  desc:'TRACK 1 TARGET',  sub:'6 dots now. Faster. Don\'t lose it.'},
-    {total:6,targets:1,radius:19,speed:2.5,trackSec:5,  desc:'TRACK 1 TARGET',  sub:'Smaller and faster. 5 seconds of tracking.'},
-    {total:6,targets:2,radius:20,speed:2.0,trackSec:5,  desc:'TRACK 2 TARGETS', sub:'Two targets glow. Hold both in mind simultaneously.'},
-    {total:7,targets:2,radius:18,speed:2.3,trackSec:6,  desc:'TRACK 2 TARGETS', sub:'7 dots, 2 targets, 6 seconds. Watch the whole field.'},
-    {total:8,targets:2,radius:16,speed:2.6,trackSec:6,  desc:'TRACK 2 TARGETS', sub:'8 dots, tiny, fast. Track both without fixating on one.'},
-    {total:8,targets:3,radius:16,speed:2.4,trackSec:7,  desc:'TRACK 3 TARGETS', sub:'Three simultaneously. 7 seconds. Diffuse your gaze across all three.'},
+    {total:4,  targets:1, radius:26, speed:1.4,  trackSec:3, desc:'TRACK 1 TARGET',   sub:'Watch the green dot. It blends in and moves. Tap it when the swarm freezes.'},
+    {total:7,  targets:2, radius:24, speed:1.55, trackSec:4, desc:'TRACK 2 TARGETS',  sub:'Two targets glow. Hold both in mind as they merge into the swarm.'},
+    {total:10, targets:3, radius:22, speed:1.7,  trackSec:5, desc:'TRACK 3 TARGETS',  sub:"Three targets. Use a wide, soft gaze — don't fixate on just one."},
+    {total:13, targets:4, radius:20, speed:1.9,  trackSec:5, desc:'TRACK 4 TARGETS',  sub:'Four out of thirteen. Divide your attention evenly.'},
+    {total:16, targets:5, radius:18, speed:2.1,  trackSec:6, desc:'TRACK 5 TARGETS',  sub:'Five targets, 16 dots. Maintain all of them for 6 seconds.'},
+    {total:19, targets:6, radius:16, speed:2.3,  trackSec:6, desc:'TRACK 6 TARGETS',  sub:'19 dots, 6 targets. This is elite territory.'},
+    {total:22, targets:7, radius:14, speed:2.5,  trackSec:7, desc:'TRACK 7 TARGETS',  sub:'Seven objects simultaneously — near the documented limit of human attention.'},
+    {total:25, targets:8, radius:12, speed:2.7,  trackSec:7, desc:'TRACK 8 TARGETS',  sub:'25 dots, 8 targets. Exceptional attentional control required.'},
+    {total:28, targets:9, radius:11, speed:2.9,  trackSec:8, desc:'TRACK 9 TARGETS',  sub:'28 dots, 9 targets, 8 seconds. Beyond what research says is possible for most.'},
+    {total:31, targets:10,radius:10, speed:3.1,  trackSec:8, desc:'TRACK 10 TARGETS', sub:'31 dots, 10 targets. If you reach this, your attentional control is extraordinary.'},
   ];
-  const ADV=4,SHOW_MS=2200,FADE_MS=380;
+  const ADV=3,SHOW_MS=2200,FADE_MS=380;
   let cv,ctx,W,H,raf=null,ac=null;
   let score=0,lives=3,level=0,trial=0,corrInLv=0,lastLv=-1;
   let dots=[],phase='idle',trackStart=0,timerRaf=null;
@@ -1959,10 +1968,10 @@ const TRACK=(()=>{
     document.getElementById('tk-r-lv').textContent=level+1;
     document.getElementById('tk-r-tr').textContent=trial;
     const r=document.getElementById('tk-rating'),rs=document.getElementById('tk-rating-sub');let col;
-    if(level>=7){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Tracking 3 targets simultaneously is elite attentional control.';}
-    else if(level>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='Multi-target tracking at speed is above average.';}
-    else if(level>=3){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid. The switch to 2 targets is where it gets hard.';}
-    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Try a soft, diffuse gaze rather than staring directly at the dot.';}
+    if(level>=7){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Tracking 8 targets is beyond what research says is possible for most people.';}
+    else if(level>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='6 targets simultaneously puts you in elite attentional control territory.';}
+    else if(level>=3){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='4 targets is solid. The jump to 5+ is where most people plateau.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Try a soft, diffuse gaze rather than staring directly at any single dot.';}
     r.style.color=col;document.getElementById('tk-over').style.display='flex';
   }
 
@@ -1987,6 +1996,448 @@ const TRACK=(()=>{
     document.getElementById('tk-over').style.display='none';
     document.getElementById('tk-intro').style.display='none';
   }
+
+  return{start,stop,skipIntro};
+})();
+
+// ══════════════════════ COUNT ══════════════════════
+const POPULE=(()=>{
+  const COLORS=[
+    {name:'RED',   hex:'#ff3355'},{name:'BLUE',  hex:'#00aaff'},
+    {name:'GREEN', hex:'#00dd66'},{name:'ORANGE',hex:'#ff8800'},
+    {name:'PURPLE',hex:'#cc44ff'},{name:'YELLOW',hex:'#ffdd00'},
+  ];
+  const SHAPES=['circle','square','triangle','diamond'];
+  const LVLS=[
+    {minN:3, maxN:7, nC:1,flashMs:2000,type:'all',  sub:'How many items flashed?'},
+    {minN:5, maxN:11,nC:1,flashMs:1600,type:'all',  sub:'More items. Shorter flash.'},
+    {minN:8, maxN:14,nC:1,flashMs:1200,type:'all',  sub:'Large set. 1.2 seconds. Trust your estimate.'},
+    {minN:8, maxN:14,nC:2,flashMs:1000,type:'color',sub:'Two colors. Find out which color after the flash.'},
+    {minN:10,maxN:16,nC:3,flashMs:780, type:'color',sub:'Three colors. Memorise all of them. Question appears after.'},
+    {minN:12,maxN:18,nC:4,flashMs:580, type:'color',sub:'Four colors. 0.58 seconds. Which one? Revealed after.'},
+    {minN:12,maxN:18,nC:4,flashMs:400, type:'color',sub:'Same setup. 0.4 seconds. Your brain sees more than you think.'},
+    {minN:14,maxN:20,nC:5,flashMs:250, type:'color',sub:'Five colors. Quarter second. Count every color simultaneously.'},
+    {minN:14,maxN:20,nC:5,flashMs:150, type:'color',sub:'0.15 seconds. Preattentive vision only.'},
+    {minN:15,maxN:22,nC:6,flashMs:90,  type:'color',sub:'Six colors. 90 milliseconds. Near the limit of conscious perception.'},
+    {minN:15,maxN:22,nC:6,flashMs:50,  type:'color',sub:'50ms. Estimating impressions only.'},
+    {minN:16,maxN:24,nC:6,flashMs:25,  type:'color',sub:'25ms. Subliminal range. Trust your gut.'},
+    {minN:16,maxN:24,nC:6,flashMs:15,  type:'color',sub:'15 milliseconds. The minimum perceptible flash.'},
+  ];
+  const ADV=3;
+  let ac=null,score=0,lives=3,level=0,corrInLv=0,trial=0,lastLv=-1;
+  let phase='idle',correctAnswer=0,flashTO=null;
+  let cv,ctx,W,H;
+
+  function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+  function beep(f,tp,v,d){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type=tp;o.frequency.value=f;g.gain.setValueAtTime(v,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+d);o.start();o.stop(ac.currentTime+d);}catch(e){}}
+  const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
+  const pick=a=>a[Math.floor(Math.random()*a.length)];
+
+  function initCV(){
+    cv=document.getElementById('cn-canvas');
+    const w=document.getElementById('cn-canvas-wrap');
+    W=cv.width=w.offsetWidth;H=cv.height=w.offsetHeight;ctx=cv.getContext('2d');
+  }
+  function rl(){const el=document.getElementById('cn-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  function fb(txt,col){const el=document.getElementById('cn-fb');if(!el)return;el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,900);}
+
+  function drawItem(shape,x,y,r,hex){
+    ctx.fillStyle=hex;ctx.shadowColor=hex;ctx.shadowBlur=12;ctx.beginPath();
+    switch(shape){
+      case 'circle':   ctx.arc(x,y,r,0,Math.PI*2);break;
+      case 'square':   ctx.rect(x-r,y-r,r*2,r*2);break;
+      case 'triangle': ctx.moveTo(x,y-r);ctx.lineTo(x+r*0.87,y+r*0.5);ctx.lineTo(x-r*0.87,y+r*0.5);ctx.closePath();break;
+      case 'diamond':  ctx.moveTo(x,y-r);ctx.lineTo(x+r*0.7,y);ctx.lineTo(x,y+r);ctx.lineTo(x-r*0.7,y);ctx.closePath();break;
+    }
+    ctx.fill();ctx.shadowBlur=0;
+  }
+
+  function genTrial(lv){
+    const n=lv.minN+Math.floor(Math.random()*(lv.maxN-lv.minN+1));
+    const cols=lv.nC===1?[{name:'WHITE',hex:'#dde4ee'}]:shuf(COLORS).slice(0,lv.nC);
+    const shps=['circle'];
+    const items=[];
+    for(let i=0;i<n;i++)items.push({color:pick(cols),shape:pick(shps),x:0,y:0});
+    const R=Math.max(9,Math.min(18,Math.floor(Math.sqrt(W*H*0.38/(n*Math.PI)))));
+    const mg=R+10,placed=[];
+    items.forEach(item=>{
+      let x,y,ok,t=0;
+      do{x=mg+Math.random()*(W-mg*2);y=mg+Math.random()*(H-mg*2);
+        ok=placed.every(p=>Math.sqrt((p.x-x)**2+(p.y-y)**2)>R*2.4);t++;}
+      while(!ok&&t<400);
+      item.x=x;item.y=y;placed.push({x,y});
+    });
+    let q,ans;
+    if(lv.type==='all'){q='HOW MANY?';ans=n;}
+    else if(lv.type==='color'){
+      const tc=pick(cols);ans=items.filter(it=>it.color.name===tc.name).length;q='HOW MANY '+tc.name+'?';
+    } else {
+      const tc=pick(cols),ts=pick(shps);
+      ans=items.filter(it=>it.color.name===tc.name&&it.shape===ts).length;
+      q='HOW MANY '+tc.name+' '+ts.toUpperCase()+'S?';
+    }
+    return{items,R,q,ans};
+  }
+
+  function getInp(){return document.getElementById('cn-input');}
+  function getWrap(){return document.getElementById('cn-input-wrap');}
+
+  function activateInput(){
+    const inp=getInp(),w=getWrap();
+    inp.value='';inp.className='';
+    document.getElementById('cn-submit').style.display='';
+    w.style.display='flex';
+    setTimeout(()=>{try{inp.focus();}catch(e){}},60);
+  }
+  function hideInput(){getWrap().style.display='none';}
+  function revealInput(correct,isCorr){
+    const inp=getInp();inp.value=correct;
+    inp.classList.add(isCorr?'cn-ok':'cn-bad');
+    document.getElementById('cn-submit').style.display='none';
+  }
+
+  function submitAnswer(){
+    const v=parseInt(getInp().value);if(isNaN(v)||v<0)return;handleAnswer(v);
+  }
+
+  function handleAnswer(val){
+    if(phase!=='input')return;
+    phase='feedback';
+    const isCorr=val===correctAnswer;
+    revealInput(correctAnswer,isCorr);
+    if(isCorr){
+      corrInLv++;const pts=200*(level+1);
+      score+=pts;document.getElementById('cn-sc-v').textContent=score;
+      fb('+'+pts,'#00ee77');beep(880,'square',0.09,0.12);
+      if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();setTimeout(()=>fb('LEVEL '+(level+1)+'! +1 LIFE','#ffdd00'),350);}
+    } else {
+      lives=Math.max(0,lives-1);rl();
+      fb('ANSWER: '+correctAnswer,'#ff2244');beep(130,'sawtooth',0.13,0.2);
+      if(lives<=0){setTimeout(over,1300);return;}
+    }
+    setTimeout(nextTrial,1300);
+  }
+
+  function showIntro(lv,done){
+    const ov=document.getElementById('cn-intro');ov.style.display='flex';
+    document.getElementById('cn-intro-lv').textContent='LEVEL '+(level+1);
+    const rt=lv.type==='all'?'COUNT ALL ITEMS':lv.type==='color'?'COUNT BY COLOR':'COUNT BY COLOR + SHAPE';
+    document.getElementById('cn-intro-rule').textContent=rt;
+    document.getElementById('cn-intro-sub').textContent=lv.sub;
+    ov._done=done;
+  }
+  function skipIntro(){const ov=document.getElementById('cn-intro');if(ov&&ov._done){ov.style.display='none';ov._done();}}
+
+  function nextTrial(){
+    if(lives<=0){over();return;}
+    hideInput();
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    if(level!==lastLv){lastLv=level;showIntro(lv,()=>runTrial(lv));}
+    else runTrial(lv);
+  }
+
+  function runTrial(lv){
+    if(!cv||!ctx)initCV();
+    const{items,R,q,ans}=genTrial(lv);
+    correctAnswer=ans;trial++;
+    document.getElementById('cn-tri-v').textContent=trial;
+    // For color levels, hide question until AFTER the flash
+    document.getElementById('cn-question').textContent=lv.type==='all'?q:'WATCH — QUESTION APPEARS AFTER';
+    ctx.clearRect(0,0,W,H);ctx.fillStyle='#050510';ctx.fillRect(0,0,W,H);
+    phase='watch';
+    flashTO=setTimeout(()=>{
+      ctx.clearRect(0,0,W,H);ctx.fillStyle='#050510';ctx.fillRect(0,0,W,H);
+      items.forEach(it=>drawItem(it.shape,it.x,it.y,R,it.color.hex));
+      flashTO=setTimeout(()=>{
+        ctx.clearRect(0,0,W,H);ctx.fillStyle='#050510';ctx.fillRect(0,0,W,H);
+        if(lv.type!=='all') document.getElementById('cn-question').textContent=q;
+        phase='input';activateInput();
+      },lv.flashMs);
+    },400);
+  }
+
+  function over(){
+    phase='idle';if(flashTO){clearTimeout(flashTO);flashTO=null;}hideInput();
+    HS.set('popule',score);HS.setR('popule',level+1);
+    document.getElementById('cn-r-sc').textContent=score;
+    document.getElementById('cn-r-lv').textContent=level+1;
+    document.getElementById('cn-r-tr').textContent=trial;
+    const r=document.getElementById('cn-rating'),rs=document.getElementById('cn-rating-sub');let col;
+    if(level>=7){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Conjunction counting at speed is elite-level selective attention.';}
+    else if(level>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='Filtering by color under time pressure is above average.';}
+    else if(level>=3){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid subitizing. Color filtering is where it gets genuinely hard.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Numbers 1-4 should feel instant — no counting needed. Keep training.';}
+    r.style.color=col;document.getElementById('cn-over').style.display='flex';
+  }
+
+  function start(){
+    iA();score=0;lives=3;level=0;corrInLv=0;trial=0;lastLv=-1;
+    phase='idle';correctAnswer=0;if(flashTO){clearTimeout(flashTO);flashTO=null;}
+    document.getElementById('cn-sc-v').textContent='0';
+    document.getElementById('cn-tri-v').textContent='—';
+    document.getElementById('cn-fb').textContent='';
+    document.getElementById('cn-question').textContent='';
+    document.getElementById('cn-start').style.display='none';
+    document.getElementById('cn-over').style.display='none';
+    document.getElementById('cn-intro').style.display='none';
+    hideInput();initCV();rl();nextTrial();
+  }
+
+  function stop(){
+    phase='idle';if(flashTO){clearTimeout(flashTO);flashTO=null;}
+    hideInput();
+    document.getElementById('cn-start').style.display='flex';
+    document.getElementById('cn-over').style.display='none';
+    document.getElementById('cn-intro').style.display='none';
+    document.getElementById('cn-question').textContent='';
+    if(ctx&&W&&H)ctx.clearRect(0,0,W,H);
+  }
+
+  setTimeout(()=>{
+    const inp=document.getElementById('cn-input');
+    const sub=document.getElementById('cn-submit');
+    if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')submitAnswer();});
+    if(sub)sub.addEventListener('click',submitAnswer);
+  },0);
+
+  return{start,stop,skipIntro};
+})();
+// ══════════════════════ GRID ══════════════════════
+const GRID=(()=>{
+  const LVLS=[
+    {cols:3, rows:7, time:60,adv:3},{cols:4, rows:8, time:55,adv:3},
+    {cols:5, rows:9, time:50,adv:3},{cols:6, rows:10,time:45,adv:3},
+    {cols:7, rows:11,time:40,adv:3},{cols:8, rows:12,time:35,adv:6},
+    {cols:9, rows:13,time:30,adv:6},{cols:10,rows:14,time:25,adv:6},
+    {cols:10,rows:14,time:20,adv:6},{cols:10,rows:14,time:15,adv:6},
+    {cols:10,rows:14,time:10,adv:6},
+  ];
+  let score=0,lives=3,level=0,corrInLv=0,trial=0,lastLv=-1;
+  let phase='idle',path=[],recallIdx=0,curR=-1,curC=-1;
+  let timerCS=0,timerInt=null;
+
+  function rl(){const el=document.getElementById('gd-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  function setSt(t){const el=document.getElementById('gd-status');if(el)el.textContent=t;}
+  function fb(txt,col){const el=document.getElementById('gd-fb');if(!el)return;el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,900);}
+
+  function genPath(rows,cols){
+    for(let attempt=0;attempt<30;attempt++){
+      const vis=Array.from({length:rows},()=>new Array(cols).fill(false));
+      const startC=Math.floor(Math.random()*cols);
+      const p=[{r:rows-1,c:startC}];
+      vis[rows-1][startC]=true;
+      let stalls=0;
+      const DIRS=[{r:-1,c:0},{r:0,c:1},{r:0,c:-1},{r:1,c:0}];
+      while(p.length>0){
+        const {r,c}=p[p.length-1];
+        if(r===0) break;
+        const dirs=[...DIRS].sort(()=>Math.random()-0.5);
+        if(Math.random()<0.55){const ui=dirs.findIndex(d=>d.r===-1);if(ui>0){[dirs[0],dirs[ui]]=[dirs[ui],dirs[0]];}}
+        const nxt=dirs.find(d=>{const nr=r+d.r,nc=c+d.c;return nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc];});
+        if(nxt){p.push({r:r+nxt.r,c:c+nxt.c});vis[r+nxt.r][c+nxt.c]=true;stalls=0;}
+        else{vis[r][c]=false;p.pop();if(++stalls>rows*cols)break;}
+      }
+      const minLen=rows+Math.floor(cols/2);
+      if(p.length>=minLen&&p.length>0&&p[p.length-1].r===0) return p;
+    }
+    // Fallback: straight up middle
+    const p=[];const fc=Math.floor(cols/2);
+    for(let r=rows-1;r>=0;r--)p.push({r,c:fc});
+    return p;
+  }
+
+  function getCell(r,c){return document.querySelector(`#gd-grid .gd-cell[data-r="${r}"][data-c="${c}"]`);}
+
+  function buildGrid(lv){
+    const {rows,cols}=lv;
+    const grid=document.getElementById('gd-grid');
+    const wrap=document.getElementById('gd-grid-wrap');
+    grid.innerHTML='';
+    const gap=3;
+    const avW=wrap.offsetWidth-12,avH=wrap.offsetHeight-12;
+    const cW=Math.floor((avW-gap*(cols-1))/cols);
+    const cH=Math.floor((avH-gap*(rows-1))/rows);
+    const cs=Math.max(20,Math.min(cW,cH,60));
+    grid.style.gridTemplateColumns=`repeat(${cols},${cs}px)`;
+    grid.style.gridTemplateRows=`repeat(${rows},${cs}px)`;
+    grid.style.gap=gap+'px';
+    for(let r=0;r<rows;r++){
+      for(let cl=0;cl<cols;cl++){
+        const cell=document.createElement('div');
+        cell.className='gd-cell';
+        cell.style.width=cell.style.height=cs+'px';
+        cell.dataset.r=r;cell.dataset.c=cl;
+        cell.addEventListener('click',()=>handleClick(r,cl));
+        grid.appendChild(cell);
+      }
+    }
+  }
+
+  function showPathAnim(cb){
+    let i=0;
+    function next(){
+      if(i>=path.length){cb();return;}
+      const cell=getCell(path[i].r,path[i].c);
+      if(cell){
+        cell.classList.add('gd-path');
+        if(i===0)cell.classList.add('gd-start');
+        if(i===path.length-1)cell.classList.add('gd-end');
+      }
+      i++;setTimeout(next,18);
+    }
+    next();
+  }
+
+  function startTimerDisplay(seconds){
+    timerCS=seconds*100;updateTimer();
+    timerInt=setInterval(()=>{
+      timerCS--;updateTimer();
+      if(timerCS<=0){clearInterval(timerInt);timerInt=null;startRecall();}
+    },10);
+  }
+  function updateTimer(){
+    const s=Math.floor(timerCS/100),cs=timerCS%100;
+    const el=document.getElementById('gd-timer');
+    if(el)el.textContent=s.toString().padStart(2,'0')+'.'+cs.toString().padStart(2,'0');
+  }
+  function stopTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}}
+
+  function startRecall(){
+    stopTimer();
+    const el=document.getElementById('gd-timer');if(el)el.textContent='RECALL';
+    document.getElementById('gd-stop-btn').style.display='none';
+    phase='recall';recallIdx=0;curR=-1;curC=-1;
+    // Hide path - remove path classes
+    document.querySelectorAll('.gd-path,.gd-start,.gd-end').forEach(cell=>{
+      cell.classList.remove('gd-path','gd-start','gd-end');
+    });
+    setSt('TAP WHERE THE PATH STARTED');
+  }
+
+  function handleClick(r,c){if(phase!=='recall')return;tryMove(r,c);}
+
+  function tryMove(r,c){
+    const expected=path[recallIdx];
+    if(!expected)return;
+    if(r===expected.r&&c===expected.c){
+      const cell=getCell(r,c);
+      if(cell)cell.classList.add('gd-correct');
+      curR=r;curC=c;recallIdx++;
+      if(recallIdx===1)setSt('CONTINUE THE PATH  ·  ARROW KEYS WORK');
+      if(recallIdx>=path.length)pathComplete();
+    } else {
+      pathFail();
+    }
+  }
+
+  function handleKey(e){
+    if(phase!=='recall'||recallIdx===0)return;
+    const map={ArrowUp:{r:-1,c:0},ArrowDown:{r:1,c:0},ArrowLeft:{r:0,c:-1},ArrowRight:{r:0,c:1}};
+    const d=map[e.key];if(!d)return;
+    e.preventDefault();
+    tryMove(curR+d.r,curC+d.c);
+  }
+
+  function pathComplete(){
+    phase='feedback';
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    corrInLv++;
+    const pts=path.length*80*(level+1);
+    score+=pts;document.getElementById('gd-sc-v').textContent=score;
+    fb(`+${pts}`,'#00ee77');
+    // Pulse all correct cells
+    path.forEach(p=>{const cell=getCell(p.r,p.c);if(cell)cell.classList.add('gd-win');});
+    setTimeout(()=>{
+      path.forEach(p=>{const cell=getCell(p.r,p.c);if(cell)cell.classList.remove('gd-win');});
+      if(corrInLv>=lv.adv&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();setTimeout(()=>fb(`LEVEL ${level+1}! +1 LIFE`,'#ffdd00'),300);}
+      setTimeout(nextTrial,600);
+    },1400);
+  }
+
+  function pathFail(){
+    phase='feedback';
+    lives=Math.max(0,lives-1);rl();
+    fb('WRONG!','#ff2244');
+    // Flash whole grid red
+    document.querySelectorAll('.gd-cell').forEach(cell=>cell.classList.add('gd-fail'));
+    setTimeout(()=>{
+      document.querySelectorAll('.gd-cell').forEach(cell=>cell.classList.remove('gd-fail'));
+      if(lives<=0){over();return;}
+      setTimeout(nextTrial,400);
+    },900);
+  }
+
+  function showIntro(lv,done){
+    const ov=document.getElementById('gd-intro');ov.style.display='flex';
+    document.getElementById('gd-intro-lv').textContent=`LEVEL ${level+1}`;
+    document.getElementById('gd-intro-grid').textContent=`${lv.cols}×${lv.rows} GRID`;
+    document.getElementById('gd-intro-time').textContent=`${lv.time} SECONDS TO MEMORISE`;
+    ov._done=done;
+  }
+  function skipIntro(){const ov=document.getElementById('gd-intro');if(ov&&ov._done){ov.style.display='none';ov._done();}}
+
+  function nextTrial(){
+    if(lives<=0){over();return;}
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    if(level!==lastLv){lastLv=level;showIntro(lv,()=>runTrial(lv));}
+    else runTrial(lv);
+  }
+
+  function runTrial(lv){
+    trial++;document.getElementById('gd-tri-v').textContent=trial;
+    path=genPath(lv.rows,lv.cols);recallIdx=0;curR=-1;curC=-1;
+    buildGrid(lv);
+    setSt('WATCH THE PATH');
+    document.getElementById('gd-stop-btn').style.display='block';
+    phase='show';
+    // Animate path reveal, then start timer
+    showPathAnim(()=>{
+      startTimerDisplay(lv.time);
+    });
+  }
+
+  function over(){
+    phase='idle';stopTimer();
+    HS.set('grid',score);HS.setR('grid',trial);
+    document.getElementById('gd-r-sc').textContent=score;
+    document.getElementById('gd-r-lv').textContent=level+1;
+    document.getElementById('gd-r-tr').textContent=trial;
+    const r=document.getElementById('gd-rating'),rs=document.getElementById('gd-rating-sub');let col;
+    if(level>=9){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='10×14 grid in seconds. Extraordinary spatial memory.';}
+    else if(level>=6){r.textContent='STRONG';col='#00ee77';rs.textContent='Large grids, tight timers. Above average route recall.';}
+    else if(level>=3){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid spatial memory. The path gets genuinely hard at 6×10.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Trace the path with your eyes as it appears — segment by segment.';}
+    r.style.color=col;document.getElementById('gd-over').style.display='flex';
+  }
+
+  function start(){
+    score=0;lives=3;level=0;corrInLv=0;trial=0;lastLv=-1;
+    phase='idle';path=[];recallIdx=0;curR=-1;curC=-1;stopTimer();
+    document.getElementById('gd-sc-v').textContent='0';
+    document.getElementById('gd-tri-v').textContent='—';
+    document.getElementById('gd-timer').textContent='60.00';
+    setSt('');document.getElementById('gd-fb').textContent='';
+    document.getElementById('gd-grid').innerHTML='';
+    document.getElementById('gd-stop-btn').style.display='none';
+    document.getElementById('gd-start').style.display='none';
+    document.getElementById('gd-over').style.display='none';
+    document.getElementById('gd-intro').style.display='none';
+    rl();nextTrial();
+  }
+
+  function stop(){
+    phase='idle';stopTimer();
+    document.getElementById('gd-start').style.display='flex';
+    document.getElementById('gd-over').style.display='none';
+    document.getElementById('gd-intro').style.display='none';
+    document.getElementById('gd-stop-btn').style.display='none';
+  }
+
+  document.addEventListener('keydown',handleKey);
+  setTimeout(()=>{
+    const btn=document.getElementById('gd-stop-btn');
+    if(btn)btn.addEventListener('click',()=>{if(phase==='show')startRecall();});
+  },0);
 
   return{start,stop,skipIntro};
 })();
