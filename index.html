@@ -207,6 +207,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
 .rc-btn:active{transform:scale(0.91);}
 .rc-btn.rc-enabled{opacity:0.65;pointer-events:all;}
 .rc-btn.rc-disabled{pointer-events:none;}
+.rc-btn.rc-lit{opacity:1!important;filter:brightness(1.6) saturate(1.2);transform:scale(1.06);box-shadow:0 0 24px rgba(255,255,255,0.5);}
 #rc-intro{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(5,5,16,0.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:15px;z-index:25;padding:28px;text-align:center;}
 #rc-intro-lv{font-size:30px;font-weight:bold;letter-spacing:9px;color:#00ee77;}
 #rc-intro-rule{font-size:18px;font-weight:bold;letter-spacing:5px;color:#fff;}
@@ -293,7 +294,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
 #gd-stop-btn{display:none;padding:8px 28px;border:1px solid rgba(85,102,255,0.5);background:transparent;color:#5566ff;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:4px;cursor:pointer;flex-shrink:0;margin:4px 0;-webkit-tap-highlight-color:transparent;}
 #gd-stop-btn:hover{background:rgba(85,102,255,0.1);}
 #gd-fb{font-size:17px;font-weight:bold;letter-spacing:4px;opacity:0;color:#fff;text-align:center;flex-shrink:0;height:24px;transition:opacity .35s;pointer-events:none;}
-#gd-intro{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(5,5,16,0.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:25;padding:28px;text-align:center;}
+#gd-intro{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(5,5,16,0.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:40;padding:28px;text-align:center;}
 #gd-intro-lv{font-size:30px;font-weight:bold;letter-spacing:9px;color:#5566ff;}
 #gd-intro-grid{font-size:22px;font-weight:bold;letter-spacing:5px;color:#fff;}
 #gd-intro-time{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.35);}
@@ -396,9 +397,9 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
   </div>
   <div class="hub-sec">PLANNED</div>
   <div class="hub-grid">
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff6688">VISION</div><div class="hcard-skill">Visual Acuity · Contrast Sensitivity</div><div class="hcard-desc">Optotype symbols shrink and fade. How far can you see? The only test here that measures your eyes, not just your brain. Find where your visual system actually breaks down.</div><div class="hcard-bar" style="background:#ff6688"></div></div>
+    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff6688">OPTICS</div><div class="hcard-skill">Visual Acuity · Contrast Sensitivity</div><div class="hcard-desc">Optotype symbols shrink and fade. How far can you see? The only test here that measures your eyes, not just your brain. Find where your visual system actually breaks down.</div><div class="hcard-bar" style="background:#ff6688"></div></div>
     <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff9922">TEMPO</div><div class="hcard-skill">Rhythmic Timing · Temporal Precision</div><div class="hcard-desc">A beat plays. Tap with it — exactly. Your deviation from perfect timing is measured in milliseconds. Gets harder as the rhythm grows irregular and the tempo shifts without warning.</div><div class="hcard-bar" style="background:#ff9922"></div></div>
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#44ddcc">DUAL</div><div class="hcard-skill">Divided Attention · Cognitive Load</div><div class="hcard-desc">Two streams at once: positions flash visually and tones play auditorily. Remember both. The classic dual n-back — the only task with replicated evidence for raising fluid intelligence.</div><div class="hcard-bar" style="background:#44ddcc"></div></div>
+    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#44ddcc">HELIX</div><div class="hcard-skill">Spatial Rotation · Pattern Sequencing</div><div class="hcard-desc">Two streams at once: positions flash visually and tones play auditorily. Remember both. The classic dual n-back — the only task with replicated evidence for raising fluid intelligence.</div><div class="hcard-bar" style="background:#44ddcc"></div></div>
   </div>
   <div class="hub-foot">ALL TOOLS RUN LOCALLY · NO DATA COLLECTED · NO INTERNET REQUIRED</div>
 </div>
@@ -602,6 +603,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
     <div id="gd-intro-time">60 SECONDS TO MEMORISE</div>
     <div id="gd-intro-sub">A path snakes from bottom to top. Watch it appear, memorise it, then hit STOP. Tap the path in order from where it started. Arrow keys work after the first correct tap.</div>
     <button class="gd-skip" onclick="GRID.skipIntro()">READY →</button>
+    <button onclick="GRID.stop();showPage('hub')" style="margin-top:6px;background:none;border:none;font-family:inherit;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.2);cursor:pointer;padding:6px;">← BACK TO HUB</button>
   </div>
   <div id="gd-topbar">
     <div id="gd-sc-a">SCORE<div id="gd-sc-v">0</div></div>
@@ -803,7 +805,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
 <script>
 // ══════════════════════ ROUTER ══════════════════════
 function showPage(id){
-  FLUX.stop();ECHO.stop();STROOP.stop();REFLEX.stop();SCAN.stop();SIMON.stop();TRACK.stop();POPULE.stop();
+  FLUX.stop();ECHO.stop();STROOP.stop();REFLEX.stop();SCAN.stop();SIMON.stop();TRACK.stop();POPULE.stop();GRID.stop();
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const pg=document.getElementById('page-'+id);
   if(pg)pg.classList.add('active');
@@ -863,7 +865,7 @@ const FLUX=(()=>{
   function loop(ts){if(!running)return;if(ts-lb>=BEAT){lb=ts;bp=1;beep(200,'sine',0.05,0.08);}bp*=0.91;if(ts>=nextRule)pickRule(true);if(ts>=nextLevel){level++;document.getElementById('fx-lv-l').textContent=`LEVEL ${level}`;fb(`LEVEL ${level}!`,'#ffdd00');nextLevel=ts+26000;}if(ts>=nextSpawn){const n=Math.floor(1+level*0.38);for(let i=0;i<n;i++)spawn();nextSpawn=ts+Math.max(320,1050-level*75);}fa*=0.83;sx*=sd;sy*=sd;if(Math.abs(sx)<0.1)sx=sy=0;const now=performance.now();shapes=shapes.filter(s=>{const t=(now-s.born)/s.lt;s.op=t<0.1?t/0.1:t>0.8?(1-t)/0.2:1;s.sc=t<0.1?0.3+(t/0.1)*0.7:1;s.x+=s.vx;s.y+=s.vy;s.rot+=s.rv;if(s.x<40||s.x>W-40)s.vx*=-1;if(s.y<40||s.y>H-60)s.vy*=-1;return t<1;});parts=parts.filter(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.11;p.vx*=0.96;p.life-=0.027;p.sz*=0.96;return p.life>0;});draw();raf=requestAnimationFrame(loop);}
   function draw(){ctx.save();if(sx)ctx.translate((Math.random()-0.5)*sx*2,(Math.random()-0.5)*sy*2);ctx.fillStyle='#050510';ctx.fillRect(0,0,W,H);ctx.strokeStyle='rgba(255,255,255,0.038)';ctx.lineWidth=1;for(let x=0;x<W;x+=70){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}for(let y=0;y<H;y+=70){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}if(fa>0.005){const r=parseInt(fc.slice(1,3),16),g=parseInt(fc.slice(3,5),16),b=parseInt(fc.slice(5,7),16);ctx.fillStyle=`rgba(${r},${g},${b},${fa})`;ctx.fillRect(0,0,W,H);}const bx=W/2,by=H-28;ctx.beginPath();ctx.arc(bx,by,6+bp*26,0,Math.PI*2);ctx.strokeStyle=`rgba(255,255,255,${0.12+bp*0.5})`;ctx.lineWidth=1.5;ctx.stroke();ctx.beginPath();ctx.arc(bx,by,5,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${0.18+bp*0.6})`;ctx.fill();shapes.forEach(s=>{ctx.save();ctx.globalAlpha=s.op;ctx.translate(s.x,s.y);ctx.rotate(s.rot);ctx.scale(s.sc,s.sc);const z=s.sz;ctx.shadowColor=s.hex;ctx.strokeStyle=s.hex;ctx.fillStyle=s.hex;if(s.trg){ctx.shadowBlur=16+Math.sin(performance.now()/175)*8;ctx.lineWidth=2.5;}else{ctx.shadowBlur=3;ctx.lineWidth=1.5;ctx.globalAlpha*=0.5;}ctx.beginPath();switch(s.sh){case'circle':ctx.arc(0,0,z,0,Math.PI*2);break;case'square':ctx.rect(-z,-z,z*2,z*2);break;case'triangle':ctx.moveTo(0,-z);ctx.lineTo(z*0.866,z*0.5);ctx.lineTo(-z*0.866,z*0.5);ctx.closePath();break;case'diamond':ctx.moveTo(0,-z);ctx.lineTo(z*0.65,0);ctx.lineTo(0,z);ctx.lineTo(-z*0.65,0);ctx.closePath();break;}const ba=ctx.globalAlpha;ctx.globalAlpha=ba*0.18;ctx.fill();ctx.globalAlpha=ba;ctx.stroke();ctx.restore();});parts.forEach(p=>{ctx.save();ctx.globalAlpha=p.life*0.85;ctx.fillStyle=p.hex;ctx.shadowColor=p.hex;ctx.shadowBlur=7;ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);ctx.fill();ctx.restore();});ctx.restore();}
   function over(){running=false;document.getElementById('fx-r-sc').textContent=score;document.getElementById('fx-r-lv').textContent=level;HS.set('flux',score);HS.setR('flux',level);const r=document.getElementById('fx-rating'),rs=document.getElementById('fx-rating-sub');if(level>=8){r.textContent='ELITE';r.style.color='#cc44ff';rs.textContent='Exceptional pattern flexibility under chaos.';}else if(level>=5){r.textContent='STRONG';r.style.color='#00ee77';rs.textContent='Above average cognitive switching under pressure.';}else if(level>=3){r.textContent='AVERAGE';r.style.color='#ffdd00';rs.textContent='Solid baseline. Keep training.';}else{r.textContent='DEVELOPING';r.style.color='#ff2244';rs.textContent='Focus on reading the rule before clicking.';}document.getElementById('fx-over').style.display='flex';}
-  function start(){iA();iC();shapes=[];parts=[];score=0;lives=3;level=1;rule=null;running=true;const now=performance.now();lb=now;nextSpawn=now+900;nextLevel=now+26000;bp=0;fa=0;sx=sy=0;document.getElementById('fx-sc-v').textContent='0';document.getElementById('fx-lv-l').textContent='LEVEL 1';document.getElementById('fx-start').style.display='none';document.getElementById('fx-over').style.display='none';rl();pickRule(false);cv.onclick=onClick;if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(loop);}
+  function start(){iA();iC();shapes=[];parts=[];score=0;lives=3;level=1;rule=null;running=true;const now=performance.now();lb=now;nextSpawn=now+900;nextLevel=now+26000;bp=0;fa=0;sx=sy=0;document.getElementById('fx-sc-v').textContent='0';document.getElementById('fx-lv-l').textContent='LEVEL 1';document.getElementById('fx-start').style.display='none';document.getElementById('fx-over').style.display='none';rl();pickRule(false);cv.onclick=onClick;cv.ontouchend=e=>{e.preventDefault();const t=e.changedTouches[0];onClick({clientX:t.clientX,clientY:t.clientY});};if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(loop);}
   function stop(){running=false;if(raf){cancelAnimationFrame(raf);raf=null;}document.getElementById('fx-start').style.display='flex';document.getElementById('fx-over').style.display='none';}
   return{start,stop};
 })();
@@ -880,12 +882,12 @@ const ECHO=(()=>{
     {labels:['1','2','3','4','5','6','7','8'],                   freqs:[110,165,247,370,554,830,1244,1866],             dur:410},
     {labels:['1','2','3','4','5','6','7','8','9'],               freqs:[100,150,225,338,506,759,1139,1708,2562],        dur:370},
   ];
-  const RWIN=2000,KEYS=['1','2','3','4','5','6','7','8','9'],TOTAL=50,ADV=3;
+  const RWIN=2000,KEYS=['1','2','3','4','5','6','7','8','9'],TOTAL=50,ADV=5;
   let ac=null,score=0,lives=3,level=0,trial=0,corrInLv=0,lastLv=-1,accepting=false;
   let rtimes=[],tStart=0,autoTO=null;
   const clearAutoTO=()=>{if(autoTO){clearTimeout(autoTO);autoTO=null;}};
 
-  function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+  function iA(){if(ac){if(ac.state==='suspended')ac.resume();return;}try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
   function playTone(freq,dur){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(0.5,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur/1000);o.start();o.stop(ac.currentTime+dur/1000+0.05);}catch(e){}}
 
   function rl(){const el=document.getElementById('ec-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
@@ -904,7 +906,7 @@ const ECHO=(()=>{
     const area=document.getElementById('ec-btns');area.innerHTML='';
     lv.labels.forEach((lbl,i)=>{
       const btn=document.createElement('button');
-      btn.className='echobtn disabled';
+      btn.className='ecbtn disabled';
       btn.innerHTML=`<span class="stbtn-key">[${KEYS[i]||i+1}]</span>${lbl}`;
       btn.style.cssText='min-width:72px;max-width:145px;flex:1;padding:9px 5px;border:1px solid rgba(0,187,255,0.3);background:rgba(0,187,255,0.06);color:#00bbff;font-family:inherit;font-size:10px;font-weight:bold;letter-spacing:2px;cursor:pointer;border-radius:3px;';
       btn.addEventListener('click',()=>respond(i));
@@ -912,8 +914,8 @@ const ECHO=(()=>{
     });
   }
 
-  function animOn(idx){const btns=document.querySelectorAll('.echobtn');if(btns[idx]){btns[idx].style.background='rgba(0,187,255,0.35)';btns[idx].style.borderColor='#00bbff';}}
-  function animOff(idx){const btns=document.querySelectorAll('.echobtn');if(btns[idx]){btns[idx].style.background='rgba(0,187,255,0.06)';btns[idx].style.borderColor='rgba(0,187,255,0.3)';}}
+  function animOn(idx){const btns=document.querySelectorAll('.ecbtn');if(btns[idx]){btns[idx].style.background='rgba(0,187,255,0.35)';btns[idx].style.borderColor='#00bbff';}}
+  function animOff(idx){const btns=document.querySelectorAll('.ecbtn');if(btns[idx]){btns[idx].style.background='rgba(0,187,255,0.06)';btns[idx].style.borderColor='rgba(0,187,255,0.3)';}}
 
   function intro(lv,done){
     const ov=document.getElementById('ec-intro');ov.style.display='flex';
@@ -942,7 +944,7 @@ const ECHO=(()=>{
     accepting=false;clearAutoTO();stopTimer();
     const lv=LVLS[Math.min(level,LVLS.length-1)];
     const rt=performance.now()-tStart;
-    document.querySelectorAll('.echobtn').forEach(b=>b.classList.add('disabled'));
+    document.querySelectorAll('.ecbtn').forEach(b=>b.classList.add('disabled'));
     if(idx===currentTone){
       corrInLv++;trial++;
       const pts=Math.max(50,Math.round((RWIN-rt)/20))*(level+1);
@@ -969,7 +971,7 @@ const ECHO=(()=>{
     currentTone=Math.floor(Math.random()*lv.labels.length);
     document.getElementById('ec-status').textContent='IDENTIFY THE PITCH';
     document.getElementById('ec-fb').textContent='';
-    document.querySelectorAll('.echobtn').forEach(b=>b.classList.remove('disabled'));
+    document.querySelectorAll('.ecbtn').forEach(b=>b.classList.remove('disabled'));
     playTone(lv.freqs[currentTone],lv.dur);
     tStart=performance.now();accepting=true;
     startTimer();
@@ -980,7 +982,7 @@ const ECHO=(()=>{
       trial++;lives=Math.max(0,lives-1);rl();
       document.getElementById('ec-fb').textContent='TOO SLOW';
       document.getElementById('ec-fb').style.color='#ff8800';
-      document.querySelectorAll('.echobtn').forEach(b=>b.classList.add('disabled'));
+      document.querySelectorAll('.ecbtn').forEach(b=>b.classList.add('disabled'));
       document.getElementById('ec-tri-v').textContent=trial+' / '+TOTAL;
       if(lives<=0||trial>=TOTAL){setTimeout(over,800);return;}
       setTimeout(nextTrial,700);
@@ -1025,6 +1027,7 @@ const ECHO=(()=>{
 
   function stop(){
     accepting=false;clearAutoTO();stopTimer();
+    if(ac&&ac.state!=='closed'){try{ac.suspend();}catch(e){}}
     document.getElementById('ec-start').style.display='flex';
     document.getElementById('ec-over').style.display='none';
     document.getElementById('ec-intro').style.display='none';
@@ -1097,10 +1100,10 @@ const STROOP=(()=>{
   function buildBtns(lv){
     const area=document.getElementById('st-btns');area.innerHTML='';
     const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
-    const pool=shuf([...lv.pool]);
+    const pool=[...lv.pool]; // fixed order — no shuffle
     pool.forEach((name,i)=>{
       const btn=document.createElement('button');
-      btn.className='stroopbtn';
+      btn.className='stbtn';
       btn.textContent=name;
       btn.style.cssText=`color:${C[name].hex};border-color:${C[name].hex}33;`;
       if(KEYS[i])btn.innerHTML=`<span class="stbtn-key">[${KEYS[i]}]</span>${name}`;
@@ -1115,7 +1118,7 @@ const STROOP=(()=>{
     if(!accepting)return;
     accepting=false;clrAll();stopTimerBar();
     const rt=performance.now()-tStart;totTrials++;
-    document.querySelectorAll('.stroopbtn').forEach(b=>b.classList.add('disabled'));
+    document.querySelectorAll('.stbtn').forEach(b=>b.classList.add('disabled'));
     if(name===curAnswer){
       totCorr++;corrInLv++;rtimes.push(rt);
       const pts=Math.max(50,Math.round((RWIN-rt)/15))*(level+1);
@@ -1134,16 +1137,48 @@ const STROOP=(()=>{
 
   function showIntro(lv,done){
     const ov=document.getElementById('st-intro');ov.style.display='flex';
+    ov._done=done;
+    // Level title
     document.getElementById('st-intro-lv').textContent='LEVEL '+(level+1);
+    // Color chips row
+    const rr=document.getElementById('st-intro-rules-row');rr.innerHTML='';
+    lv.pool.forEach(name=>{
+      const sp=document.createElement('span');
+      sp.textContent=name;sp.style.cssText='color:'+C[name].hex+';margin:0 5px;font-weight:bold;letter-spacing:2px;font-size:9px;';
+      rr.appendChild(sp);
+    });
+    // Rule label
     document.getElementById('st-intro-ex-rule').textContent=lv.desc;
     document.getElementById('st-intro-ex-sub').textContent=lv.sub;
-    // Show words count
-    document.getElementById('st-intro-ex-word2').style.display=lv.words>=2?'block':'none';
-    document.getElementById('st-intro-ex-word3').style.display=lv.words>=3?'block':'none';
-    let cd=4;
+    // Build example: pick random word/ink pairs
+    const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
+    const sp=shuf([...lv.pool]);
+    const exWords=[];
+    for(let i=0;i<lv.words;i++){
+      let txt,ink;
+      do{txt=sp[i%sp.length];ink=sp[(i+1)%sp.length];}while(txt===ink&&sp.length>1);
+      exWords.push({txt,ink});
+    }
+    const wEls=['st-intro-ex-word','st-intro-ex-word2','st-intro-ex-word3'];
+    wEls.forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(i<exWords.length){el.textContent=exWords[i].txt;el.style.color=C[exWords[i].ink].hex;el.style.display='block';}
+      else el.style.display='none';
+    });
+    // Explain and answer
+    let answer,explain;
+    const usedT=new Set(exWords.map(w=>w.txt)),usedI=new Set(exWords.map(w=>w.ink));
+    const usedAll=new Set([...usedT,...usedI]);
+    if(lv.rule==='INK'){answer=exWords[0].ink;explain='The word is printed in '+answer+' ink.';}
+    else if(lv.rule==='WORD'){answer=exWords[0].txt;explain='The word says '+answer+'.';}
+    else{const avail=lv.pool.filter(x=>!usedAll.has(x));answer=avail[0]||lv.pool.find(x=>!usedT.has(x))||lv.pool[0];explain='Not used as text or ink by any word above.';}
+    document.getElementById('st-intro-ex-explain').textContent=explain;
+    const ansEl=document.getElementById('st-intro-ex-answer');
+    ansEl.textContent='CLICK: '+answer;ansEl.style.color=C[answer]?C[answer].hex:'#fff';
+    // Countdown
+    clrAll();let cd=4;
     document.getElementById('st-intro-cd').textContent=cd+'...';
     cdInt=setInterval(()=>{cd--;document.getElementById('st-intro-cd').textContent=cd>0?cd+'...':'GO!';if(cd<=0){clearInterval(cdInt);cdInt=null;ov.style.display='none';done();}},1000);
-    ov._done=done;
   }
   function skipIntro(){clrAll();const ov=document.getElementById('st-intro');if(ov){ov.style.display='none';if(ov._done){const fn=ov._done;ov._done=null;fn();}}}
 
@@ -1163,7 +1198,7 @@ const STROOP=(()=>{
       else{el.style.display='none';}
     });
     document.getElementById('st-fb').textContent='';
-    document.querySelectorAll('.stroopbtn').forEach(b=>b.classList.remove('disabled'));
+    document.querySelectorAll('.stbtn').forEach(b=>b.classList.remove('disabled'));
     accepting=true;tStart=performance.now();
     startTimerBar();
     autoTO=setTimeout(()=>{
@@ -1398,14 +1433,14 @@ const SIMON=(()=>{
   const CHX={red:'#ff2244',blue:'#00bbff',green:'#00ee77',yellow:'#ffdd00',purple:'#cc44ff',orange:'#ff8800',teal:'#00ccaa',pink:'#ff66aa'};
   const TONES={red:261,blue:329,green:392,yellow:523,purple:196,orange:440,teal:587,pink:659};
   const LVLS=[
-    {len:3,pool:['red','blue','green','yellow'],            flashMs:700,gapMs:360},
-    {len:4,pool:['red','blue','green','yellow'],            flashMs:650,gapMs:320},
-    {len:5,pool:['red','blue','green','yellow','purple'],   flashMs:600,gapMs:280},
-    {len:5,pool:['red','blue','green','yellow','purple'],   flashMs:520,gapMs:240},
-    {len:6,pool:['red','blue','green','yellow','purple','orange'],  flashMs:470,gapMs:210},
-    {len:6,pool:['red','blue','green','yellow','purple','orange'],  flashMs:400,gapMs:180},
-    {len:7,pool:['red','blue','green','yellow','purple','orange','teal'], flashMs:360,gapMs:160},
-    {len:7,pool:['red','blue','green','yellow','purple','orange','teal','pink'], flashMs:300,gapMs:140},
+    {len:3,pool:['red','blue','green','yellow'],                              flashMs:700,gapMs:360},
+    {len:4,pool:['red','blue','green','yellow'],                              flashMs:650,gapMs:320},
+    {len:5,pool:['red','blue','green','yellow','purple'],                     flashMs:600,gapMs:280},
+    {len:5,pool:['red','blue','green','yellow','purple'],                     flashMs:520,gapMs:240},
+    {len:6,pool:['red','blue','green','yellow','purple','orange'],            flashMs:470,gapMs:210},
+    {len:6,pool:['red','blue','green','yellow','purple','orange'],            flashMs:400,gapMs:180},
+    {len:7,pool:['red','blue','green','yellow','purple','orange','teal'],     flashMs:360,gapMs:160},
+    {len:7,pool:['red','blue','green','yellow','purple','orange','teal','pink'],flashMs:300,gapMs:140},
   ];
   const ADV=3;
   let ac=null,score=0,lives=3,level=0,corrStreak=0,totSeq=0,maxSeq=0,lastLv=-1;
@@ -1413,57 +1448,97 @@ const SIMON=(()=>{
 
   function iA(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
   function tone(freq,vol,dur){if(!ac)return;try{const o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(vol,ac.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+dur);o.start();o.stop(ac.currentTime+dur+0.02);}catch(e){}}
-  function btnTone(col){const lv=LVLS[Math.min(level,LVLS.length-1)];tone(TONES[col]||440,0.35,lv.flashMs/1000*0.85);}
+  function btnTone(col){const lv=LVLS[Math.min(level,LVLS.length-1)];tone(TONES[col]||440,0.35,lv.flashMs/1000*0.82);}
+  function tapTone(col){tone(TONES[col]||440,0.3,0.12);}  // short crisp tap sound for player input
   function beepDone(){[440,554,659].forEach((f,i)=>setTimeout(()=>tone(f,0.12,0.14),i*65));}
   function beepWrong(){tone(130,0.14,0.22);}
 
-  function rl(){const el=document.getElementById('rc-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
-  function fb(txt,col){const el=document.getElementById('rc-fb');el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,800);}
-
-  function flashBtn(col,dur,done){
-    const btn=document.querySelector(`.rcbtn[data-col="${col}"]`);
-    if(!btn){if(done)done();return;}
-    btn.classList.add('rcbtn-lit');btnTone(col);
-    flashTO=setTimeout(()=>{btn.classList.remove('rcbtn-lit');if(done)done();},dur);
+  function setCounter(tapped,total){
+    const lbl=document.getElementById('rc-lv-a2'),val=document.getElementById('rc-lv-v');
+    if(lbl)lbl.textContent=tapped>=0?'TAPPED':'LEVEL';
+    if(val)val.textContent=tapped>=0?tapped+' / '+total:total||'—';
   }
+  function rl(){const el=document.getElementById('rc-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
+  function setSt(txt,col){const el=document.getElementById('rc-status');if(el){el.textContent=txt;el.style.color=col||'rgba(255,255,255,0.35)';}}
+  function fb(txt,col){const el=document.getElementById('rc-fb');if(!el)return;el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,900);}
+
+  function buildDots(n){
+    const area=document.getElementById('rc-dots');if(!area)return;area.innerHTML='';
+    for(let i=0;i<n;i++){const d=document.createElement('div');d.className='rc-dot';area.appendChild(d);}
+  }
+  function setDot(i,cls){const dots=document.querySelectorAll('.rc-dot');if(dots[i])dots[i].className='rc-dot '+cls;}
 
   function buildButtons(lv){
     const area=document.getElementById('rc-buttons');area.innerHTML='';
     lv.pool.forEach(col=>{
       const btn=document.createElement('button');
-      btn.className='rcbtn';btn.dataset.col=col;
+      btn.className='rc-btn rc-disabled';
+      btn.dataset.col=col;
       btn.style.background=CHX[col];
       btn.addEventListener('click',()=>handleInput(col));
       area.appendChild(btn);
     });
   }
 
+  function enableBtns(on){
+    document.querySelectorAll('.rc-btn').forEach(b=>{
+      b.classList.toggle('rc-enabled',on);
+      b.classList.toggle('rc-disabled',!on);
+    });
+  }
+
+  function flashBtn(col,dur,done){
+    const btn=document.querySelector(`.rc-btn[data-col="${col}"]`);
+    if(!btn){if(done)done();return;}
+    btn.classList.add('rc-lit');
+    btnTone(col);
+    flashTO=setTimeout(()=>{btn.classList.remove('rc-lit');if(done)done();},dur);
+  }
+
   function playSeq(seq,lv,done){
+    buildDots(seq.length);
+    setSt('WATCH','rgba(255,255,255,0.35)');
+    enableBtns(false);
     let i=0;
     function next(){
       if(i>=seq.length){done();return;}
-      const col=seq[i++];
-      flashTO=setTimeout(()=>flashBtn(col,lv.flashMs,()=>setTimeout(next,lv.gapMs)),lv.gapMs);
+      const idx=i,col=seq[idx];
+      setDot(idx,'rc-active');
+      flashTO=setTimeout(()=>flashBtn(col,lv.flashMs,()=>{
+        setDot(idx,'rc-done');i++;
+        setTimeout(next,lv.gapMs);
+      }),lv.gapMs);
     }
     next();
   }
 
   function handleInput(col){
     if(phase!=='input')return;
+    const idx=playerInput.length;
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
     btnTone(col);
-    const expected=sequence[playerInput.length];
+    // Flash identical to sequence playback duration
+    const tapBtn=document.querySelector(`.rc-btn[data-col="${col}"]`);
+    if(tapBtn){tapBtn.classList.add('rc-lit');setTimeout(()=>tapBtn.classList.remove('rc-lit'),lv.flashMs);}
+    const expected=sequence[idx];
     playerInput.push(col);
+    // Update top bar counter
+    setCounter(playerInput.length,sequence.length);
     if(col!==expected){
-      beepWrong();lives=Math.max(0,lives-1);rl();fb('WRONG!','#ff2244');
-      phase='idle';maxSeq=Math.max(maxSeq,sequence.length-1);
+      beepWrong();enableBtns(false);
+      lives=Math.max(0,lives-1);rl();
+      setSt('WRONG!','#ff2244');fb('WRONG!','#ff2244');
+      phase='idle';maxSeq=Math.max(maxSeq,idx);
       if(lives<=0){setTimeout(over,900);return;}
       setTimeout(nextRound,900);return;
     }
+    setDot(idx,'rc-done');
     if(playerInput.length===sequence.length){
       corrStreak++;totSeq++;maxSeq=Math.max(maxSeq,sequence.length);
       const pts=sequence.length*120*(level+1);score+=pts;
       document.getElementById('rc-sc-v').textContent=score;
-      beepDone();fb('+'+pts,'#00ee77');phase='idle';
+      enableBtns(false);beepDone();
+      setSt('CORRECT!','#00ee77');fb('+'+pts,'#00ee77');phase='idle';
       if(corrStreak>=ADV&&level<LVLS.length-1){level++;corrStreak=0;lives=Math.min(lives+1,12);rl();setTimeout(()=>fb('LEVEL '+(level+1)+'! +1 LIFE','#ffdd00'),400);}
       setTimeout(nextRound,700);
     }
@@ -1486,8 +1561,13 @@ const SIMON=(()=>{
   function startRound(lv){
     sequence=Array.from({length:lv.len},()=>lv.pool[Math.floor(Math.random()*lv.pool.length)]);
     playerInput=[];phase='watch';
-    fb('WATCH','#00ee77');
-    playSeq(sequence,lv,()=>{phase='input';fb('YOUR TURN','#ffdd00');});
+    setCounter(-1,level+1);
+    playSeq(sequence,lv,()=>{
+      phase='input';
+      setSt('YOUR TURN','#ffdd00');
+      setCounter(0,sequence.length);
+      enableBtns(true);
+    });
   }
 
   function over(){
@@ -1499,9 +1579,9 @@ const SIMON=(()=>{
     document.getElementById('rc-r-lv').textContent=level+1;
     const r=document.getElementById('rc-rating'),rs=document.getElementById('rc-rating-sub');let col;
     if(maxSeq>=7){r.textContent='EXCEPTIONAL';col='#00ee77';rs.textContent='Sequence of 7+. Excellent auditory working memory span.';}
-    else if(maxSeq>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average sequence memory. Well above most people at 6.';}
+    else if(maxSeq>=5){r.textContent='STRONG';col='#00ee77';rs.textContent='Above average sequence memory. Most people cap around 5-6.';}
     else if(maxSeq>=4){r.textContent='AVERAGE';col='#ffdd00';rs.textContent='Solid working memory span for sequences.';}
-    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Focus on chunking: group colors into pairs as you watch.';}
+    else{r.textContent='DEVELOPING';col='#ffdd00';rs.textContent='Chunk the sequence into pairs as you watch.';}
     r.style.color=col;document.getElementById('rc-over').style.display='flex';
   }
 
@@ -1511,17 +1591,22 @@ const SIMON=(()=>{
     if(flashTO){clearTimeout(flashTO);flashTO=null;}
     document.getElementById('rc-sc-v').textContent='0';
     document.getElementById('rc-fb').textContent='';
+    setSt('—');
+    setCounter(-1,1);
+    document.getElementById('rc-dots').innerHTML='';
     document.getElementById('rc-start').style.display='none';
     document.getElementById('rc-over').style.display='none';
     document.getElementById('rc-intro').style.display='none';
     rl();nextRound();
   }
+
   function stop(){
     phase='idle';if(flashTO){clearTimeout(flashTO);flashTO=null;}
     document.getElementById('rc-start').style.display='flex';
     document.getElementById('rc-over').style.display='none';
     document.getElementById('rc-intro').style.display='none';
   }
+
   return{start,stop,skipIntro};
 })();
 
@@ -1529,16 +1614,16 @@ const SIMON=(()=>{
 const REFLEX=(()=>{
   const CHX={red:'#ff2244',blue:'#00bbff',green:'#00ee77',yellow:'#ffdd00',purple:'#cc44ff',orange:'#ff8800'};
   const LVLS=[
-    {type:'color', pool:['red','blue','green','yellow'],            tRate:0.33,isi:[700,1100]},
-    {type:'color', pool:['red','blue','green','yellow','purple'],   tRate:0.30,isi:[550,900]},
-    {type:'shape', pool:['circle','square','triangle','diamond'],   tRate:0.30,isi:[600,1000]},
-    {type:'nback', pool:['red','blue','green','yellow','purple'],   tRate:0.25,isi:[600,1000]},
-    {type:'number',tRate:0.50,isi:[500,850]},
-    {type:'numgt', tRate:0.44,isi:[480,800]},
-    {type:'arrow', tRate:0.40,isi:[460,780]},
-    {type:'letter',pool:'ABCDEFGHIJKLMNOPRSTUVWXYZ'.split(''),     tRate:0.35,isi:[450,750]},
+    {type:'color',  pool:['red','blue','green','yellow'],                                       tRate:0.33,isi:[500,500]},
+    {type:'color',  pool:['red','blue','green','yellow','purple'],                              tRate:0.30,isi:[500,500]},
+    {type:'shape',  pool:['circle','square','triangle','diamond'],                              tRate:0.30,isi:[500,500]},
+    {type:'cshape', colors:['green','red','blue','yellow'],shapes:['circle','square','triangle'],tRate:0.25,isi:[500,500]},
+    {type:'nback',  pool:['red','blue','green','yellow','purple'],                              tRate:0.25,isi:[500,500]},
+    {type:'number', tRate:0.50,isi:[500,500]},
+    {type:'numgt',  tRate:0.44,isi:[500,500]},
+    {type:'letter', pool:'ABCDEFGHIJKLMNOPRSTUVWXYZ'.split(''),                                tRate:0.35,isi:[500,500]},
   ];
-  const WIN=500,ADV=6;
+  const WIN=500,ADV=4;
   let cv,ctx,W,H,ac=null;
   let score=0,lives=3,level=0,trial=0,corrInLv=0;
   let goTotal=0,goHits=0,noGoTotal=0,falseAlarms=0;
@@ -1583,12 +1668,13 @@ const REFLEX=(()=>{
       ctx.fillStyle='#fff';ctx.shadowColor='rgba(255,255,255,0.4)';
       ctx.font=`bold ${Math.round(r*1.5)}px monospace`;ctx.textAlign='center';ctx.textBaseline='middle';
       ctx.fillText(stim,cx,cy);
-    } else if(lv.type==='arrow'){
-      const arrows={up:'↑',down:'↓',left:'←',right:'→'};
-      const cols={up:'#00bbff',down:'#ff2244',left:'#ff2244',right:'#00ee77'};
-      ctx.fillStyle=ctx.shadowColor=cols[stim]||'#fff';
-      ctx.font=`bold ${Math.round(r*1.8)}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.fillText(arrows[stim]||stim,cx,cy);
+    } else if(lv.type==='cshape'){
+      ctx.fillStyle=ctx.shadowColor=CHX[stim.color]||'#fff';
+      ctx.beginPath();
+      if(stim.shape==='circle'){ctx.arc(cx,cy,r,0,Math.PI*2);}
+      else if(stim.shape==='square'){ctx.rect(cx-r,cy-r,r*2,r*2);}
+      else{ctx.moveTo(cx,cy-r);ctx.lineTo(cx+r*0.87,cy+r*0.5);ctx.lineTo(cx-r*0.87,cy+r*0.5);ctx.closePath();}
+      ctx.fill();
     } else if(lv.type==='letter'){
       ctx.fillStyle=ctx.shadowColor='#00ee77';
       ctx.font=`bold ${Math.round(r*1.6)}px monospace`;ctx.textAlign='center';ctx.textBaseline='middle';
@@ -1604,7 +1690,7 @@ const REFLEX=(()=>{
       case 'nback':  return lv.pool[Math.floor(Math.random()*lv.pool.length)];
       case 'number': return Math.floor(Math.random()*9)+1;
       case 'numgt':  return Math.floor(Math.random()*9)+1;
-      case 'arrow':  return ['up','down','left','right'][Math.floor(Math.random()*4)];
+      case 'cshape': return {color:lv.colors[Math.floor(Math.random()*lv.colors.length)],shape:lv.shapes[Math.floor(Math.random()*lv.shapes.length)]};
       case 'letter': return lv.pool[Math.floor(Math.random()*lv.pool.length)];
     }
   }
@@ -1614,8 +1700,8 @@ const REFLEX=(()=>{
     if(lv.type==='shape')  return stim===levelTarget;
     if(lv.type==='nback')  return stim===prevStim&&prevStim!==null;
     if(lv.type==='number') return stim%2===(levelTarget==='odd'?1:0);
-    if(lv.type==='numgt')  return stim>levelTarget;
-    if(lv.type==='arrow')  return stim==='up';
+    if(lv.type==='numgt')  return stim>=levelTarget;
+    if(lv.type==='cshape') return stim.color===levelTarget.color&&stim.shape===levelTarget.shape;
     if(lv.type==='letter') return (levelTarget==='vowels'?'AEIOU'.includes(stim):'AEIOU'.includes(stim)===false);
     return false;
   }
@@ -1626,8 +1712,8 @@ const REFLEX=(()=>{
       shape:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,
       nback:'TAP WHEN SAME AS LAST',
       number:`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`,
-      numgt:`TAP WHEN > ${levelTarget}`,
-      arrow:'TAP WHEN ↑ (BLUE) · IGNORE OTHERS',
+      numgt:`TAP WHEN >= ${levelTarget}`,
+      cshape:levelTarget?`TAP ${(levelTarget.color||'').toUpperCase()} ${(levelTarget.shape||'').toUpperCase()} ONLY`:'TAP THE TARGET',
       letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`,
     };
     const el=document.getElementById('rf-rule-banner');if(el)el.textContent=rules[lv.type]||'';
@@ -1637,8 +1723,9 @@ const REFLEX=(()=>{
     switch(lv.type){
       case 'color': return lv.pool[Math.floor(Math.random()*lv.pool.length)];
       case 'shape': return lv.pool[Math.floor(Math.random()*lv.pool.length)];
+      case 'cshape':{const col=lv.colors[Math.floor(Math.random()*lv.colors.length)];const sh=lv.shapes[Math.floor(Math.random()*lv.shapes.length)];return{color:col,shape:sh};}
       case 'number': return Math.random()<0.5?'odd':'even';
-      case 'numgt': return [4,5,6][Math.floor(Math.random()*3)];
+      case 'numgt': return [5,6,7][Math.floor(Math.random()*3)];
       case 'letter': return Math.random()<0.5?'vowels':'consonants';
       default: return null;
     }
@@ -1652,13 +1739,16 @@ const REFLEX=(()=>{
   }
   function stopTimerBar(){if(timerRaf){cancelAnimationFrame(timerRaf);timerRaf=null;}const b=document.getElementById('rf-timer-bar');if(b){b.style.transition='none';b.style.width='0';}}
 
-  let curStim=null,curIsGo=false;
+  let curStim=null,curIsGo=false,lastMissTime=0;
 
   function handleTap(){
     const now=performance.now();
-    if(now-lastResp<200)return;lastResp=now;
+    if(now-lastResp<350)return;lastResp=now;
     if(!accepting){
-      // False alarm on no-go or blank
+      // If a MISS was just charged on this same stimulus, swallow the tap silently
+      if(now-lastMissTime<300) return;
+      // Also absorb late taps on go stimuli within a grace window after the reaction window
+      if(curIsGo&&(now-tStart)<WIN+300) return;
       if(phase==='iti'||!curIsGo){
         noGoTotal++;falseAlarms++;lives=Math.max(0,lives-1);rl();fb('WAIT!','#ff8800');beep(200,'sawtooth',0.1,0.15);
         if(lives<=0){setTimeout(over,900);}
@@ -1671,7 +1761,8 @@ const REFLEX=(()=>{
       lives=Math.max(0,lives-1);rl();fb('NO-GO!','#ff8800');beep(200,'sawtooth',0.1,0.15);
       accepting=false;stopTimerBar();clear();
       if(lives<=0){setTimeout(over,900);return;}
-      itiTO=setTimeout(nextTrial,800);return;
+      if(itiTO){clearTimeout(itiTO);itiTO=null;}
+      itiTO=setTimeout(nextTrial,0);return;
     }
     // Go hit
     const rt=performance.now()-tStart;
@@ -1682,7 +1773,8 @@ const REFLEX=(()=>{
     document.getElementById('rf-tri-v').textContent=trial;
     fb('+'+pts,'#00ee77');beep(660,'square',0.12,0.1);
     if(corrInLv>=ADV&&level<LVLS.length-1){level++;corrInLv=0;lives=Math.min(lives+1,12);rl();}
-    itiTO=setTimeout(nextTrial,500);
+    if(itiTO){clearTimeout(itiTO);itiTO=null;}
+    itiTO=setTimeout(nextTrial,0);
   }
 
   let phase='iti';
@@ -1691,7 +1783,7 @@ const REFLEX=(()=>{
     phase='iti';
     const lv=LVLS[Math.min(level,LVLS.length-1)];
     if(level!==lastLv){
-      lastLv=level;levelTarget=pickTarget(lv);
+      lastLv=level;levelTarget=pickTarget(lv);prevStim=null;
       showIntro(lv,()=>runTrial(lv));return;
     }
     const isi=lv.isi[0]+Math.random()*(lv.isi[1]-lv.isi[0]);
@@ -1710,6 +1802,7 @@ const REFLEX=(()=>{
       if(!accepting)return;
       accepting=false;stopTimerBar();clear();
       if(curIsGo){
+        lastMissTime=performance.now();
         lives=Math.max(0,lives-1);rl();fb('MISS!','#ff2244');beep(150,'sawtooth',0.12,0.18);
         if(lives<=0){setTimeout(over,900);return;}
       }
@@ -1720,7 +1813,7 @@ const REFLEX=(()=>{
   function showIntro(lv,done){
     const ov=document.getElementById('rf-intro');ov.style.display='flex';
     document.getElementById('rf-intro-lv').textContent='LEVEL '+(level+1);
-    const ruleMap={color:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,shape:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,nback:'TAP WHEN SAME AS LAST',number:`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`,numgt:`TAP NUMBERS > ${levelTarget}`,arrow:'TAP WHEN ↑ BLUE · IGNORE OTHERS',letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`};
+    const ruleMap={color:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,shape:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,cshape:levelTarget?`TAP ${(levelTarget.color||'').toUpperCase()} ${(levelTarget.shape||'').toUpperCase()} ONLY`:'TAP THE TARGET',nback:'TAP WHEN SAME AS LAST',number:`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`,numgt:`TAP NUMBERS >= ${levelTarget}`,letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`};
     document.getElementById('rf-intro-rule').textContent=ruleMap[lv.type]||'REACT';
     document.getElementById('rf-intro-sub').textContent='React within 0.5 seconds. Do not tap on distractors.';
     setRule(lv);ov._done=done;
@@ -2212,39 +2305,387 @@ const GRID=(()=>{
     {cols:10,rows:14,time:20,adv:6},{cols:10,rows:14,time:15,adv:6},
     {cols:10,rows:14,time:10,adv:6},
   ];
+  const FIXED_PATHS={
+    0:[
+      [{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}]
+    ],
+    1:[
+      [{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:7,c:2},{r:6,c:2},{r:6,c:3},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:7,c:3},{r:6,c:3},{r:5,c:3},{r:5,c:2},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:4,c:3},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:0,c:3}],
+      [{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:0,c:3}],
+      [{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:7,c:2},{r:6,c:2},{r:6,c:3},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:7,c:3},{r:6,c:3},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:7,c:2},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:4,c:3},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:0,c:3}]
+    ],
+    2:[
+      [{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:0,c:4}],
+      [{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:6,c:3},{r:5,c:3},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:8,c:4},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:8,c:4},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:6,c:3},{r:5,c:3},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:6,c:3},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:5,c:3},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:6,c:3},{r:5,c:3},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:2,c:2},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:0,c:4}],
+      [{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}]
+    ],
+    3:[
+      [{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:9,c:2},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:9,c:2},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:4,c:2},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:9,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:3,c:2},{r:4,c:2},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:4,c:3},{r:4,c:4},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:4,c:3},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:2,c:3},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:9,c:1},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:3,c:2},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:9,c:5},{r:8,c:5},{r:8,c:4},{r:8,c:3},{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:3,c:2},{r:3,c:3},{r:4,c:3},{r:4,c:4},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:3,c:3},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:9,c:1},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:5,c:3},{r:5,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:0,c:4}],
+      [{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:0,c:4}],
+      [{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:4,c:2},{r:4,c:3},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:0,c:4}],
+      [{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:5,c:4},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:4,c:3},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}]
+    ],
+    4:[
+      [{r:10,c:1},{r:9,c:1},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:3,c:4},{r:3,c:3},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:8,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:10,c:6},{r:9,c:6},{r:9,c:5},{r:9,c:4},{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:10,c:1},{r:9,c:1},{r:9,c:2},{r:8,c:2},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:4,c:2},{r:4,c:3},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:10,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:8,c:4},{r:8,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:4,c:2},{r:4,c:3},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:0,c:4}],
+      [{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:3,c:3},{r:3,c:4},{r:4,c:4},{r:5,c:4},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:2,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:10,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:6,c:5},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:3,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:6,c:3},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:10,c:6},{r:9,c:6},{r:9,c:5},{r:8,c:5},{r:8,c:4},{r:7,c:4},{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:3,c:2},{r:3,c:3},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:7,c:2},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}]
+    ],
+    5:[
+      [{r:11,c:7},{r:10,c:7},{r:9,c:7},{r:9,c:6},{r:9,c:5},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:2,c:4},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:0,c:7}],
+      [{r:11,c:0},{r:10,c:0},{r:10,c:1},{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:2,c:2},{r:2,c:3},{r:3,c:3},{r:3,c:4},{r:4,c:4},{r:4,c:5},{r:5,c:5},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:0,c:5}],
+      [{r:11,c:1},{r:10,c:1},{r:10,c:2},{r:10,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:11,c:0},{r:10,c:0},{r:10,c:1},{r:10,c:2},{r:10,c:3},{r:11,c:3},{r:11,c:4},{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:11,c:2},{r:10,c:2},{r:10,c:3},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:9,c:4},{r:9,c:3},{r:10,c:3},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:2,c:3},{r:2,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:11,c:3},{r:10,c:3},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:6,c:2},{r:6,c:3},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:11,c:7},{r:10,c:7},{r:10,c:6},{r:10,c:5},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:11,c:2},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:8,c:2},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:4,c:5},{r:4,c:6},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:11,c:2},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:1,c:7},{r:0,c:7}],
+      [{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:8,c:5},{r:8,c:6},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:4,c:5},{r:4,c:6},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:4,c:5},{r:4,c:6},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:8,c:5},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:11,c:7},{r:10,c:7},{r:10,c:6},{r:10,c:5},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:2},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:2},{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:11,c:6},{r:10,c:6},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:11,c:5},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:9,c:4},{r:9,c:3},{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:9,c:2},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:4,c:4},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:3,c:2},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:11,c:0},{r:10,c:0},{r:10,c:1},{r:10,c:2},{r:10,c:3},{r:10,c:4},{r:10,c:5},{r:9,c:5},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:4,c:3},{r:4,c:4},{r:4,c:5},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:11,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:7,c:5},{r:8,c:5},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:9,c:2},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:0,c:3}],
+      [{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:0,c:7}],
+      [{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:4,c:4},{r:4,c:5},{r:4,c:6},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:0,c:4}],
+      [{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:5,c:5},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:3,c:3},{r:4,c:3},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:6,c:6},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:8,c:5},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:11,c:7},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:8,c:6},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:2},{r:9,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:2},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:10,c:5},{r:9,c:5},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:11,c:7},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:8,c:6},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:5},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:3,c:2},{r:3,c:3},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:0,c:3}]
+    ],
+    6:[
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:6,c:6},{r:7,c:6},{r:7,c:5},{r:8,c:5},{r:9,c:5},{r:9,c:6},{r:10,c:6},{r:11,c:6},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:12,c:0},{r:11,c:0},{r:11,c:1},{r:11,c:2},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:3,c:6},{r:3,c:7},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:9,c:3},{r:9,c:2},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:6,c:6},{r:7,c:6},{r:8,c:6},{r:8,c:7},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:10,c:5},{r:9,c:5},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:8},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:0,c:2}],
+      [{r:12,c:3},{r:11,c:3},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:9,c:7},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:7},{r:6,c:6},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:4,c:6},{r:5,c:6},{r:6,c:6},{r:7,c:6},{r:7,c:7},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:11,c:6},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:1},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:9,c:2},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:10,c:5},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:4,c:5},{r:4,c:6},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:3,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:2,c:8},{r:1,c:8},{r:0,c:8}],
+      [{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:3,c:3},{r:3,c:4},{r:4,c:4},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:8,c:7},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:7},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:0,c:5}],
+      [{r:12,c:2},{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:10,c:4},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:2,c:5},{r:2,c:4},{r:3,c:4},{r:4,c:4},{r:4,c:5},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:9,c:2},{r:10,c:2},{r:11,c:2},{r:11,c:3},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:4,c:6},{r:5,c:6},{r:5,c:7},{r:5,c:8},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:0,c:6}],
+      [{r:12,c:8},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:9,c:7},{r:9,c:6},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:0,c:4}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:7,c:3},{r:7,c:2},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:12,c:3},{r:11,c:3},{r:11,c:2},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:2,c:8},{r:1,c:8},{r:0,c:8}],
+      [{r:12,c:4},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:10,c:7},{r:9,c:7},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:7,c:5},{r:8,c:5},{r:9,c:5},{r:9,c:4},{r:9,c:3},{r:9,c:2},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:6,c:2},{r:6,c:3},{r:5,c:3},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:12,c:0},{r:11,c:0},{r:11,c:1},{r:10,c:1},{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:5},{r:4,c:5},{r:4,c:6},{r:3,c:6},{r:3,c:7},{r:2,c:7},{r:2,c:8},{r:1,c:8},{r:0,c:8}],
+      [{r:12,c:5},{r:11,c:5},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:3,c:3},{r:3,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:3,c:6},{r:4,c:6},{r:4,c:7},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:0,c:8}],
+      [{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:8,c:7},{r:8,c:6},{r:7,c:6},{r:7,c:5},{r:6,c:5},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:3,c:2},{r:3,c:3},{r:4,c:3},{r:4,c:4},{r:4,c:5},{r:4,c:6},{r:3,c:6},{r:3,c:7},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:0,c:3}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:10,c:3},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:6,c:7},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:0,c:3}]
+    ,
+
+      [{r:12,c:8},{r:11,c:8},{r:11,c:7},{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:9,c:7},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:11,c:4},{r:11,c:3},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:4,c:5},{r:3,c:5},{r:3,c:6},{r:2,c:6},{r:1,c:6},{r:0,c:6}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:10,c:3},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:7,c:6},{r:6,c:6},{r:6,c:7},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:12,c:2},{r:11,c:2},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:6,c:5},{r:6,c:6},{r:7,c:6},{r:8,c:6},{r:8,c:5},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:3,c:8},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:10,c:6},{r:11,c:6},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:5,c:6},{r:6,c:6},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:10,c:1},{r:10,c:2},{r:11,c:2},{r:11,c:3},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:8,c:7},{r:7,c:7},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:4},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:7,c:2},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:12,c:0},{r:11,c:0},{r:11,c:1},{r:11,c:2},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:8,c:5},{r:9,c:5},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:1,c:6},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:3},{r:11,c:3},{r:11,c:4},{r:11,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:8,c:7},{r:8,c:6},{r:8,c:5},{r:8,c:4},{r:9,c:4},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:6,c:6},{r:5,c:6},{r:4,c:6},{r:4,c:7},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:2,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:0,c:1}],
+      [{r:12,c:4},{r:11,c:4},{r:11,c:3},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:9,c:4},{r:10,c:4},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:3,c:6},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:2,c:3},{r:3,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:4,c:5},{r:5,c:5},{r:5,c:6},{r:6,c:6},{r:7,c:6},{r:7,c:5},{r:8,c:5},{r:9,c:5},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:8},{r:0,c:8}],
+      [{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:3},{r:10,c:3},{r:11,c:3},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:9,c:7},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:4,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:8},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:9,c:7},{r:9,c:6},{r:10,c:6},{r:11,c:6},{r:11,c:5},{r:11,c:4},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:5,c:7},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:1,c:7},{r:1,c:8},{r:0,c:8}],
+      [{r:12,c:1},{r:11,c:1},{r:11,c:2},{r:10,c:2},{r:10,c:3},{r:10,c:4},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:8,c:7},{r:8,c:6},{r:8,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:6,c:6},{r:6,c:7},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:2,c:3},{r:1,c:3},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:12,c:2},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:10,c:5},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:5,c:6},{r:6,c:6},{r:6,c:5},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:7},{r:11,c:7},{r:11,c:6},{r:11,c:5},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:3,c:6},{r:4,c:6},{r:4,c:7},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:6},{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:9,c:7},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:3},{r:10,c:3},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:4,c:6},{r:4,c:7},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:1,c:0},{r:0,c:0}],
+      [{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:9,c:3},{r:9,c:2},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:9,c:7},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:0,c:7}],
+      [{r:12,c:2},{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:9,c:5},{r:9,c:4},{r:10,c:4},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:1,c:4},{r:1,c:3},{r:1,c:2},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:10,c:6},{r:9,c:6},{r:8,c:6},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:1,c:8},{r:0,c:8}],
+      [{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:1,c:7},{r:0,c:7}]
+    ],
+    7:[
+      [{r:13,c:1},{r:12,c:1},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:11,c:3},{r:11,c:4},{r:11,c:5},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:11,c:7},{r:11,c:8},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:9,c:8},{r:9,c:7},{r:9,c:6},{r:8,c:6},{r:7,c:6},{r:7,c:7},{r:7,c:8},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:2,c:8},{r:1,c:8},{r:0,c:8}],
+      [{r:13,c:5},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:11,c:7},{r:11,c:8},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:6,c:7},{r:7,c:7},{r:7,c:6},{r:8,c:6},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:11,c:3},{r:12,c:3},{r:12,c:2},{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:7,c:2},{r:7,c:3},{r:6,c:3},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:7},{r:3,c:8},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:2,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:13,c:8},{r:12,c:8},{r:11,c:8},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:8,c:7},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:10,c:5},{r:11,c:5},{r:12,c:5},{r:12,c:4},{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:10,c:2},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:6,c:7},{r:5,c:7},{r:5,c:8},{r:4,c:8},{r:3,c:8},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:2,c:6},{r:2,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:13,c:7},{r:12,c:7},{r:11,c:7},{r:10,c:7},{r:10,c:6},{r:10,c:5},{r:11,c:5},{r:12,c:5},{r:12,c:4},{r:12,c:3},{r:12,c:2},{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:8,c:7},{r:8,c:8},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:5,c:9},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:8},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:2,c:5},{r:3,c:5},{r:3,c:4},{r:4,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:13,c:0},{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:2,c:4},{r:3,c:4},{r:4,c:4},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:10,c:2},{r:10,c:3},{r:11,c:3},{r:11,c:4},{r:12,c:4},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:11,c:7},{r:11,c:8},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:9,c:8},{r:9,c:7},{r:9,c:6},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:6,c:7},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:7},{r:2,c:8},{r:2,c:9},{r:1,c:9},{r:0,c:9}],
+      [{r:13,c:4},{r:12,c:4},{r:12,c:5},{r:12,c:6},{r:11,c:6},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:7,c:7},{r:8,c:7},{r:8,c:6},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:11,c:3},{r:11,c:2},{r:12,c:2},{r:12,c:1},{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:8,c:1},{r:8,c:2},{r:7,c:2},{r:7,c:3},{r:6,c:3},{r:6,c:4},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:3,c:5},{r:3,c:6},{r:3,c:7},{r:2,c:7},{r:1,c:7},{r:1,c:8},{r:1,c:9},{r:0,c:9}],
+      [{r:13,c:4},{r:12,c:4},{r:11,c:4},{r:11,c:3},{r:11,c:2},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:9,c:5},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:7,c:8},{r:7,c:9},{r:6,c:9},{r:5,c:9},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:3,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:13,c:3},{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:12,c:7},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:9,c:8},{r:8,c:8},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:2,c:6},{r:2,c:7},{r:2,c:8},{r:1,c:8},{r:0,c:8}],
+      [{r:13,c:7},{r:12,c:7},{r:11,c:7},{r:11,c:6},{r:11,c:5},{r:11,c:4},{r:12,c:4},{r:12,c:3},{r:12,c:2},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:9,c:7},{r:8,c:7},{r:7,c:7},{r:7,c:8},{r:7,c:9},{r:6,c:9},{r:5,c:9},{r:5,c:8},{r:5,c:7},{r:5,c:6},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:1,c:6},{r:1,c:7},{r:1,c:8},{r:0,c:8}],
+      [{r:13,c:8},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:8,c:7},{r:9,c:7},{r:10,c:7},{r:10,c:6},{r:11,c:6},{r:12,c:6},{r:12,c:5},{r:12,c:4},{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:10,c:2},{r:9,c:2},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:7,c:4},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:3,c:7},{r:4,c:7},{r:5,c:7},{r:6,c:7},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:2,c:8},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:0,c:4}],
+      [{r:13,c:2},{r:12,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:9,c:5},{r:9,c:4},{r:10,c:4},{r:11,c:4},{r:12,c:4},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:12,c:8},{r:11,c:8},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:13,c:5},{r:12,c:5},{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:11,c:3},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:6,c:7},{r:7,c:7},{r:8,c:7},{r:9,c:7},{r:10,c:7},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:3,c:8},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:1,c:5},{r:1,c:4},{r:1,c:3},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:13,c:3},{r:12,c:3},{r:12,c:2},{r:12,c:1},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:9,c:2},{r:8,c:2},{r:7,c:2},{r:7,c:3},{r:7,c:4},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:11,c:5},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:11,c:7},{r:10,c:7},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:7,c:7},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:2,c:7},{r:3,c:7},{r:4,c:7},{r:4,c:8},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:0,c:9}],
+      [{r:13,c:1},{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:8,c:2},{r:8,c:3},{r:9,c:3},{r:10,c:3},{r:11,c:3},{r:11,c:4},{r:11,c:5},{r:11,c:6},{r:12,c:6},{r:12,c:7},{r:12,c:8},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:8,c:7},{r:8,c:6},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:5,c:6},{r:5,c:7},{r:5,c:8},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:3,c:4},{r:4,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:13,c:3},{r:12,c:3},{r:11,c:3},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:12,c:7},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:8,c:7},{r:7,c:7},{r:6,c:7},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:3,c:8},{r:3,c:7},{r:3,c:6},{r:4,c:6},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:13,c:4},{r:12,c:4},{r:12,c:3},{r:12,c:2},{r:11,c:2},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:9,c:6},{r:10,c:6},{r:11,c:6},{r:11,c:7},{r:12,c:7},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:4,c:8},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:4,c:5},{r:5,c:5},{r:5,c:6},{r:6,c:6},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:5,c:2},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:1,c:8},{r:0,c:8}],
+      [{r:13,c:8},{r:12,c:8},{r:12,c:7},{r:12,c:6},{r:12,c:5},{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:10,c:3},{r:9,c:3},{r:9,c:2},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:7,c:5},{r:8,c:5},{r:8,c:6},{r:8,c:7},{r:9,c:7},{r:10,c:7},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:1,c:7},{r:2,c:7},{r:2,c:8},{r:2,c:9},{r:1,c:9},{r:0,c:9}],
+      [{r:13,c:3},{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:7,c:3},{r:7,c:2},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:8,c:5},{r:9,c:5},{r:10,c:5},{r:10,c:6},{r:10,c:7},{r:9,c:7},{r:8,c:7},{r:8,c:8},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:13,c:4},{r:12,c:4},{r:12,c:3},{r:12,c:2},{r:12,c:1},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:9,c:2},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:10,c:5},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:12,c:7},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:8,c:7},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:7,c:4},{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:4,c:7},{r:4,c:8},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:1,c:6},{r:1,c:5},{r:1,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:1,c:1},{r:0,c:1}],
+      [{r:13,c:0},{r:12,c:0},{r:11,c:0},{r:11,c:1},{r:11,c:2},{r:12,c:2},{r:12,c:3},{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:9,c:2},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:8,c:7},{r:9,c:7},{r:10,c:7},{r:10,c:6},{r:11,c:6},{r:12,c:6},{r:12,c:7},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:8},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:2,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:2,c:3},{r:2,c:2},{r:2,c:1},{r:1,c:1},{r:0,c:1}],
+      [{r:13,c:0},{r:12,c:0},{r:11,c:0},{r:11,c:1},{r:11,c:2},{r:12,c:2},{r:12,c:3},{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:9,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:7,c:1},{r:6,c:1},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:4,c:2},{r:4,c:3},{r:5,c:3},{r:5,c:4},{r:6,c:4},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:5,c:6},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:2,c:4},{r:2,c:3},{r:2,c:2},{r:1,c:2},{r:0,c:2}],
+      [{r:13,c:5},{r:12,c:5},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:7,c:7},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:9,c:5},{r:9,c:4},{r:10,c:4},{r:10,c:3},{r:11,c:3},{r:12,c:3},{r:12,c:2},{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:5,c:8},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:3,c:8},{r:3,c:7},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:13,c:3},{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:9,c:3},{r:8,c:3},{r:8,c:2},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:10,c:5},{r:11,c:5},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:12,c:8},{r:11,c:8},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:8},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:2,c:6},{r:2,c:5},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:0,c:4}],
+      [{r:13,c:8},{r:12,c:8},{r:12,c:7},{r:12,c:6},{r:12,c:5},{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:6,c:7},{r:7,c:7},{r:8,c:7},{r:8,c:8},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:3,c:8},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:3,c:3},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:10,c:3},{r:11,c:3},{r:11,c:2},{r:12,c:2},{r:12,c:1},{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:13,c:2},{r:12,c:2},{r:11,c:2},{r:11,c:3},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:5},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:11,c:6},{r:12,c:6},{r:12,c:7},{r:12,c:8},{r:11,c:8},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:6,c:8},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:5,c:3},{r:6,c:3},{r:7,c:3},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:3,c:7},{r:4,c:7},{r:4,c:8},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:0,c:8}],
+      [{r:13,c:3},{r:12,c:3},{r:12,c:2},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:9,c:2},{r:9,c:3},{r:10,c:3},{r:10,c:4},{r:11,c:4},{r:11,c:5},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:3,c:3},{r:4,c:3},{r:4,c:4},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:6,c:6},{r:7,c:6},{r:7,c:7},{r:8,c:7},{r:9,c:7},{r:9,c:6},{r:9,c:5},{r:8,c:5},{r:8,c:4},{r:7,c:4},{r:7,c:3},{r:6,c:3},{r:6,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}],
+      [{r:13,c:5},{r:12,c:5},{r:11,c:5},{r:10,c:5},{r:9,c:5},{r:9,c:4},{r:9,c:3},{r:10,c:3},{r:11,c:3},{r:11,c:2},{r:11,c:1},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:7,c:1},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:5,c:1},{r:5,c:2},{r:5,c:3},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:7,c:5},{r:7,c:6},{r:7,c:7},{r:8,c:7},{r:9,c:7},{r:10,c:7},{r:11,c:7},{r:11,c:8},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:5,c:8},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:3,c:4},{r:3,c:3},{r:3,c:2},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:2,c:5},{r:2,c:6},{r:2,c:7},{r:1,c:7},{r:0,c:7}],
+      [{r:13,c:3},{r:12,c:3},{r:11,c:3},{r:10,c:3},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:9,c:4},{r:9,c:5},{r:10,c:5},{r:11,c:5},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:11,c:7},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:7,c:7},{r:7,c:6},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:13,c:2},{r:12,c:2},{r:11,c:2},{r:10,c:2},{r:9,c:2},{r:9,c:1},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:11,c:5},{r:12,c:5},{r:12,c:6},{r:12,c:7},{r:11,c:7},{r:11,c:8},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:8,c:7},{r:8,c:6},{r:7,c:6},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:6},{r:5,c:7},{r:6,c:7},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:2,c:8},{r:2,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:13,c:9},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:6,c:8},{r:6,c:7},{r:7,c:7},{r:8,c:7},{r:9,c:7},{r:10,c:7},{r:10,c:6},{r:10,c:5},{r:10,c:4},{r:10,c:3},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:5,c:5},{r:5,c:4},{r:4,c:4},{r:4,c:3},{r:4,c:2},{r:5,c:2},{r:5,c:1},{r:5,c:0},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:2,c:6},{r:3,c:6},{r:4,c:6},{r:4,c:7},{r:4,c:8},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:1,c:7},{r:0,c:7}],
+      [{r:13,c:4},{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:9,c:3},{r:9,c:2},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:6,c:2},{r:6,c:3},{r:6,c:4},{r:6,c:5},{r:7,c:5},{r:8,c:5},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:11,c:7},{r:12,c:7},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:4,c:8},{r:4,c:7},{r:4,c:6},{r:3,c:6},{r:3,c:5},{r:3,c:4},{r:3,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:1,c:4},{r:1,c:5},{r:0,c:5}],
+      [{r:13,c:3},{r:12,c:3},{r:11,c:3},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:9,c:1},{r:9,c:2},{r:8,c:2},{r:8,c:3},{r:8,c:4},{r:9,c:4},{r:10,c:4},{r:10,c:5},{r:10,c:6},{r:11,c:6},{r:12,c:6},{r:12,c:7},{r:12,c:8},{r:11,c:8},{r:10,c:8},{r:9,c:8},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:7,c:7},{r:7,c:6},{r:6,c:6},{r:5,c:6},{r:5,c:5},{r:5,c:4},{r:6,c:4},{r:6,c:3},{r:6,c:2},{r:6,c:1},{r:5,c:1},{r:4,c:1},{r:4,c:0},{r:3,c:0},{r:2,c:0},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:3,c:3},{r:3,c:4},{r:3,c:5},{r:3,c:6},{r:3,c:7},{r:4,c:7},{r:4,c:8},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:1,c:7},{r:1,c:6},{r:1,c:5},{r:0,c:5}],
+      [{r:13,c:4},{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:7,c:4},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:8,c:8},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:5,c:9},{r:5,c:8},{r:5,c:7},{r:4,c:7},{r:4,c:6},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:6,c:3},{r:6,c:2},{r:7,c:2},{r:8,c:2},{r:9,c:2},{r:10,c:2},{r:11,c:2},{r:11,c:1},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:5,c:0},{r:4,c:0},{r:4,c:1},{r:3,c:1},{r:3,c:2},{r:2,c:2},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:1,c:6},{r:0,c:6}],
+      [{r:13,c:8},{r:12,c:8},{r:11,c:8},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:1,c:9},{r:1,c:8},{r:1,c:7},{r:2,c:7},{r:3,c:7},{r:3,c:6},{r:4,c:6},{r:5,c:6},{r:5,c:7},{r:6,c:7},{r:7,c:7},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:11,c:6},{r:11,c:5},{r:11,c:4},{r:10,c:4},{r:10,c:3},{r:10,c:2},{r:11,c:2},{r:12,c:2},{r:12,c:1},{r:12,c:0},{r:11,c:0},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:8,c:1},{r:8,c:2},{r:8,c:3},{r:7,c:3},{r:7,c:4},{r:6,c:4},{r:5,c:4},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:2,c:3},{r:2,c:4},{r:2,c:5},{r:1,c:5},{r:0,c:5}],
+      [{r:13,c:2},{r:12,c:2},{r:11,c:2},{r:10,c:2},{r:10,c:1},{r:9,c:1},{r:8,c:1},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:6,c:3},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:9,c:5},{r:10,c:5},{r:11,c:5},{r:11,c:6},{r:11,c:7},{r:10,c:7},{r:10,c:8},{r:9,c:8},{r:9,c:9},{r:8,c:9},{r:7,c:9},{r:7,c:8},{r:7,c:7},{r:6,c:7},{r:6,c:6},{r:6,c:5},{r:5,c:5},{r:4,c:5},{r:4,c:6},{r:4,c:7},{r:4,c:8},{r:3,c:8},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:3,c:3},{r:4,c:3},{r:4,c:2},{r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:0},{r:1,c:0},{r:0,c:0}],
+      [{r:13,c:1},{r:12,c:1},{r:11,c:1},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:7,c:1},{r:7,c:2},{r:7,c:3},{r:8,c:3},{r:9,c:3},{r:9,c:4},{r:10,c:4},{r:11,c:4},{r:12,c:4},{r:12,c:5},{r:12,c:6},{r:11,c:6},{r:11,c:7},{r:11,c:8},{r:10,c:8},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:8,c:7},{r:8,c:6},{r:8,c:5},{r:7,c:5},{r:6,c:5},{r:6,c:6},{r:6,c:7},{r:5,c:7},{r:4,c:7},{r:4,c:8},{r:4,c:9},{r:3,c:9},{r:2,c:9},{r:2,c:8},{r:2,c:7},{r:2,c:6},{r:2,c:5},{r:3,c:5},{r:4,c:5},{r:4,c:4},{r:4,c:3},{r:5,c:3},{r:5,c:2},{r:5,c:1},{r:4,c:1},{r:3,c:1},{r:3,c:0},{r:2,c:0},{r:1,c:0},{r:1,c:1},{r:1,c:2},{r:1,c:3},{r:0,c:3}],
+      [{r:13,c:4},{r:12,c:4},{r:11,c:4},{r:10,c:4},{r:9,c:4},{r:8,c:4},{r:8,c:3},{r:8,c:2},{r:9,c:2},{r:10,c:2},{r:10,c:1},{r:10,c:0},{r:9,c:0},{r:8,c:0},{r:7,c:0},{r:6,c:0},{r:6,c:1},{r:6,c:2},{r:5,c:2},{r:5,c:3},{r:5,c:4},{r:5,c:5},{r:6,c:5},{r:7,c:5},{r:7,c:6},{r:8,c:6},{r:9,c:6},{r:10,c:6},{r:10,c:7},{r:11,c:7},{r:12,c:7},{r:12,c:8},{r:12,c:9},{r:11,c:9},{r:10,c:9},{r:9,c:9},{r:8,c:9},{r:8,c:8},{r:7,c:8},{r:6,c:8},{r:6,c:9},{r:5,c:9},{r:4,c:9},{r:4,c:8},{r:4,c:7},{r:3,c:7},{r:3,c:6},{r:3,c:5},{r:2,c:5},{r:2,c:4},{r:2,c:3},{r:3,c:3},{r:3,c:2},{r:3,c:1},{r:2,c:1},{r:1,c:1},{r:1,c:2},{r:0,c:2}]
+    ]
+  };
+
   let score=0,lives=3,level=0,corrInLv=0,trial=0,lastLv=-1;
   let phase='idle',path=[],recallIdx=0,curR=-1,curC=-1;
-  let timerCS=0,timerInt=null;
+  let timerCS=0,timerInt=null,animTO=null,animActive=false;
+  let sharedPool=[],sharedIdx=0;
 
   function rl(){const el=document.getElementById('gd-lv-a');el.innerHTML='';for(let i=0;i<lives;i++){const sp=document.createElement('span');sp.textContent='◆';sp.style.cssText='color:#ff4466;margin-left:2px;font-size:13px;';el.appendChild(sp);}}
   function setSt(t){const el=document.getElementById('gd-status');if(el)el.textContent=t;}
   function fb(txt,col){const el=document.getElementById('gd-fb');if(!el)return;el.textContent=txt;el.style.color=col;el.style.opacity=1;clearTimeout(el._t);el._t=setTimeout(()=>el.style.opacity=0,900);}
 
-  function genPath(rows,cols){
-    for(let attempt=0;attempt<30;attempt++){
-      const vis=Array.from({length:rows},()=>new Array(cols).fill(false));
-      const startC=Math.floor(Math.random()*cols);
-      const p=[{r:rows-1,c:startC}];
-      vis[rows-1][startC]=true;
-      let stalls=0;
-      const DIRS=[{r:-1,c:0},{r:0,c:1},{r:0,c:-1},{r:1,c:0}];
-      while(p.length>0){
-        const {r,c}=p[p.length-1];
-        if(r===0) break;
-        const dirs=[...DIRS].sort(()=>Math.random()-0.5);
-        if(Math.random()<0.55){const ui=dirs.findIndex(d=>d.r===-1);if(ui>0){[dirs[0],dirs[ui]]=[dirs[ui],dirs[0]];}}
-        const nxt=dirs.find(d=>{const nr=r+d.r,nc=c+d.c;return nr>=0&&nr<rows&&nc>=0&&nc<cols&&!vis[nr][nc];});
-        if(nxt){p.push({r:r+nxt.r,c:c+nxt.c});vis[r+nxt.r][c+nxt.c]=true;stalls=0;}
-        else{vis[r][c]=false;p.pop();if(++stalls>rows*cols)break;}
+  function would2x2(vis,nr,nc,rows,cols){
+    for(let dr=-1;dr<=0;dr++){for(let dc=-1;dc<=0;dc++){
+      const r0=nr+dr,c0=nc+dc,r1=r0+1,c1=c0+1;
+      if(r0<0||r1>=rows||c0<0||c1>=cols) continue;
+      let n=0;
+      for(const[rr,cc]of[[r0,c0],[r0,c1],[r1,c0],[r1,c1]]){
+        if(rr===nr&&cc===nc) n++; else if(vis[rr][cc]) n++;
       }
-      const minLen=rows+Math.floor(cols/2);
-      if(p.length>=minLen&&p.length>0&&p[p.length-1].r===0) return p;
+      if(n===4) return true;
+    }}
+    return false;
+  }
+
+  // Safe step — checks bounds, visited AND no-2x2. Returns true on success.
+  function tryStep(vis,p,rows,cols,dr,dc){
+    const cur=p[p.length-1];
+    const nr=cur.r+dr,nc=cur.c+dc;
+    if(nr<0||nr>=rows||nc<0||nc>=cols||vis[nr][nc]) return false;
+    if(would2x2(vis,nr,nc,rows,cols)) return false;
+    p.push({r:nr,c:nc}); vis[nr][nc]=true; return true;
+  }
+
+  function countTurns(p){
+    let t=0;
+    for(let i=2;i<p.length;i++)
+      if((p[i-1].r-p[i-2].r)!==(p[i].r-p[i-1].r)||(p[i-1].c-p[i-2].c)!==(p[i].c-p[i-1].c)) t++;
+    return t;
+  }
+
+  function genPath(rows,cols){
+    // On narrow grids (<=4 cols) downward moves + no-2x2 are geometrically incompatible.
+    // Only require backwards moves on wider grids.
+    const needDown = cols >= 5;
+    const minTurns = Math.max(2, Math.floor(rows/3));
+    const minLen   = rows;
+
+    for(let att=0;att<80;att++){
+      const vis=Array.from({length:rows},()=>new Array(cols).fill(false));
+      const p=[];
+      let r=rows-1, c=Math.floor(Math.random()*cols);
+      p.push({r,c}); vis[r][c]=true;
+
+      // ── SNAKE: alternate UP runs and DOWN runs with sidesteps between ──
+      let downFloor=rows-1;
+      for(let safety=0; p[p.length-1].r>0 && safety<rows*cols*4; safety++){
+
+        // UP RUN
+        const upLen=2+Math.floor(Math.random()*Math.max(2,Math.floor(rows/3)));
+        for(let i=0;i<upLen;i++){
+          if(p[p.length-1].r<=0) break;
+          if(!tryStep(vis,p,rows,cols,-1,0)) break;
+        }
+        if(p[p.length-1].r<=0) break;
+
+        // Update floor for this cycle
+        downFloor=Math.min(rows-2, p[p.length-1].r+Math.max(2,Math.floor(rows/3)));
+
+        // SIDESTEP (required — always try both directions)
+        const hd=Math.random()<0.5?1:-1;
+        tryStep(vis,p,rows,cols,0,hd) || tryStep(vis,p,rows,cols,0,-hd);
+
+        if(p[p.length-1].r<=1) break;
+
+        // DOWN RUN (only on grids where it's feasible)
+        if(needDown){
+          const downLen=1+Math.floor(Math.random()*2);
+          for(let i=0;i<downLen;i++){
+            if(p[p.length-1].r>=downFloor) break;
+            if(!tryStep(vis,p,rows,cols,1,0)) break;
+          }
+        }
+
+        // SIDESTEP
+        const hd2=Math.random()<0.5?1:-1;
+        tryStep(vis,p,rows,cols,0,hd2) || tryStep(vis,p,rows,cols,0,-hd2);
+      }
+
+      // PUSH TO TOP — navigate to row 0 using tryStep (respects no-2x2)
+      for(let stuck=0; p[p.length-1].r>0 && stuck<rows*cols; stuck++){
+        if(tryStep(vis,p,rows,cols,-1,0)) continue;    // up
+        if(tryStep(vis,p,rows,cols,0,1))  continue;    // right
+        if(tryStep(vis,p,rows,cols,0,-1)) continue;    // left
+        if(tryStep(vis,p,rows,cols,1,0))  continue;    // down (if stuck)
+        break;
+      }
+
+      if(p[p.length-1].r!==0||p.length<minLen) continue;
+      const hasDown=p.some((pt,i)=>i>0&&pt.r>p[i-1].r);
+      if(needDown&&!hasDown) continue;
+      if(countTurns(p)<minTurns) continue;
+      return p;
     }
-    // Fallback: straight up middle
-    const p=[];const fc=Math.floor(cols/2);
-    for(let r=rows-1;r>=0;r--)p.push({r,c:fc});
+
+    // ── GUARANTEED FALLBACK: zigzag between two columns, all moves via tryStep ──
+    const vis=Array.from({length:rows},()=>new Array(cols).fill(false));
+    const p=[];
+    let r=rows-1, c=Math.max(0,Math.floor(cols*0.25));
+    p.push({r,c}); vis[r][c]=true;
+    const cAlt=Math.min(cols-1,Math.floor(cols*0.75));
+    let up=true;
+    for(let i=0;i<rows*4&&r>0;i++){
+      if(up){
+        for(let j=0;j<3&&r>0;j++) if(!tryStep(vis,p,rows,cols,-1,0)) break;
+      } else if(needDown){
+        for(let j=0;j<2&&r<rows-2;j++) if(!tryStep(vis,p,rows,cols,1,0)) break;
+      }
+      if(r<=0) break;
+      // sidestep toward alternate column
+      const target=c<cAlt?1:-1;
+      tryStep(vis,p,rows,cols,0,target) || tryStep(vis,p,rows,cols,0,-target);
+      up=!up;
+    }
+    // finish to top
+    for(let stuck=0;r>0&&stuck<rows*cols;stuck++){
+      if(tryStep(vis,p,rows,cols,-1,0)) {r=p[p.length-1].r;continue;}
+      if(tryStep(vis,p,rows,cols,0,1))  continue;
+      if(tryStep(vis,p,rows,cols,0,-1)) continue;
+      break;
+    }
     return p;
   }
+
 
   function getCell(r,c){return document.querySelector(`#gd-grid .gd-cell[data-r="${r}"][data-c="${c}"]`);}
 
@@ -2261,21 +2702,29 @@ const GRID=(()=>{
     grid.style.gridTemplateColumns=`repeat(${cols},${cs}px)`;
     grid.style.gridTemplateRows=`repeat(${rows},${cs}px)`;
     grid.style.gap=gap+'px';
+    // Use event delegation — one listener on the grid instead of one per cell
+    grid.onclick=e=>{
+      const cell=e.target.closest('.gd-cell');
+      if(!cell)return;
+      handleClick(parseInt(cell.dataset.r),parseInt(cell.dataset.c));
+    };
+    const frag=document.createDocumentFragment();
     for(let r=0;r<rows;r++){
       for(let cl=0;cl<cols;cl++){
         const cell=document.createElement('div');
         cell.className='gd-cell';
         cell.style.width=cell.style.height=cs+'px';
         cell.dataset.r=r;cell.dataset.c=cl;
-        cell.addEventListener('click',()=>handleClick(r,cl));
-        grid.appendChild(cell);
+        frag.appendChild(cell);
       }
     }
+    grid.appendChild(frag);
   }
 
   function showPathAnim(cb){
-    let i=0;
+    animActive=true;let i=0;
     function next(){
+      if(!animActive){cb();return;}
       if(i>=path.length){cb();return;}
       const cell=getCell(path[i].r,path[i].c);
       if(cell){
@@ -2283,10 +2732,11 @@ const GRID=(()=>{
         if(i===0)cell.classList.add('gd-start');
         if(i===path.length-1)cell.classList.add('gd-end');
       }
-      i++;setTimeout(next,18);
+      i++;animTO=setTimeout(next,18);
     }
     next();
   }
+  function stopPathAnim(){animActive=false;if(animTO){clearTimeout(animTO);animTO=null;}}
 
   function startTimerDisplay(seconds){
     timerCS=seconds*100;updateTimer();
@@ -2303,11 +2753,11 @@ const GRID=(()=>{
   function stopTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}}
 
   function startRecall(){
+    stopPathAnim();  // cancel animation before clearing classes
     stopTimer();
     const el=document.getElementById('gd-timer');if(el)el.textContent='RECALL';
     document.getElementById('gd-stop-btn').style.display='none';
     phase='recall';recallIdx=0;curR=-1;curC=-1;
-    // Hide path - remove path classes
     document.querySelectorAll('.gd-path,.gd-start,.gd-end').forEach(cell=>{
       cell.classList.remove('gd-path','gd-start','gd-end');
     });
@@ -2374,7 +2824,14 @@ const GRID=(()=>{
     document.getElementById('gd-intro-time').textContent=`${lv.time} SECONDS TO MEMORISE`;
     ov._done=done;
   }
-  function skipIntro(){const ov=document.getElementById('gd-intro');if(ov&&ov._done){ov.style.display='none';ov._done();}}
+  function skipIntro(){
+    const ov=document.getElementById('gd-intro');
+    if(!ov||ov.style.display==='none')return;
+    ov.style.display='none';
+    const fn=ov._done;ov._done=null;
+    const lv=LVLS[Math.min(level,LVLS.length-1)];
+    if(fn)fn();else runTrial(lv);
+  }
 
   function nextTrial(){
     if(lives<=0){over();return;}
@@ -2385,7 +2842,17 @@ const GRID=(()=>{
 
   function runTrial(lv){
     trial++;document.getElementById('gd-tri-v').textContent=trial;
-    path=genPath(lv.rows,lv.cols);recallIdx=0;curR=-1;curC=-1;
+    const lvIdx=Math.min(level,LVLS.length-1);
+    if(lvIdx>=7&&sharedPool.length){
+      // Shared 10×14 pool — cycle without repeating in a session
+      if(sharedIdx>=sharedPool.length) sharedIdx=0;
+      path=sharedPool[sharedIdx++];
+    } else if(FIXED_PATHS[lvIdx]){
+      const pool=FIXED_PATHS[lvIdx];
+      path=pool[Math.floor(Math.random()*pool.length)];
+    } else {
+      path=genPath(lv.rows,lv.cols);
+    }recallIdx=0;curR=-1;curC=-1;
     buildGrid(lv);
     setSt('WATCH THE PATH');
     document.getElementById('gd-stop-btn').style.display='block';
@@ -2422,15 +2889,21 @@ const GRID=(()=>{
     document.getElementById('gd-start').style.display='none';
     document.getElementById('gd-over').style.display='none';
     document.getElementById('gd-intro').style.display='none';
+    // Shuffle the shared 10×14 pool for levels 8-11
+    if(FIXED_PATHS[7]){
+      sharedPool=[...FIXED_PATHS[7]].sort(()=>Math.random()-0.5);
+    }
+    sharedIdx=0;
     rl();nextTrial();
   }
 
   function stop(){
-    phase='idle';stopTimer();
+    phase='idle';stopPathAnim();stopTimer();
     document.getElementById('gd-start').style.display='flex';
     document.getElementById('gd-over').style.display='none';
     document.getElementById('gd-intro').style.display='none';
     document.getElementById('gd-stop-btn').style.display='none';
+    document.getElementById('gd-grid').innerHTML='';
   }
 
   document.addEventListener('keydown',handleKey);
