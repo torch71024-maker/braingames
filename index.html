@@ -395,12 +395,7 @@ html,body{width:100%;height:100%;background:#050510;font-family:'Courier New','L
       <div class="hcard-bar" style="background:#ffaa00"></div>
     </div>
   </div>
-  <div class="hub-sec">PLANNED</div>
-  <div class="hub-grid">
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff6688">OPTICS</div><div class="hcard-skill">Visual Acuity · Contrast Sensitivity</div><div class="hcard-desc">Optotype symbols shrink and fade. How far can you see? The only test here that measures your eyes, not just your brain. Find where your visual system actually breaks down.</div><div class="hcard-bar" style="background:#ff6688"></div></div>
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#ff9922">TEMPO</div><div class="hcard-skill">Rhythmic Timing · Temporal Precision</div><div class="hcard-desc">A beat plays. Tap with it — exactly. Your deviation from perfect timing is measured in milliseconds. Gets harder as the rhythm grows irregular and the tempo shifts without warning.</div><div class="hcard-bar" style="background:#ff9922"></div></div>
-    <div class="hcard soon"><div class="hcard-st">SOON</div><div class="hcard-name" style="color:#44ddcc">HELIX</div><div class="hcard-skill">Spatial Rotation · Pattern Sequencing</div><div class="hcard-desc">Two streams at once: positions flash visually and tones play auditorily. Remember both. The classic dual n-back — the only task with replicated evidence for raising fluid intelligence.</div><div class="hcard-bar" style="background:#44ddcc"></div></div>
-  </div>
+  
   <div class="hub-foot">ALL TOOLS RUN LOCALLY · NO DATA COLLECTED · NO INTERNET REQUIRED</div>
 </div>
 </div>
@@ -1080,20 +1075,29 @@ const STROOP=(()=>{
     const pool=lv.pool;
     const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
     const pairs=[];
-    const allSeven=shuf([...ALL7]).slice(0,pool.length===7?7:pool.length);
-    const sp=shuf([...pool]);
+    if(lv.rule==='NEITHER'){
+      // Unique colors across every txt/ink position — guarantees exactly one answer
+      const shuffled=shuf([...pool]);
+      // First words*2 colors are used as positions; the rest are candidates for the answer
+      // We need words*2 unique slots from the pool
+      const used=shuffled.slice(0,lv.words*2);
+      const answer=shuffled.slice(lv.words*2)[0]||shuffled[shuffled.length-1];
+      for(let w=0;w<lv.words;w++){
+        const txt=used[w*2],ink=used[w*2+1];
+        // txt and ink are guaranteed different since all positions are unique
+        pairs.push({txt,ink});
+      }
+      return{pairs,answer};
+    }
+    // INK / WORD rules: single word, txt ≠ ink
     for(let w=0;w<lv.words;w++){
       let txt,ink;
       do{txt=pool[Math.floor(Math.random()*pool.length)];ink=pool[Math.floor(Math.random()*pool.length)];}while(txt===ink);
       pairs.push({txt,ink});
     }
-    const usedTxts=new Set(pairs.map(p=>p.txt));
-    const usedInks=new Set(pairs.map(p=>p.ink));
-    const usedAll=new Set([...usedTxts,...usedInks]);
     let answer;
     if(lv.rule==='INK') answer=pairs[0].ink;
-    else if(lv.rule==='WORD') answer=pairs[0].txt;
-    else{const avail=pool.filter(c=>!usedAll.has(c));answer=avail[Math.floor(Math.random()*avail.length)]||pool[0];}
+    else answer=pairs[0].txt;
     return{pairs,answer};
   }
 
@@ -1150,14 +1154,20 @@ const STROOP=(()=>{
     // Rule label
     document.getElementById('st-intro-ex-rule').textContent=lv.desc;
     document.getElementById('st-intro-ex-sub').textContent=lv.sub;
-    // Build example: pick random word/ink pairs
+    // Build example: unique color per position for NEITHER; simple for INK/WORD
     const shuf=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
-    const sp=shuf([...lv.pool]);
     const exWords=[];
-    for(let i=0;i<lv.words;i++){
-      let txt,ink;
-      do{txt=sp[i%sp.length];ink=sp[(i+1)%sp.length];}while(txt===ink&&sp.length>1);
-      exWords.push({txt,ink});
+    if(lv.rule==='NEITHER'){
+      const sp=shuf([...lv.pool]);
+      const used=sp.slice(0,lv.words*2);
+      for(let i=0;i<lv.words;i++) exWords.push({txt:used[i*2],ink:used[i*2+1]});
+    } else {
+      const sp=shuf([...lv.pool]);
+      for(let i=0;i<lv.words;i++){
+        let txt,ink;
+        do{txt=sp[i%sp.length];ink=sp[(i+1)%sp.length];}while(txt===ink&&sp.length>1);
+        exWords.push({txt,ink});
+      }
     }
     const wEls=['st-intro-ex-word','st-intro-ex-word2','st-intro-ex-word3'];
     wEls.forEach((id,i)=>{
@@ -1614,14 +1624,14 @@ const SIMON=(()=>{
 const REFLEX=(()=>{
   const CHX={red:'#ff2244',blue:'#00bbff',green:'#00ee77',yellow:'#ffdd00',purple:'#cc44ff',orange:'#ff8800'};
   const LVLS=[
-    {type:'color',  pool:['red','blue','green','yellow'],                                       tRate:0.33,isi:[500,500]},
-    {type:'color',  pool:['red','blue','green','yellow','purple'],                              tRate:0.30,isi:[500,500]},
-    {type:'shape',  pool:['circle','square','triangle','diamond'],                              tRate:0.30,isi:[500,500]},
-    {type:'cshape', colors:['green','red','blue','yellow'],shapes:['circle','square','triangle'],tRate:0.25,isi:[500,500]},
-    {type:'nback',  pool:['red','blue','green','yellow','purple'],                              tRate:0.25,isi:[500,500]},
-    {type:'number', tRate:0.50,isi:[500,500]},
-    {type:'numgt',  tRate:0.44,isi:[500,500]},
-    {type:'letter', pool:'ABCDEFGHIJKLMNOPRSTUVWXYZ'.split(''),                                tRate:0.35,isi:[500,500]},
+    {type:'color',  pool:['red','blue','green','yellow'],                                       tRate:0.33,isi:[350,850]},
+    {type:'color',  pool:['red','blue','green','yellow','purple'],                              tRate:0.30,isi:[350,850]},
+    {type:'shape',  pool:['circle','square','triangle','diamond'],                              tRate:0.30,isi:[300,800]},
+    {type:'cshape', colors:['green','red','blue','yellow'],shapes:['circle','square','triangle'],tRate:0.25,isi:[300,800]},
+    {type:'nback',  pool:['red','blue','green','yellow','purple'],                              tRate:0.25,isi:[300,750]},
+    {type:'number', tRate:0.50,isi:[280,700]},
+    {type:'numgt',  tRate:0.44,isi:[280,700]},
+    {type:'letter', pool:'ABCDEFGHIJKLMNOPRSTUVWXYZ'.split(''),                                tRate:0.35,isi:[260,650]},
   ];
   const WIN=500,ADV=4;
   let cv,ctx,W,H,ac=null;
@@ -1654,7 +1664,7 @@ const REFLEX=(()=>{
       ctx.fillStyle=ctx.shadowColor=CHX[stim];
       ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
     } else if(lv.type==='shape'){
-      ctx.fillStyle=ctx.shadowColor='#00ee77';
+      ctx.fillStyle=ctx.shadowColor='#ffffff';
       ctx.beginPath();
       if(stim==='circle'){ctx.arc(cx,cy,r,0,Math.PI*2);}
       else if(stim==='square'){ctx.rect(cx-r,cy-r,r*2,r*2);}
@@ -1676,7 +1686,7 @@ const REFLEX=(()=>{
       else{ctx.moveTo(cx,cy-r);ctx.lineTo(cx+r*0.87,cy+r*0.5);ctx.lineTo(cx-r*0.87,cy+r*0.5);ctx.closePath();}
       ctx.fill();
     } else if(lv.type==='letter'){
-      ctx.fillStyle=ctx.shadowColor='#00ee77';
+      ctx.fillStyle=ctx.shadowColor='#ffffff';
       ctx.font=`bold ${Math.round(r*1.6)}px monospace`;ctx.textAlign='center';ctx.textBaseline='middle';
       ctx.fillText(stim,cx,cy);
     }
@@ -1707,13 +1717,14 @@ const REFLEX=(()=>{
   }
 
   function setRule(lv){
+    const s=v=>String(v==null?'':v).toUpperCase();
     const rules={
-      color:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,
-      shape:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,
+      color:`TAP WHEN ${s(levelTarget)}`,
+      shape:`TAP WHEN ${s(levelTarget)}`,
       nback:'TAP WHEN SAME AS LAST',
-      number:`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`,
+      number:`TAP ${s(levelTarget)} NUMBERS`,
       numgt:`TAP WHEN >= ${levelTarget}`,
-      cshape:levelTarget?`TAP ${(levelTarget.color||'').toUpperCase()} ${(levelTarget.shape||'').toUpperCase()} ONLY`:'TAP THE TARGET',
+      cshape:levelTarget?`TAP ${s(levelTarget.color)} ${s(levelTarget.shape)} ONLY`:'TAP THE TARGET',
       letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`,
     };
     const el=document.getElementById('rf-rule-banner');if(el)el.textContent=rules[lv.type]||'';
@@ -1750,7 +1761,7 @@ const REFLEX=(()=>{
       // Also absorb late taps on go stimuli within a grace window after the reaction window
       if(curIsGo&&(now-tStart)<WIN+300) return;
       if(phase==='iti'||!curIsGo){
-        noGoTotal++;falseAlarms++;lives=Math.max(0,lives-1);rl();fb('WAIT!','#ff8800');beep(200,'sawtooth',0.1,0.15);
+        noGoTotal++;falseAlarms++;lives=Math.max(0,lives-1);rl();fb('OOPS','#ff8800');beep(200,'sawtooth',0.1,0.15);
         if(lives<=0){setTimeout(over,900);}
       }
       return;
@@ -1758,7 +1769,7 @@ const REFLEX=(()=>{
     if(!curIsGo){
       // False alarm on no-go stimulus
       noGoTotal++;falseAlarms++;
-      lives=Math.max(0,lives-1);rl();fb('NO-GO!','#ff8800');beep(200,'sawtooth',0.1,0.15);
+      lives=Math.max(0,lives-1);rl();fb('OOPS','#ff8800');beep(200,'sawtooth',0.1,0.15);
       accepting=false;stopTimerBar();clear();
       if(lives<=0){setTimeout(over,900);return;}
       if(itiTO){clearTimeout(itiTO);itiTO=null;}
@@ -1803,7 +1814,7 @@ const REFLEX=(()=>{
       accepting=false;stopTimerBar();clear();
       if(curIsGo){
         lastMissTime=performance.now();
-        lives=Math.max(0,lives-1);rl();fb('MISS!','#ff2244');beep(150,'sawtooth',0.12,0.18);
+        lives=Math.max(0,lives-1);rl();fb('MISS','#ff2244');beep(150,'sawtooth',0.12,0.18);
         if(lives<=0){setTimeout(over,900);return;}
       }
       phase='iti';nextTrial();
@@ -1813,7 +1824,7 @@ const REFLEX=(()=>{
   function showIntro(lv,done){
     const ov=document.getElementById('rf-intro');ov.style.display='flex';
     document.getElementById('rf-intro-lv').textContent='LEVEL '+(level+1);
-    const ruleMap={color:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,shape:`TAP WHEN ${(levelTarget||'').toUpperCase()}`,cshape:levelTarget?`TAP ${(levelTarget.color||'').toUpperCase()} ${(levelTarget.shape||'').toUpperCase()} ONLY`:'TAP THE TARGET',nback:'TAP WHEN SAME AS LAST',number:`TAP ${(levelTarget||'').toUpperCase()} NUMBERS`,numgt:`TAP NUMBERS >= ${levelTarget}`,letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`};
+    const s=v=>String(v==null?'':v).toUpperCase();const ruleMap={color:`TAP WHEN ${s(levelTarget)}`,shape:`TAP WHEN ${s(levelTarget)}`,cshape:levelTarget?`TAP ${s(levelTarget.color)} ${s(levelTarget.shape)} ONLY`:'TAP THE TARGET',nback:'TAP WHEN SAME AS LAST',number:`TAP ${s(levelTarget)} NUMBERS`,numgt:`TAP NUMBERS >= ${levelTarget}`,letter:`TAP ${levelTarget==='vowels'?'VOWELS':'CONSONANTS'}`};
     document.getElementById('rf-intro-rule').textContent=ruleMap[lv.type]||'REACT';
     document.getElementById('rf-intro-sub').textContent='React within 0.5 seconds. Do not tap on distractors.';
     setRule(lv);ov._done=done;
